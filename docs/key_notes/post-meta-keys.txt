@@ -1,0 +1,165 @@
+
+WALLETS POSTS
+see fl_transaction_lookup_helper.php
+
+PROJECT AND CONTEST POSTS
+ todo wp_post_data_lookup
+post_id                           BIG INT
+author_id                         BIG INT
+project_new_status          TINYINT CURRENTLY USED CAN BE INT FLAG (not exists (0), working (1),completed(2), not completed or working (3)
+is_guaranted                TINYINT CURRENTLY USED CAN BE INT FLAG 0 or 1
+is_cancellation_approved    TINYINT CURRENTLY USED CAN BE INT FLAG 0 or 1
+fl_job_type                 TINYINT CURRENTLY USED CAN BE INT FLAG, 0 for unset 1 for project, 2 for contest
+hide_job                    TINYINT CURRENTLY USED CAN BE INT FLAG 0 or 1
+post_status                 TINYINT MAP TO INT , pending=> 0, publish=> 1, private => 2
+post_type                   TINYINT MAP TO INT , job => 1, wallet => 2, revision => 5, faq=> 7
+job_standard_delivery_date  CURRENTLY USED CAN BE INT  VIA UNIX TIMESTAMP
+modified_id                 CURRENTLY USED CAN BE INT  AS LONG AS SEARCHES USE NUMBER PART ONLY (strip non digits in sql), regular int (4 bytes)
+(numeric_modified_id is the new meta pushed in the php)
+
+
+
+create table wp_fl_post_data_lookup
+(
+	id int auto_increment
+		primary key,
+	post_id   bigint unsigned not null,
+	author_id bigint unsigned default null,
+	fl_job_type tinyint default 0 not null,
+	hide_job tinyint default 0 not null,
+	project_new_status tinyint default 0 not null,
+	post_status tinyint default 0 not null,
+	post_type tinyint default 0 not null,
+	is_guaranted tinyint default 0 not null,
+	is_cancellation_approved tinyint default 0 not null,
+	job_standard_delivery_date int default 0 not null,
+	modified_id int default 0 not null,
+    last_update timestamp default now() on update now(),
+
+	constraint unique_id_pk
+		unique (id),
+	constraint udx_post_id
+		unique (post_id),
+	constraint wp_post_data_lookup_has_post_id_fk
+		foreign key (post_id) references wp_posts (id)
+			on update cascade on delete cascade,
+	constraint wp_post_data_lookup_has_users_ID_fk
+		foreign key (author_id) references wp_users (ID)
+			on update cascade on delete cascade
+)
+engine=InnoDB
+;
+
+-- to add the
+ALTER TABLE wp_fl_post_data_lookup ADD last_update timestamp DEFAULT NOW() ON UPDATE NOW() NOT NULL;
+
+
+create table wp_fl_post_user_lookup
+(
+	id int auto_increment
+		primary key,
+	post_id   bigint unsigned not null,
+	author_id bigint unsigned not null,
+  lookup_flag int default 0 not null,
+    -- value is 1 if _bid_placed_by_<user_id #> or _bid_placed_by, value is 2 if all_contest_paricipants
+  lookup_val int default 0 not null,
+
+	constraint unique_id_pk
+		unique (id),
+	constraint udx_post_author_lookup
+		unique (post_id,author_id,lookup_flag),
+	constraint wp_fl_post_user_lookup_has_post_id_fk
+		foreign key (post_id) references wp_posts (id)
+			on update cascade on delete cascade,
+	constraint wp_fl_post_user_lookup_has_users_ID_fk
+		foreign key (author_id) references wp_users (ID)
+			on update cascade on delete cascade
+)
+engine=InnoDB
+;
+
+create table wp_fl_post_lookup_errors
+(
+  id int auto_increment
+    primary key,
+  post_lookup_id int NOT NULL,
+  error_time timestamp DEFAULT current_timestamp,
+  severity int default 5 not null,
+  column_of_error varchar(30) NOT NULL,
+  error_msg text,
+  constraint unique_id_pk unique (id),
+  index idx_lookup_column (post_lookup_id,column_of_error),
+  index idx_column (column_of_error),
+  index idx_time (error_time),
+  index idx_column_time (column_of_error,error_time),
+  constraint post_lookup_error_has_data_lookup_id
+  foreign key (post_lookup_id) references wp_fl_post_data_lookup (ID)
+    on update cascade on delete cascade
+)
+  engine=InnoDB
+;
+
+
+
+KEYS TO ADD TO wp_posts table
+post_title (first 40 characters), but need to set mysql ini to accept zero date
+
+
+
+other post info:
+
+post_status
+post_type
+author
+
+
+
+cannot be searched with %like (incomplete)
+post_title
+post_author
+
+
+=======
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------
+more effecient usages
+
+post data that is 1:1 , that is one data for the post has one value goes into a lookup table
+
+post data that is 1:n where n is not known, has to go into other tables
+
+    _bid_placed_by ! values cannot be %liked
+        Is is currently a php serialized array. It can have zero, one or many user ids
+    _bid_placed_by_<user_id #>
+        Each bidder has a new meta key made here. There can be zero, one or many meta keys that start with this
+
+    the wp_comments are where bids are stored. If the wp_comments were only for bids, and nothing else, we could use this table instead
+    However, this is also where all the other post comments are stored for the entire WP, and to find the bid type is expensive
+        BUT, could place a three character index on the comment_type , and use that in a compound index  (comment_post_ID,comment_type(3))
+        On the other hand, this is a large table to keep in memory
+    ALTERNATELY, can create a smaller table, to just store the post_id, and user_id , for bids.
+                  Can add a integer flag here to store other user post associations
+        BUT , extra table means more code changes, and adds complexity
+        HOWEVER needed for all_contest_paricipants also, so need this table, with the flag to distinguish
+
+        todo wp_post_user_lookup table:
+            post_id bigint
+            user_id bigint
+            (int)lookup_flag,(int)lookup_val
+
+
+
+
+
+
+
+

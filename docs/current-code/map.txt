@@ -1,0 +1,799 @@
+===============================================================================
+LOGGING IN
+    url: login/?lang=en
+
+    templates:
+        wp-content/themes/the-translator/templates/login-tpl.php
+            wp-content/themes/the-translator/footer.php
+
+    ajax:
+        newUserResendConfirmationEmail (sending confirm link again)     wp-content/themes/the-translator/includes/global-functions/api/ajax/newUserResendConfirmationEmail.php
+        reactive_my_account (reactivating account)                      wp-content/themes/the-translator/includes/global-functions/api/ajax/reactive_my_account.php
+===============================================================================
+CREATING NEW USER
+
+    url:
+        registration/?lang=en
+
+    template:
+        wp-content/themes/the-translator/templates/registration-tpl.php
+            wp-content/themes/the-translator/header-register.php
+            wp-content/themes/the-translator/footer.php
+
+    ajax:
+        reg_user  (makes new user and sends email)                      wp-content/themes/the-translator/includes/global-functions/api/ajax/register_trans_user.php
+        socialUserTypeLoginChange (coordinates with social plugin)      wp-content/themes/the-translator/includes/global-functions/api/ajax/socialUserTypeLoginChange.php
+
+
+==============================================================================
+Activating Account
+
+    url:
+        activation/?lang=en&key=<one time user key>&user=<user-id>
+    template:
+        wp-content/themes/the-translator/templates/acc-active-tpl.php
+            wp-content/themes/the-translator/header.php
+            wp-content/themes/the-translator/footer-homepagenew.php
+===============================================================================
+
+FORGOT PASSWORD
+
+    url:
+        forgot-password/?lang=en
+
+    template:
+        wp-content/themes/the-translator/templates/forgot-password.php
+            wp-content/themes/the-translator/header-register.php
+            wp-content/themes/the-translator/footer.php
+
+
+
+===============================================================================
+
+HEADER MENU
+    url: all pages
+
+    templates:
+      wp-content/themes/the-translator/header.php
+
+    ajax:
+        change_role_cus_ling (changing the role)                            wp-content/themes/the-translator/includes/global-functions/api/ajax/change_role_cus_ling.php
+
+PROJECTS
+===============================================================================
+Creating a new project
+    url: /order-process/?lang=en
+
+    templates:
+        wp-content/themes/the-translator/templates/order-process-tpl.php
+          wp-content/themes/the-translator/header.php
+          wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+        -- not used any more
+             cvf_upload_files_order_process_new (when uploading files)          wp-content/themes/the-translator/includes/global-functions/api/ajax/cvf_upload_files_order_process_new.php
+        selected_file_remove (when clicking on the X beside the uploaded file)  wp-content/themes/the-translator/includes/global-functions/api/ajax/selected_file_remove.php
+        update_price_by_date (when selecting 'Expected Delivery Date')          wp-content/themes/the-translator/includes/global-functions/api/ajax/update_price_by_date.php
+        generateOrderByCustomerNew (when pressing 'Post My Project')            wp-content/themes/the-translator/includes/global-functions/api/ajax/generateOrderByCustomerNew.php
+        get_custom_tags (when adding a tag)                                     wp-content/themes/the-translator/includes/global-functions/api/ajax/get_custom_tags.php
+
+        if timezone not set will call update_local_timezone                     wp-content/themes/the-translator/includes/global-functions/api/ajax/update_local_timezone.php
+        remove_all_files (when clicking "clear all items")                      wp-content/themes/the-translator/includes/global-functions/api/ajax/remove_all_files.ph
+
+====================================================================================
+
+Editing an existing project
+    url: /job/P__YY_XXXXXX/?lang=en   where P__YY_XXXXXX is the public project id
+                                                            this is converted to a post id via the WPML plugin
+
+    templates:
+        wp-content/themes/the-translator/single-job.php
+            wp-content/themes/the-translator/header.php
+            wp-content/themes/the-translator/includes/user/single-job/single-job-customer.php
+            wp-content/themes/the-translator/footer-homepagenew.php
+
+     ajax:
+        hide_job     (hide job button)                                      wp-content/themes/the-translator/includes/global-functions/api/ajax/hide_job.php
+        show_job     (show job button)                                      wp-content/themes/the-translator/includes/global-functions/api/ajax/show_job.php
+        delete_job   (delete job button)                                    wp-content/themes/the-translator/includes/global-functions/api/ajax/delete_job.php
+        job_tags_editable (adding or removings tags)                        wp-content/themes/the-translator/includes/global-functions/api/ajax/job_tags_editable.php
+        get_custom_tags (when adding a tag)                                 wp-content/themes/the-translator/includes/global-functions/api/ajax/get_custom_tags.php
+        job_description_editable  (pressing 'save description')             wp-content/themes/the-translator/includes/global-functions/api/ajax/job_description_editable.php
+        project_job_file_upload (when adding files)                         wp-content/themes/the-translator/includes/global-functions/api/ajax/project_job_file_upload.php
+        selected_file_remove (when removing files in project)               wp-content/themes/the-translator/includes/global-functions/api/ajax/selected_file_remove.php
+
+     notes:
+        duplicating a project calls the create new project , above, with the current job id, and the template puts the values of the job into the form
+
+    milestones ajax:
+        hireTranslate (when pressing hire button)                           wp-content/themes/the-translator/includes/global-functions/api/ajax/hireTranslate.php
+            freelinguist_get_charge_list to show fee box
+
+        create_chat_room (when pressing chat button)                        wp-content/themes/the-translator/includes/global-functions/api/ajax/EjabberdWrapper.php
+
+    work delivery screen:
+        hz_create_milestone (when creating a milestone)                     wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_create_milestone_cb.php
+        freelinguist_get_charge_list                        wp-content/themes/the-translator/includes/global-functions/api/ajax/freelinguist_get_charge_list.php
+        (to show fee box )
+        project_single_job_file_upload (when adding files here)             wp-content/themes/the-translator/includes/global-functions/api/ajax/project_single_job_file_upload.php
+        hz_manage_milestone                                                 wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_manage_milestone_cb.php
+            (when pressing accept on the milestone)
+            (when rejecting a milestone)
+            (when requesting a revision)
+        hz_approve_milestone (when approving a milestone)                   wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_approve_milestone_cb.php
+        hz_project_customer_feedback (when providing customer feedback)     wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_project_customer_feedback.php
+        freelinguist_get_charge_list                                        wp-content/themes/the-translator/includes/global-functions/api/ajax/freelinguist_get_charge_list.php
+        (to show fee box )
+
+
+
+CONTESTS
+====================================================================================
+Creating a new contest
+    url: /post-contest/?lang=en
+
+    templates:
+        wp-content/themes/the-translator/templates/order-process-tpl.php
+           wp-content/themes/the-translator/templates/post-contest-tpl.php
+                wp-content/themes/the-translator/header.php
+                wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+        update_price_by_date (when selecting 'Expected Delivery Date')          wp-content/themes/the-translator/includes/api/global-functions/update_price_by_date.php
+        get_custom_tags (when adding a tag)                                     wp-content/themes/the-translator/includes/api/global-functions/get_custom_tags.php
+
+        -- files not uploaded until contest saved now, so not used
+            cvf_upload_files_order_process_new (when uploading files)           wp-content/themes/the-translator/includes/api/global-functions/cvf_upload_files_order_process_new.php
+        selected_file_remove (when clicking on the X beside the uploaded file)  wp-content/themes/the-translator/includes/api/global-functions/selected_file_remove.php
+        generateOrderByCustomerNew (when pressing 'Post Contest')               wp-content/themes/the-translator/includes/api/global-functions/generateOrderByCustomerNew.php
+        freelinguist_get_charge_list                                             wp-content/themes/the-translator/includes/global-functions/api/ajax/freelinguist_get_charge_list.php
+        (to show fee box )
+
+        if timezone not set will call update_local_timezone                     wp-content/themes/the-translator/includes/api/global-functions/update_local_timezone.php
+
+====================================================================================
+
+CONTEST DETAILS EDIT PAGE
+    url: /job/C__YY_XXXXXX/?lang=en   where P__YY_XXXXXX is the public project id
+                                                                this is converted to a post id via the WPML plugin
+
+    template
+        wp-content/themes/the-translator/single-job.php
+           wp-content/themes/the-translator/header.php
+           wp-content/themes/the-translator/includes/user/single-job/contest-customer.php
+           wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+        job_tags_editable (adding or removings tags)                            wp-content/themes/the-translator/includes/global-functions/api/ajax/job_tags_editable.php
+        hz_contest_data_proc (when adding files)                                wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_contest_data_proc_cb.php
+        job_instruction_editable (when updating the contest description)        wp-content/themes/the-translator/includes/global-functions/api/ajax/job_instruction_editable.php
+        hide_job     (hide job button)                                          wp-content/themes/the-translator/includes/global-functions/api/ajax/hide_job.php
+        show_job     (show job button)                                          wp-content/themes/the-translator/includes/global-functions/api/ajax/show_job.php
+        selected_file_remove (when clicking on the X beside the uploaded file)  wp-content/themes/the-translator/includes/api/global-functions/selected_file_remove.php
+        remove_all_files (when clicking "clear all items")                      wp-content/themes/the-translator/includes/global-functions/api/ajax/remove_all_files.php
+        public_ajax_request_cancel                                              wp-content/themes/the-translator/includes/global-functions/internal/contest-cancellation.php
+
+
+CONTEST OTHER EDIT PAGE
+
+
+    url: /job/C__YY_XXXXXX/?lang=en&action=edit-contest  (same as above but with the action=edit-contest)
+
+    template
+            wp-content/themes/the-translator/single-job.php
+               wp-content/themes/the-translator/header.php
+               wp-content/themes/the-translator/includes/user/single-job/contest-customer.php
+               wp-content/themes/the-translator/includes/user/single-job/contest-edit-contest.php
+               wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+        job_tags_editable (adding or removings tags)                            wp-content/themes/the-translator/includes/global-functions/api/ajax/job_tags_editable.php
+        selected_file_remove (when clicking on the X beside the uploaded file)  wp-content/themes/the-translator/includes/api/global-functions/selected_file_remove.php
+        cvf_upload_files_order_process_new (when uploading files)               wp-content/themes/the-translator/includes/api/global-functions/cvf_upload_files_order_process_new.php
+        update_price_by_date (when selecting 'Submission Deadline')             wp-content/themes/the-translator/includes/api/global-functions/update_price_by_date.php
+        updateOrderByCustomer (when pressing 'Update Competition' button)       wp-content/themes/the-translator/includes/global-functions/api/ajax/updateOrderByCustomer.php
+        remove_all_files ( link 'Clear all items')                              wp-content/themes/the-translator/includes/global-functions/api/ajax/remove_all_files.php
+
+====================================================================================
+
+Freelancer Dashboard
+   url: dashboard/?lang=en
+
+   templates:
+        wp-content/themes/the-translator/templates/dashboard-tpl.php
+            wp-content/themes/the-translator/header.php
+            wp-content/themes/the-translator/includes/user/dashboard/dashboard-translator.php
+            wp-content/themes/the-translator/footer-homepagenew.php
+
+====================================================================================
+
+Freelancer Project Page
+   url: job/P__YY_XXXXXX/?lang=en  (when in freelancer role)
+
+   templates:
+        wp-content/themes/the-translator/single-job.php
+            wp-content/themes/the-translator/header.php
+           wp-content/themes/the-translator/includes/user/single-job/single-job-translator.php
+           wp-content/themes/the-translator/includes/user/single-job/ind-translator.php
+            wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+        place_the_bid (when placing the bid or updating it)                         wp-content/themes/the-translator/includes/global-functions/api/ajax/place_the_bid.php
+        hz_manage_job_status                                                        wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_manage_job_status_cb.php
+            (when pressing reject job)
+            (when pressing accept button)
+        freelinguist_get_charge_list                                                 wp-content/themes/the-translator/includes/global-functions/api/ajax/freelinguist_get_charge_list.php
+        (to show fee box )
+
+        hz_create_milestone (when making a milestone)                               wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_create_milestone_cb.php
+        cvf_upload_files_order_process (when uploading a file)                      wp-content/themes/the-translator/includes/global-functions/api/ajax/cvf_upload_files_order_process.php
+        hz_manage_milestone                                                         wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_manage_milestone_cb.php
+            (when requesting a commpletion)
+            (when cancelling a milestone)
+        hz_project_translator_feedback (when providing freelancer feedback)         wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_project_translator_feedback_cb.php
+        hz_manage_milestone (when asking for a mediator)                            wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_manage_milestone_cb.php
+        freelinguist_get_charge_list                                                 wp-content/themes/the-translator/includes/global-functions/api/ajax/freelinguist_get_charge_list.php
+        (to show fee box )
+
+        create_chat_room (when pressing chat button)                                wp-content/themes/the-translator/includes/global-functions/api/ajax/EjabberdWrapper.php
+
+====================================================================================
+Freelancer Contest Page
+
+    url: job/C__18_327018/?lang=en&action=proposals
+
+    templates:
+        wp-content/themes/the-translator/single-job.php
+            wp-content/themes/the-translator/header.php
+            wp-content/themes/the-translator/includes/user/single-job/contest-translator.php
+            wp-content/themes/the-translator/includes/user/single-job/contest-translator-proposals.php
+            wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+        create_chat_room (when pressing the chat button if room not created)                    wp-content/themes/the-translator/includes/global-functions/api/ajax/EjabberdWrapper.php
+        freelinguist_proposal_file_delete                                                       wp-content/themes/the-translator/includes/global-functions/api/ajax/freelinguist_proposal_file_delete.php
+            (deletes proposal via its file, if no file then proposal id)
+
+
+==================================
+When the freelancer is making a new proposal for a contest
+
+    url: job/C__18_327018/?lang=en&action=new-proposal
+
+    templates:
+        wp-content/themes/the-translator/single-job.php
+            wp-content/themes/the-translator/header.php
+            wp-content/themes/the-translator/includes/user/single-job/contest-translator.php
+            wp-content/themes/the-translator/includes/user/single-job/contest-translator-new-proposal.php
+            wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+         hz_contest_new_proposal_data_proc                   wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_contest_new_proposal_data_proc_cb.php
+            (when uploading a file, and creating the proposal)
+         hz_contest_new_proposal_data_proc_save             wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_contest_new_proposal_data_proc_save.php
+            ( when pressing button for saving the proposal description)
+
+         freelinguist_proposal_seal                         wp-content/themes/the-translator/includes/global-functions/api/ajax/freelinguist_get_charge_list.php
+         (sealing files for project)
+
+         freelinguist_proposals_view                        wp-content/themes/the-translator/includes/global-functions/api/ajax/freelinguist_proposals_view.php
+         (paying to see other people's files)
+
+        freelinguist_get_charge_list                        wp-content/themes/the-translator/includes/global-functions/api/ajax/freelinguist_get_charge_list.php
+         (to show fee box for viewing or sealing)
+===================================
+when the freelancer is viewing a single proposal
+    url: /job/22YYYYY/?lang=en&action=proposals&contest-pro=true&rate=&proposal_id=XXXX&linguist=ZZZZ
+
+    templates:
+        wp-content/themes/the-translator/single-job.php
+            wp-content/themes/the-translator/header.php
+            wp-content/themes/the-translator/includes/user/single-job/contest-translator.php
+            wp-content/themes/the-translator/includes/user/single-job/translator-proposals.php
+            wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax
+        hz_post_fl_discussion (when starting a discussion with customer)                               wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_post_fl_discussion_cb.php
+        create_chat_room (when starting a discussion with a user listed on the page)                    wp-content/themes/the-translator/includes/global-functions/api/ajax/EjabberdWrapper.php
+_________________________________________________________
+
+when showing proposals to users that are made by others
+
+    url: /job/22327200/?lang=en&action=other-translator-proposal&linguist=156606&proposal_id=152127
+         job/XXXXXX/?lang=en&action=proposal&proposal_id=<wp_proposal_id>&linguist=<other_user_id>
+
+    templates:
+        wp-content/themes/the-translator/single-job.php
+            wp-content/themes/the-translator/header.php
+            wp-content/themes/the-translator/includes/user/single-job/contest-translator.php
+            wp-content/themes/the-translator/includes/user/single-job/contest-other-translator-proposal.php
+            wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+         hz_post_fl_discussion (when starting a discussion with customer)                               wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_post_fl_discussion_cb.php
+
+-----------------------------------------------------------
+when showing an existing proposal to the freelancer
+
+    url: job/C__18_327018/?lang=en&action=proposal&proposal_id=152017&linguist=156597
+         job/C__YY_XXXXXX/?lang=en&action=proposal&proposal_id=<wp_proposal_id>&linguist=<user_id>
+
+    templates:
+        wp-content/themes/the-translator/single-job.php
+            wp-content/themes/the-translator/header.php
+            wp-content/themes/the-translator/includes/user/single-job/contest-translator.php
+            wp-content/themes/the-translator/includes/user/single-job/contest-translator-proposal.php
+            wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+         hz_post_fl_discussion (when starting a discussion with customer)                               wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_post_fl_discussion_cb.php
+         hz_add_participate   (when clicking participate in contest)                                    wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_add_participate_cb.php
+======================================
+When showing the freelancer's winning proposal
+
+    url: job/C__18_327018/?lang=en&action=winner-proposal&proposal_id=152017
+         job/C__YY_XXXXXX/?lang=en&action=winner-proposal&proposal_id=<wp_proposal_id>
+
+    templates:
+         wp-content/themes/the-translator/single-job.php
+                wp-content/themes/the-translator/header.php
+                wp-content/themes/the-translator/includes/user/single-job/contest-translator.php
+                wp-content/themes/the-translator/includes/user/single-job/contest-translator-winner-proposal.php
+                wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+         hz_contest_update_proposal_data_proc (when adding files via "upload files" button)     wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_contest_update_proposal_data_proc_cb.php
+         hz_change_status_contest_proposal (when pressing button "Request completion")          wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_change_status_contest_proposal.php
+                                            (when pressing the grey cancel button)
+                                            (when accepting the rejection)
+                                            (when requesting mediatation)
+                      freelinguist_get_charge_list to show fee when requesting mediation
+
+          hz_post_fl_discussion (when pressing the 'contact customer')                          wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_post_fl_discussion_cb.php
+         hz_proposal_freelancer_feedback (when the freelancer gives feedback about the customer)   wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_proposal_freelancer_feedback_cb.php
+
+=======================================
+the jobs page for the freelancer
+    url: dashboard/?lang=en
+            (translator view)
+
+    templates:
+        wp-content/themes/the-translator/templates/jobs-tpl.php
+        wp-content/themes/the-translator/header.php
+        includes/user/jobs/jobs-my-all.php
+        wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+            hz_add_participate   (when clicking participate in contest)                 wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_add_participate_cb.php
+            place_the_bid       (when bidding directly from the page)                   wp-content/themes/the-translator/includes/global-functions/api/ajax/place_the_bid.php
+
+===================================
+when showing an existing proposal to the customer
+
+    url: job/C__18_327018/?lang=en&action=participants-proposals
+         job/C__YY_XXXXXX/?lang=en&action=participants-proposals
+
+    templates:
+        wp-content/themes/the-translator/single-job.php
+            wp-content/themes/the-translator/header.php
+            wp-content/themes/the-translator/includes/user/single-job/contest-customer.php
+            wp-content/themes/the-translator/includes/user/single-job/contest-participants-proposals.php
+            wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+         create_chat_room (when starting a discussion with a freelancer)            wp-content/themes/the-translator/includes/global-functions/api/ajax/EjabberdWrapper.php
+         hz_awardprize_to_proposal                                                  wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_awardprize_to_proposal_cb.php
+          freelinguist_proposal_list (to decide to show the fee box)
+                    freelinguist_get_charge_list (to display the fees)
+
+=====================================
+when customer viewing the winning proposal
+
+    url: job/C__18_327018/?lang=en&action=winner-proposal&linguist=156597&proposalId=152017
+         job/C__YY_XXXXXX/?lang=en&action=winner-proposal&linguist=<freelancer user id>&proposalId=<proposal id>
+
+     templates:
+        wp-content/themes/the-translator/single-job.php
+            wp-content/themes/the-translator/header.php
+            wp-content/themes/the-translator/includes/user/single-job/contest-customer.php
+            wp-content/themes/the-translator/includes/user/single-job/contest-winner-proposal.php
+            wp-content/themes/the-translator/footer-homepagenew.php
+
+      ajax:
+        hz_contest_data_proc (when uploading a file)                                                wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_contest_data_proc_cb.php
+        hz_post_fl_discussion (when using 'contact linguist' button)                                wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_post_fl_discussion_cb.php
+        hz_change_status_contest_proposal (when rejecting a proposal)                               wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_change_status_contest_proposal.php
+        hz_awardprize_to_proposal (when awarding a proposal)                                        wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_awardprize_to_proposal_cb.php
+         freelinguist_proposal_list (to decide to show the fee box)
+                   freelinguist_get_charge_list (to display the fees)
+
+        hz_complete_contest_proposal (when completing the proposal)                                 wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_complete_contest_proposal_cb.php
+        hz_proposal_customer_feedback (when giving feedback by the customer about the freelancer)   wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_proposal_customer_feedback_cb.php
+
+
+    =====================================
+      freelancer viewing content control panel
+
+      url:  linguist-content/?lang=en
+
+      templates:
+        wp-content/themes/the-translator/templates/linguists-content-tpl.php
+            wp-content/themes/the-translator/header.php
+            wp-content/themes/the-translator/footer-homepagenew.php
+
+      ajax:
+        delete_linguist_content_multiple (deleting checked content) wp-content/themes/the-translator/includes/global-functions/api/ajax/delete_linguist_content_multiple.php
+        delete_linguist_content (when deleting the content)         wp-content/themes/the-translator/includes/global-functions/api/ajax/delete_linguist_content.php
+        hz_Offer_accept_reject (accept or reject offers)            wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_Offer_accept_reject_cb.php
+
+    =====================================
+        Freelancer creating or editing new and existing content
+
+        url:
+            linguist-add-content/?lang=en  (for new content)
+            linguist-add-content/?lang=en&mode=edit&content_id=<base 64 id of content> (for editing content)
+
+        templates:
+            wp-content/themes/the-translator/templates/linguists-add-content-tpl.php
+                wp-content/themes/the-translator/header.php
+                wp-content/themes/the-translator/footer-homepagenew.php
+
+        ajax:
+            add_linguist_content                                        wp-content/themes/the-translator/includes/global-functions/api/ajax/FreelinguistContentHelper.php
+                (when created, adding, or changing visibility)
+            cvf_upload_files_content_process                            wp-content/themes/the-translator/includes/global-functions/api/ajax/cvf_upload_files_content_process.php
+                 (when uploading files for content)
+            cvf_upload_text_files_content_process                       wp-content/themes/the-translator/includes/global-functions/api/ajax/cvf_upload_text_files_content_process.php
+                (when uploading text files for chapters)
+            get_custom_tags   (when adding tags)                        wp-content/themes/the-translator/includes/api/global-functions/get_custom_tags.php
+            delete_content_chapter (when deleting chapters)             wp-content/themes/the-translator/includes/global-functions/api/ajax/delete_content_chapter.php
+            delete_content_file (when deleting content files)           wp-content/themes/the-translator/includes/global-functions/api/ajax/delete_content_file.php
+
+
+     ajax after purchase:
+        hz_change_status_content                                        wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_change_status_content.php
+            (when pressing cancel)
+            (when requesting completion)
+            (when requesting mediation)
+            freelinguist_get_charge_list to show fee box for mediation
+
+        hz_content_translator_feedback                                  wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_content_translator_feedback_cb.php
+            (when providing feedback)
+   ========================================
+    Freelancer viewing how the content looks to customers
+        clicking on "Read" while logged in as the creating freelancer will use the same code below
+
+        url:
+            content/?lang=en&mode=view&content_id=<base 64 id of content>
+            content/?lang=en&mode=read&content_id=<base 64 id of content>
+
+        templates:
+            wp-content/themes/the-translator/templates/content-detail-tpl.php
+                wp-content/themes/the-translator/header.php
+                wp-content/themes/the-translator/includes/user/contentdetail/contentdetail-translator.php
+                wp-content/themes/the-translator/footer-homepagenew.php
+
+
+        ajax:
+            hz_post_fl_discussion (when pressing "comment" button)                  wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_post_fl_discussion_cb.php
+            hz_post_fl_content_discussion (when pressing 'contact customer')        wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_post_fl_content_discussion_cb.php
+
+
+   ==============================================
+    Customer going to the content mall, and viewing single content
+
+    url:
+        content/?lang=en
+
+    templates:
+        wp-content/themes/the-translator/templates/content-detail-tpl.php
+            wp-content/themes/the-translator/header.php
+            includes/user/contentdetail/contentdetail-customer.php
+            wp-content/themes/the-translator/footer-homepagenew.php
+    ajax:
+        get_content_units (when scrolling down through the mall)                wp-content/themes/the-translator/includes/global-functions/api/ajax/freelinguist_return_content_units.php
+        hz_post_fl_discussion (when pressing the comment button)                wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_post_fl_discussion_cb.php
+        create_chat_room (when pressing chat)                                   wp-content/themes/the-translator/includes/global-functions/api/ajax/EjabberdWrapper.php
+
+    ajax (after owning the content)
+        hz_change_status_content                                                wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_change_status_content.php
+            (when pressing button to request revision)
+        create_chat_room    (when pressing chat)                                wp-content/themes/the-translator/includes/global-functions/api/ajax/EjabberdWrapper.php
+        hz_submit_report  (when reporting content)                              wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_submit_report_cb.php
+
+        hz_content_customer_feedback                                            wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_content_customer_feedback_cb.php
+            (when providing feedback)
+
+       hz_post_fl_content_discussion (when pressing 'contact linguist')        wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_post_fl_content_discussion_cb.php
+       hz_post_fl_content_discussion (when pressing 'comment')                  wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_post_fl_content_discussion_cb.php
+
+  =====================================================
+   Customer starts to read the content (clicking begin read button from above)
+
+   url: content/?lang=en&mode=read&content_id=<base 64 id of content>
+
+   templates:
+    wp-content/themes/the-translator/templates/content-detail-tpl.php
+         wp-content/themes/the-translator/header.php
+         includes/user/contentdetail/contentdetail-customer.php
+         includes/user/contentdetail/contentdetail-customer-content-read.php
+         wp-content/themes/the-translator/footer-homepagenew.php
+
+     ajax:
+        add_favorite_content                                                wp-content/themes/the-translator/includes/global-functions/api/ajax/add_favorite_content_cb.php
+          (when clicking "add to favorites" or "remove from favorites")
+        create_chat_room (when pressing chat if room not set)               wp-content/themes/the-translator/includes/global-functions/api/ajax/EjabberdWrapper.php
+        is_user_login                                                       wp-content/themes/the-translator/includes/global-functions/api/ajax/check_is_user_login.php
+          (started when clicking the "buy" button)
+        hz_buy_content_ajxcback                                             wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_buy_content_ajxcback_cb.php
+          (when confirming the order)
+        get_latest_all_offers                                               wp-content/themes/the-translator/includes/global-functions/api/ajax/get_latest_all_offers.php
+            (when looking at the other bids)
+        get_highest_bid                                                     wp-content/themes/the-translator/includes/global-functions/api/ajax/get_highest_bid.php
+            (when adding information to the bid box)
+        hz_Offer_send_cus                                                   wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_Offer_send_cus_cb.php
+            (when making a bid)
+
+
+
+  ----------------------------------------------------------------------------
+    The customer viewing owned content (customer content dashboard)
+
+    url: my-content/?lang=en
+
+    templates:
+      wp-content/themes/the-translator/templates/my-content.php
+        wp-content/themes/the-translator/header.php
+        wp-content/themes/the-translator/footer-homepagenew.php
+
+
+   ---------------------------------------------------------------------------
+    The customer wallet (incomplete)
+
+    url: /wallet-detail/?lang=en
+
+    templates:
+        wp-content/themes/the-translator/templates/wallet-tpl.php
+            wp-content/themes/the-translator/header.php
+            wp-content/themes/the-translator/includes/user/wallet/wallet-detailcustomer.php
+            wp-content/themes/the-translator/includes/user/wallet/wallet-customer.php
+            wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax
+        requestWithdraw_info                                         wp-content/themes/the-translator/includes/global-functions/api/ajax/requestWithdraw_info.php
+        (when  withdrawing money)
+ ------------------------------------------------------------------------------
+     The translater wallet (incomplete)
+
+     url: /wallet-detail/?lang=en
+
+    templates:
+         wp-content/themes/the-translator/templates/wallet-tpl.php
+             wp-content/themes/the-translator/header.php
+             wp-content/themes/the-translator/includes/user/wallet/wallet-detailtranslator.php
+             wp-content/themes/the-translator/includes/user/wallet/wallet-translator.php
+             wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+        email_the_form (emailing tax form)                              wp-content/themes/the-translator/includes/global-functions/api/ajax/email_the_form.php
+         requestWithdraw_info                                           wp-content/themes/the-translator/includes/global-functions/api/ajax/requestWithdraw_info.php
+                (when  withdrawing money)
+--------------------------------------------------------------------------------
+    The translator profile settings
+
+    url: /my-account/?lang=en
+
+    templates:
+        wp-content/themes/the-translator/templates/account-tpl.php
+        wp-content/themes/the-translator/header.php
+        wp-content/themes/the-translator/includes/user/account/account-translator.php
+        wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+        update_personal_info_data (update info)                         wp-content/themes/the-translator/includes/global-functions/api/ajax/update_personal_info_data.php
+        update_summary_info_data  (update public profile)               wp-content/themes/the-translator/includes/global-functions/api/ajax/update_summary_info_data.php
+        update_linguist_edu_info (update edu info)                      wp-content/themes/the-translator/includes/global-functions/api/ajax/update_linguist_edu_info.php
+        update_linguist_certification_info (update certificates)        wp-content/themes/the-translator/includes/global-functions/api/ajax/update_linguist_certification_info.php
+        update_linguist_related_experience_info (update work experience) wp-content/themes/the-translator/includes/global-functions/api/ajax/update_linguist_related_experience_info.php
+        update_linguist_language_info                                    wp-content/themes/the-translator/includes/global-functions/api/ajax/update_linguist_language_info.php
+        user_image_file_reminder (updates mising image)                 wp-content/themes/the-translator/includes/global-functions/api/ajax/user_image_file_reminder.php
+        user_image_file  (adds or replaces user image)                   wp-content/themes/the-translator/includes/global-functions/api/ajax/user_image_file.php
+        delete_user_profile_image (deletes profile image)               wp-content/themes/the-translator/includes/global-functions/api/ajax/delete_user_profile_image.php
+        update_withdraw_preference (withdraw type buttons)              wp-content/themes/the-translator/includes/global-functions/api/ajax/update_withdraw_preference.php
+
+        delete_certificate_info                                         wp-content/themes/the-translator/includes/global-functions/api/ajax/settings/delete_certificate_info.php
+        delete_education_info                                           wp-content/themes/the-translator/includes/global-functions/api/ajax/settings/delete_education_info.php
+        delete_language_info                                            wp-content/themes/the-translator/includes/global-functions/api/ajax/settings/delete_language_info.php
+        delete_related_work_experience                                  wp-content/themes/the-translator/includes/global-functions/api/ajax/settings/delete_related_work_experience.php
+
+--------------------------------------------------------------------------------
+    The customer profile settings
+
+    url: /my-account/?lang=en
+
+    templates:
+        wp-content/themes/the-translator/templates/account-tpl.php
+        wp-content/themes/the-translator/header.php
+        wp-content/themes/the-translator/includes/user/account/account-customer.php
+        wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+        update_customer_personal_info_data
+            (updates customer profile info)                             wp-content/themes/the-translator/includes/global-functions/api/ajax/update_customer_personal_info_data.php
+        user_image_file_reminder (updates mising image)                 wp-content/themes/the-translator/includes/global-functions/api/ajax/user_image_file_reminder.php
+         user_image_file  (adds or replaces user image)                   wp-content/themes/the-translator/includes/global-functions/api/ajax/user_image_file.php
+         delete_user_profile_image (deletes profile image)               wp-content/themes/the-translator/includes/global-functions/api/ajax/delete_user_profile_image.php
+
+-------------------------------------------------------------------------------------
+
+    The customer settings page
+
+    url: /setting/?lang=en
+
+    templates:
+        wp-content/themes/the-translator/templates/setting-tpl.php
+        wp-content/themes/the-translator/header.php
+        wp-content/themes/the-translator/includes/user/setting/setting-customer.php
+        wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+        update_payment_preference (payment preference form)             wp-content/themes/the-translator/includes/global-functions/api/ajax/update_payment_preference.php
+        update_payment_mehod_account_detail   (account numbers)         wp-content/themes/the-translator/includes/global-functions/api/ajax/update_payment_mehod_account_detail.php
+        update_address_details (address info)                           wp-content/themes/the-translator/includes/global-functions/api/ajax/update_address_details.php
+        update_display_name  (changing display name)                    wp-content/themes/the-translator/includes/global-functions/api/ajax/update_display_name.php
+        update_user_email (changing email)                              wp-content/themes/the-translator/includes/global-functions/api/ajax/update_user_email.php
+        update_user_password_change (change password)                   wp-content/themes/the-translator/includes/global-functions/api/ajax/update_user_password_change.php
+        delete_my_account (disable the account)                         wp-content/themes/the-translator/includes/global-functions/api/ajax/delete_my_account.php
+
+-------------------------------------------------------------------------------------
+
+    The translator settings page
+
+    url: /setting/?lang=en
+
+    templates:
+        wp-content/themes/the-translator/templates/setting-tpl.php
+        wp-content/themes/the-translator/header.php
+        wp-content/themes/the-translator/includes/user/setting/setting-translator.php
+        wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+        update_email_preference (how often notices sent)                wp-content/themes/the-translator/includes/global-functions/api/ajax/update_email_preference.php
+        update_payment_preference (payment preference form)             wp-content/themes/the-translator/includes/global-functions/api/ajax/update_payment_preference.php
+        update_payment_mehod_account_detail   (account numbers)         wp-content/themes/the-translator/includes/global-functions/api/ajax/update_payment_mehod_account_detail.php
+        update_address_details (address info)                           wp-content/themes/the-translator/includes/global-functions/api/ajax/update_address_details.php
+        update_display_name  (changing display name)                    wp-content/themes/the-translator/includes/global-functions/api/ajax/update_display_name.php
+        update_user_email (changing email)                              wp-content/themes/the-translator/includes/global-functions/api/ajax/update_user_email.php
+        update_user_password_change (change password)                   wp-content/themes/the-translator/includes/global-functions/api/ajax/update_user_password_change.php
+        delete_my_account (disable the account)                         wp-content/themes/the-translator/includes/global-functions/api/ajax/delete_my_account.php
+
+
+---------------------------------------------------------------------------------------
+
+    The Search page
+
+    url:    searches/?lang=en&spage=....
+
+    templates:
+        wp-content/themes/the-translator/templates/HTMLPAGE-search-page.php
+        wp-content/themes/the-translator/header.php
+        wp-content/themes/the-translator/footer-homepagenew.php
+
+----------------------------------------------------------------------------------------------
+
+    The favorites page:
+
+    url: /favourite/?lang=en
+
+    templates:
+        wp-content/themes/the-translator/templates/HTMLPAGE-fav-page.php
+        wp-content/themes/the-translator/header.php
+        wp-content/themes/the-translator/footer-homepagenew.php
+
+     ajax:
+        add_favorite_content                        wp-content/themes/the-translator/includes/global-functions/api/ajax/add_favorite_content_cb.php
+            (remove favorite content,users)
+
+
+ -----------------------------------------------------------------------------------------------
+    Homepage
+
+    url: /
+
+    templates:
+        wp-content/themes/the-translator/templates/home-tpl.php
+        wp-content/themes/the-translator/header.php
+        wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+        user_add_favorite
+            (adding user or content to the favorites)       wp-content/themes/the-translator/includes/global-functions/api/ajax/user_add_favorite.php
+
+        check_cart_empty_or_not                            wp-content/themes/the-translator/includes/global-functions/api/ajax/check_cart_empty_or_not.php
+            (creating new project on the fly)
+
+ -------------------------------------------------------------------------------------------------
+
+  View Freelancer Profile Page
+
+    url:
+        /user-account/?lang=en&user=<user login name>
+
+    templates:
+        wp-content/themes/the-translator/templates/author-user-info.php
+        wp-content/themes/the-translator/header.php
+        wp-content/themes/the-translator/includes/user/author-user-info/author-user-info-translator.php
+        wp-content/themes/the-translator/footer-homepagenew.php
+
+    ajax:
+        user_add_favorite                           wp-content/themes/the-translator/includes/global-functions/api/ajax/user_add_favorite.php
+            (add or remove from favorites :"Save to favourite" button)
+        hz_submit_report                            wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_submit_report_cb.php
+            (reporting the freelancer)
+        hirelinguistByCustomer                      wp-content/themes/the-translator/includes/global-functions/api/ajax/hirelinguistByCustomer.php
+            (direct hiring theh linguist, pressingn the "hire me" button)
+            freelinguist_get_charge_list to show fee box
+
+====================================================================================
+
+Customer "My Projects" Dashboard
+   url: dashboard/?lang=en
+
+   templates:
+        wp-content/themes/the-translator/templates/dashboard-tpl.php
+            wp-content/themes/the-translator/header.php
+            wp-content/themes/the-translator/includes/user/dashboard/dashboard-customer.php
+            wp-content/themes/the-translator/footer-homepagenew.php
+
+====================================================================================
+
+Customer view of a proposal in contest
+
+    url: job/<contest string code>/?lang=en&action=proposal&linguist=<user_id>&proposalId=<proposal_id>
+
+    templates:
+        wp-content/themes/the-translator/single-job.php
+            wp-content/themes/the-translator/header.php
+             wp-content/themes/the-translator/includes/user/single-job/contest-customer.php
+             wp-content/themes/the-translator/includes/user/single-job/contest-participant-proposal.php
+             wp-content/themes/the-translator/footer-homepagenew.php
+
+     ajax:
+        hz_awardprize_to_proposal                           wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_awardprize_to_proposal_cb.php
+         (award proposal for contest)
+           freelinguist_proposal_list (to decide to show the fee box)
+           freelinguist_get_charge_list (to display the fees)
+           showproposal_slider
+           (when clicking on a small thumbnail of another proposal below the big one)
+
+        hz_post_fl_discussion                                wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_post_fl_discussion_cb.php
+            (when pressing the "contact linguist" button)
+
+
+
+
+---------------------------
+--------------------------
+Ajax that change how users are seen in the user units:
+
+user_image_file (update)
+delete_user_profile_image (update)
+user_image_file_reminder (update)
+update_summary_info_data (update)
+update_personal_info_data (update)
+update_display_name (update)
+hz_project_customer_feedback (update)
+hz_proposal_customer_feedback (update)
+hz_content_customer_feedback (update)
+delete_my_account (remove)
+
+
+-----------------------------------
+ajax that changes how content is seen in the units
+add_linguist_content (update)
+hz_Offer_accept_reject (update)
+hz_buy_content_ajxcback (update)
+delete_linguist_content_multiple (remove)
+delete_linguist_content (remove)
+--------------------------------------
+

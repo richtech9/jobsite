@@ -1,0 +1,8 @@
+#misc-publishing-actions .misc-noindex label[for=post_status]:before {
+	display: none;
+}
+
+.misc-noindex input {
+	margin-right: 4px;
+	margin-left: 4px;
+}

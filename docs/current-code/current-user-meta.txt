@@ -1,0 +1,139 @@
+User Meta
+
+The user meta created and updated are below, but since the reading of the user meta is not dictating control flow,
+The matching up of this to the reading of meta is left for later
+task-future-work find meta in the get_user_meta and sql statements joining the wp_usermeta table, see what is unmatched between read and write
+
+==================================================
+The following user meta are created and written to, any meta name that ends with a _ has extra specialized info added to the name
+
+
+alipay_account
+areas_expertise_
+assign_country_from
+assign_country_to
+average_rating_customer_role
+average_rating_freelancer_role
+certificate_
+certification_counter
+degree_
+description
+duties_
+editing_areas_expertise_
+editing_language_
+editing_language_counter
+editing_language_level_
+editing_year_of_experince_
+education_counter
+email_send_all_notifications
+employer_
+_favorite_content
+_favorite_translator
+forget_password_key
+FREE_credits
+has_to_be_activated
+has_to_be_activated_email
+institution_
+is_prize_money_claimed
+language_
+language_counter
+language_level_
+last_evaluated_by
+last_evalution_time
+new_jobs_notifications
+paypal_account
+recieved_from_
+related_experience_counter
+reported_to
+request_evaluating
+request_evaluation_description
+request_evaluation_date
+_signed_tax_form
+total_user_balance
+translation_areas_expertise_
+translation_language_
+translation_language_counter
+translation_language_level_
+translation_year_of_experince_
+used_coupon
+user_address
+user_address_line_1
+user_address_line_2
+user_city
+user_description
+user_editing_technical_level
+user_full_name
+user_hourly_rate
+user_new_email
+user_phone
+user_image
+user_processing_id
+user_residence_country
+user_state
+user_time_zone
+user_town_city
+user_translation_technical_level
+_user_type
+user_writing_technical_level
+user_zip_postal_code
+writing_areas_expertise_
+writing_language_writing_language_counter
+writing_language_level_
+writing_year_of_experince_
+xmpp_password
+xmpp_username
+year_attended_
+year_in_service_
+year_of_experince_
+year_recieved_
+
+
+============================================================
+
+The following only appear in the wp-content/themes/the-translator/includes/admin-init/admin-page-evaluations.php
+and only the astrixed (*) ones are read again in the same file.
+The only exception is the approve_description which appears in a now hidden dialog box in  the author-user-info-translator.php
+However its not currently possible to start an evaluation as things have been edited out. But, the code is still here
+
+^ approve_description
+approve_year_attended_
+approve_institution_
+approve_degree_
+* approve_education_counter
+approve_year_recieved_
+approve_recieved_from_
+approve_certificate_
+approve_certificate_
+* approve_certification_counter
+approve_year_in_service_
+approve_employer_
+approve_duties_
+* approve_related_experience_counter
+approve_language_
+approve_language_level_
+approve_year_of_experince_
+approve_areas_expertise_
+* approve_language_counter
+approve_translation_language_
+approve_translation_language_level_
+approve_translation_year_of_experince_
+approve_translation_areas_expertise_
+* approve_translation_language_counter
+approve_editing_language_
+approve_editing_language_level_
+approve_editing_year_of_experince_
+approve_editing_areas_expertise_
+* approve_editing_language_counter
+approve_writing_language_
+approve_writing_language_level_
+approve_writing_year_of_experince_
+approve_writing_areas_expertise_
+* approve_writing_language_counter
+
+
+
+
+
+
+
+  

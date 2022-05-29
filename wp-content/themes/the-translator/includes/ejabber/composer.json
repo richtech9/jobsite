@@ -1,0 +1,5 @@
+{
+    "require": {
+        "cielu/ejabberd": "^1.0"
+    }
+}

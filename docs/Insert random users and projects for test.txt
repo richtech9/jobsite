@@ -1,0 +1,2 @@
+do the following command in the sql terminal:
+CALL guowangm_wrdp5_millionsusers.`create_thousand_entries_each_loop`(1000);

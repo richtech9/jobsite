@@ -1,0 +1,513 @@
+
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:00 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Facebook&redirect_to=https%3A%2F%2Fwww.freelinguist.com%2Fregistration -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:00 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login_begin_start -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Facebook&redirect_to=https%3A%2F%2Fwww.freelinguist.com%2Fregistration -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:00 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Facebook&redirect_to=https%3A%2F%2Fwww.freelinguist.com%2Fregistration&redirect_to_provider=true -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:00 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login_begin_start -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Facebook&redirect_to=https%3A%2F%2Fwww.freelinguist.com%2Fregistration&redirect_to_provider=true -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:00 -- 127.0.0.1 -- Facebook -- 0 -- wsl_hook_process_login_before_hybridauth_authenticate -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Facebook&redirect_to=https%3A%2F%2Fwww.freelinguist.com%2Fregistration&redirect_to_provider=true -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:03 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Facebook&redirect_to=https%3A%2F%2Fwww.freelinguist.com%2Fregistration&redirect_to_provider=true -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:03 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login_begin_start -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Facebook&redirect_to=https%3A%2F%2Fwww.freelinguist.com%2Fregistration&redirect_to_provider=true -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:03 -- 127.0.0.1 -- Facebook -- 0 -- wsl_hook_process_login_before_hybridauth_authenticate -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Facebook&redirect_to=https%3A%2F%2Fwww.freelinguist.com%2Fregistration&redirect_to_provider=true -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:03 -- 127.0.0.1 -- Facebook -- 0 -- wsl_hook_process_login_after_hybridauth_authenticate -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Facebook&redirect_to=https%3A%2F%2Fwww.freelinguist.com%2Fregistration&redirect_to_provider=true -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:03 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticated&provider=Facebook&mode=login -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:03 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login_end_start -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticated&provider=Facebook&mode=login -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:09 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login -- https://www.freelinguist.com/wp-login.php -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:09 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login_end_start -- https://www.freelinguist.com/wp-login.php -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:09 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login_create_wp_user_start -- https://www.freelinguist.com/wp-login.php -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:09 -- 127.0.0.1 -- Facebook -- 0 -- wsl_hook_process_login_alter_wp_insert_user_data -- https://www.freelinguist.com/wp-login.php -- Array
+(
+    [0] => Array
+        (
+            [user_login] => Vipul_Singh
+            [user_email] => sdf@sdf.dfg
+            [display_name] => Vipul Singh
+            [first_name] => Vipul
+            [last_name] => Singh
+            [user_url] => https://www.facebook.com/app_scoped_user_id/792737610895727/
+            [description] => 
+            [user_pass] => SzYPN!%aVpDR
+            [role] => customer
+        )
+
+    [1] => Facebook
+    [2] => stdClass Object
+        (
+            [identifier] => 792737610895727
+            [webSiteURL] => 
+            [profileURL] => https://www.facebook.com/app_scoped_user_id/792737610895727/
+            [photoURL] => https://graph.facebook.com/792737610895727/picture?width=150&height=150
+            [displayName] => Vipul Singh
+            [description] => 
+            [firstName] => Vipul
+            [lastName] => Singh
+            [gender] => female
+            [language] => en_US
+            [age] => 
+            [birthDay] => 
+            [birthMonth] => 
+            [birthYear] => 
+            [email] => 
+            [emailVerified] => 
+            [phone] => 
+            [address] => 
+            [country] => 
+            [region] => 
+            [city] => 
+            [zip] => 
+        )
+
+    [3] => Backtrace: 
+	1) /includes/services/wsl.watchdog.php(70): wsl_generate_backtrace()
+	2) /includes/services/wsl.watchdog.php(197): wsl_watchdog_log_action('wsl_hook_proces...', Array)
+	3) /wp-includes/plugin.php(235): wsl_watchdog_wsl_hook_process_login_alter_wp_insert_user_data(Array, 'Facebook', Object(stdClass))
+	4) /includes/services/wsl.authentication.php(723): apply_filters('wsl_hook_proces...', Array, 'Facebook', Object(stdClass))
+	5) /includes/services/wsl.authentication.php(338): wsl_process_login_create_wp_user('Facebook', Object(stdClass), 'Vipul_Singh', 'sdf@sdf.dfg')
+	6) /includes/services/wsl.authentication.php(136): wsl_process_login_end()
+	7) /wp-includes/plugin.php(525): wsl_process_login('')
+	8) /wp-settings.php(393): do_action('init')
+	9) /wp-config.php(96): require_once('/home/wenren/ww...')
+	10) /wp-load.php(37): require_once('/home/wenren/ww...')
+	11) /wp-login.php(12): require('/home/wenren/ww...')
+    [4] => USER: wenren. PID: 7089. MEM: 6470KB.
+)
+
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:09 -- 127.0.0.1 -- Facebook -- 544 -- wsl_process_login_update_wsl_user_data_start -- https://www.freelinguist.com/wp-login.php -- Array
+(
+    [0] => 1
+    [1] => 544
+    [2] => Facebook
+    [3] => Hybrid_Provider_Adapter Object
+        (
+            [id] => Facebook
+            [config] => Array
+                (
+                    [enabled] => 1
+                    [keys] => Array
+                        (
+                            [id] => 253661105109288
+                            [key] => 
+                            [secret] => 80598d2051ddad82f8bf4de1279ccf5b
+                        )
+
+                    [scope] => email, public_profile, user_friends
+                    [display] => page
+                    [trustForwarded] => 1
+                )
+
+            [params] => Array
+                (
+                    [hauth_return_to] => https://www.freelinguist.com/wp-login.php
+                )
+
+            [wrapper] => Hybrid_Providers_Facebook
+            [adapter] => Hybrid_Providers_Facebook Object
+                (
+                    [scope] => Array
+                        (
+                            [0] => email
+                            [1] => public_profile
+                            [2] => user_friends
+                        )
+
+                    [api] => Facebook\Facebook Object
+                        (
+                            [app:protected] => Facebook\FacebookApp Object
+                                (
+                                    [id:protected] => 253661105109288
+                                    [secret:protected] => 80598d2051ddad82f8bf4de1279ccf5b
+                                )
+
+                            [client:protected] => Facebook\FacebookClient Object
+                                (
+                                    [enableBetaMode:protected] => 
+                                    [httpClientHandler:protected] => Facebook\HttpClients\FacebookCurlHttpClient Object
+                                        (
+                                            [curlErrorMessage:protected] => 
+                                            [curlErrorCode:protected] => 0
+                                            [rawResponse:protected] => 
+                                            [facebookCurl:protected] => Facebook\HttpClients\FacebookCurl Object
+                                                (
+                                                    [curl:protected] => 
+                                                )
+
+                                        )
+
+                                )
+
+                            [oAuth2Client:protected] => 
+                            [urlDetectionHandler:protected] => Facebook\Url\FacebookUrlDetectionHandler Object
+                                (
+                                )
+
+                            [pseudoRandomStringGenerator:protected] => Facebook\PseudoRandomString\RandomBytesPseudoRandomStringGenerator Object
+                                (
+                                )
+
+                            [defaultAccessToken:protected] => 
+                            [defaultGraphVersion:protected] => v2.8
+                            [persistentDataHandler:protected] => Facebook\PersistentData\FacebookSessionPersistentDataHandler Object
+                                (
+                                    [sessionPrefix:protected] => FBRLH_
+                                )
+
+                            [lastResponse:protected] => 
+                        )
+
+                    [useSafeUrls] => 1
+                    [providerId] => Facebook
+                    [config] => Array
+                        (
+                            [enabled] => 1
+                            [keys] => Array
+                                (
+                                    [id] => 253661105109288
+                                    [key] => 
+                                    [secret] => 80598d2051ddad82f8bf4de1279ccf5b
+                                )
+
+                            [scope] => email, public_profile, user_friends
+                            [display] => page
+                            [trustForwarded] => 1
+                        )
+
+                    [params] => Array
+                        (
+                            [hauth_return_to] => https://www.freelinguist.com/wp-login.php
+                        )
+
+                    [endpoint] => 
+                    [user] => Hybrid_User Object
+                        (
+                            [providerId] => Facebook
+                            [timestamp] => 1496149149
+                            [profile] => Hybrid_User_Profile Object
+                                (
+                                    [identifier] => 
+                                    [webSiteURL] => 
+                                    [profileURL] => 
+                                    [photoURL] => 
+                                    [displayName] => 
+                                    [description] => 
+                                    [firstName] => 
+                                    [lastName] => 
+                                    [gender] => 
+                                    [language] => 
+                                    [age] => 
+                                    [birthDay] => 
+                                    [birthMonth] => 
+                                    [birthYear] => 
+                                    [email] => 
+                                    [emailVerified] => 
+                                    [phone] => 
+                                    [address] => 
+                                    [country] => 
+                                    [region] => 
+                                    [city] => 
+                                    [zip] => 
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [4] => stdClass Object
+        (
+            [identifier] => 792737610895727
+            [webSiteURL] => 
+            [profileURL] => https://www.facebook.com/app_scoped_user_id/792737610895727/
+            [photoURL] => https://graph.facebook.com/792737610895727/picture?width=150&height=150
+            [displayName] => Vipul Singh
+            [description] => 
+            [firstName] => Vipul
+            [lastName] => Singh
+            [gender] => female
+            [language] => en_US
+            [age] => 
+            [birthDay] => 
+            [birthMonth] => 
+            [birthYear] => 
+            [email] => 
+            [emailVerified] => 
+            [phone] => 
+            [address] => 
+            [country] => 
+            [region] => 
+            [city] => 
+            [zip] => 
+        )
+
+    [5] => Backtrace: 
+	1) /includes/services/wsl.watchdog.php(70): wsl_generate_backtrace()
+	2) /includes/services/wsl.watchdog.php(206): wsl_watchdog_log_action('wsl_process_log...', Array, 544)
+	3) /wp-includes/plugin.php(525): wsl_watchdog_wsl_process_login_update_wsl_user_data_start(true, 544, 'Facebook', Object(Hybrid_Provider_Adapter), Object(stdClass))
+	4) /includes/services/wsl.authentication.php(788): do_action('wsl_process_log...', true, 544, 'Facebook', Object(Hybrid_Provider_Adapter), Object(stdClass), Object(WP_User))
+	5) /includes/services/wsl.authentication.php(359): wsl_process_login_update_wsl_user_data(true, 544, 'Facebook', Object(Hybrid_Provider_Adapter), Object(stdClass), Object(WP_User))
+	6) /includes/services/wsl.authentication.php(136): wsl_process_login_end()
+	7) /wp-includes/plugin.php(525): wsl_process_login('')
+	8) /wp-settings.php(393): do_action('init')
+	9) /wp-config.php(96): require_once('/home/wenren/ww...')
+	10) /wp-load.php(37): require_once('/home/wenren/ww...')
+	11) /wp-login.php(12): require('/home/wenren/ww...')
+    [6] => USER: wenren. PID: 7089. MEM: 6516KB.
+)
+
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:10 -- 127.0.0.1 -- Facebook -- 544 -- wsl_process_login_authenticate_wp_user_start -- https://www.freelinguist.com/wp-login.php -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:10 -- 127.0.0.1 -- Facebook -- 544 -- wsl_hook_process_login_before_wp_set_auth_cookie -- https://www.freelinguist.com/wp-login.php -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 12:59:10 -- 127.0.0.1 -- Facebook -- 544 -- wsl_hook_process_login_before_wp_safe_redirect -- https://www.freelinguist.com/wp-login.php -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:01:26 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Facebook&redirect_to=https%3A%2F%2Fwww.freelinguist.com%2Fregistration -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:01:26 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login_begin_start -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Facebook&redirect_to=https%3A%2F%2Fwww.freelinguist.com%2Fregistration -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:01:27 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Facebook&redirect_to=https%3A%2F%2Fwww.freelinguist.com%2Fregistration&redirect_to_provider=true -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:01:27 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login_begin_start -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Facebook&redirect_to=https%3A%2F%2Fwww.freelinguist.com%2Fregistration&redirect_to_provider=true -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:01:27 -- 127.0.0.1 -- Facebook -- 0 -- wsl_hook_process_login_before_hybridauth_authenticate -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Facebook&redirect_to=https%3A%2F%2Fwww.freelinguist.com%2Fregistration&redirect_to_provider=true -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:01:29 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Facebook&redirect_to=https%3A%2F%2Fwww.freelinguist.com%2Fregistration&redirect_to_provider=true -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:01:29 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login_begin_start -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Facebook&redirect_to=https%3A%2F%2Fwww.freelinguist.com%2Fregistration&redirect_to_provider=true -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:01:29 -- 127.0.0.1 -- Facebook -- 0 -- wsl_hook_process_login_before_hybridauth_authenticate -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Facebook&redirect_to=https%3A%2F%2Fwww.freelinguist.com%2Fregistration&redirect_to_provider=true -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:01:29 -- 127.0.0.1 -- Facebook -- 0 -- wsl_hook_process_login_after_hybridauth_authenticate -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Facebook&redirect_to=https%3A%2F%2Fwww.freelinguist.com%2Fregistration&redirect_to_provider=true -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:01:30 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticated&provider=Facebook&mode=login -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:01:30 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login_end_start -- https://www.freelinguist.com/wp-login.php?action=wordpress_social_authenticated&provider=Facebook&mode=login -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:02:06 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login -- https://www.freelinguist.com/wp-login.php -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:02:06 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login_end_start -- https://www.freelinguist.com/wp-login.php -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:02:06 -- 127.0.0.1 -- Facebook -- 0 -- wsl_process_login_create_wp_user_start -- https://www.freelinguist.com/wp-login.php -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:02:06 -- 127.0.0.1 -- Facebook -- 0 -- wsl_hook_process_login_alter_wp_insert_user_data -- https://www.freelinguist.com/wp-login.php -- Array
+(
+    [0] => Array
+        (
+            [user_login] => Vipul_Singh
+            [user_email] => sdf@sdf.dsgdfg
+            [display_name] => Vipul Singh
+            [first_name] => Vipul
+            [last_name] => Singh
+            [user_url] => https://www.facebook.com/app_scoped_user_id/792737610895727/
+            [description] => 
+            [user_pass] => vj)yKBH1)qfQ
+            [role] => customer
+        )
+
+    [1] => Facebook
+    [2] => stdClass Object
+        (
+            [identifier] => 792737610895727
+            [webSiteURL] => 
+            [profileURL] => https://www.facebook.com/app_scoped_user_id/792737610895727/
+            [photoURL] => https://graph.facebook.com/792737610895727/picture?width=150&height=150
+            [displayName] => Vipul Singh
+            [description] => 
+            [firstName] => Vipul
+            [lastName] => Singh
+            [gender] => female
+            [language] => en_US
+            [age] => 
+            [birthDay] => 
+            [birthMonth] => 
+            [birthYear] => 
+            [email] => 
+            [emailVerified] => 
+            [phone] => 
+            [address] => 
+            [country] => 
+            [region] => 
+            [city] => 
+            [zip] => 
+        )
+
+    [3] => Backtrace: 
+	1) /includes/services/wsl.watchdog.php(70): wsl_generate_backtrace()
+	2) /includes/services/wsl.watchdog.php(197): wsl_watchdog_log_action('wsl_hook_proces...', Array)
+	3) /wp-includes/plugin.php(235): wsl_watchdog_wsl_hook_process_login_alter_wp_insert_user_data(Array, 'Facebook', Object(stdClass))
+	4) /includes/services/wsl.authentication.php(723): apply_filters('wsl_hook_proces...', Array, 'Facebook', Object(stdClass))
+	5) /includes/services/wsl.authentication.php(338): wsl_process_login_create_wp_user('Facebook', Object(stdClass), 'Vipul_Singh', 'sdf@sdf.dsgdfg')
+	6) /includes/services/wsl.authentication.php(136): wsl_process_login_end()
+	7) /wp-includes/plugin.php(525): wsl_process_login('')
+	8) /wp-settings.php(393): do_action('init')
+	9) /wp-config.php(96): require_once('/home/wenren/ww...')
+	10) /wp-load.php(37): require_once('/home/wenren/ww...')
+	11) /wp-login.php(12): require('/home/wenren/ww...')
+    [4] => USER: wenren. PID: 12607. MEM: 6470KB.
+)
+
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:02:06 -- 127.0.0.1 -- Facebook -- 545 -- wsl_process_login_update_wsl_user_data_start -- https://www.freelinguist.com/wp-login.php -- Array
+(
+    [0] => 1
+    [1] => 545
+    [2] => Facebook
+    [3] => Hybrid_Provider_Adapter Object
+        (
+            [id] => Facebook
+            [config] => Array
+                (
+                    [enabled] => 1
+                    [keys] => Array
+                        (
+                            [id] => 253661105109288
+                            [key] => 
+                            [secret] => 80598d2051ddad82f8bf4de1279ccf5b
+                        )
+
+                    [scope] => email, public_profile, user_friends
+                    [display] => page
+                    [trustForwarded] => 1
+                )
+
+            [params] => Array
+                (
+                    [hauth_return_to] => https://www.freelinguist.com/wp-login.php
+                )
+
+            [wrapper] => Hybrid_Providers_Facebook
+            [adapter] => Hybrid_Providers_Facebook Object
+                (
+                    [scope] => Array
+                        (
+                            [0] => email
+                            [1] => public_profile
+                            [2] => user_friends
+                        )
+
+                    [api] => Facebook\Facebook Object
+                        (
+                            [app:protected] => Facebook\FacebookApp Object
+                                (
+                                    [id:protected] => 253661105109288
+                                    [secret:protected] => 80598d2051ddad82f8bf4de1279ccf5b
+                                )
+
+                            [client:protected] => Facebook\FacebookClient Object
+                                (
+                                    [enableBetaMode:protected] => 
+                                    [httpClientHandler:protected] => Facebook\HttpClients\FacebookCurlHttpClient Object
+                                        (
+                                            [curlErrorMessage:protected] => 
+                                            [curlErrorCode:protected] => 0
+                                            [rawResponse:protected] => 
+                                            [facebookCurl:protected] => Facebook\HttpClients\FacebookCurl Object
+                                                (
+                                                    [curl:protected] => 
+                                                )
+
+                                        )
+
+                                )
+
+                            [oAuth2Client:protected] => 
+                            [urlDetectionHandler:protected] => Facebook\Url\FacebookUrlDetectionHandler Object
+                                (
+                                )
+
+                            [pseudoRandomStringGenerator:protected] => Facebook\PseudoRandomString\RandomBytesPseudoRandomStringGenerator Object
+                                (
+                                )
+
+                            [defaultAccessToken:protected] => 
+                            [defaultGraphVersion:protected] => v2.8
+                            [persistentDataHandler:protected] => Facebook\PersistentData\FacebookSessionPersistentDataHandler Object
+                                (
+                                    [sessionPrefix:protected] => FBRLH_
+                                )
+
+                            [lastResponse:protected] => 
+                        )
+
+                    [useSafeUrls] => 1
+                    [providerId] => Facebook
+                    [config] => Array
+                        (
+                            [enabled] => 1
+                            [keys] => Array
+                                (
+                                    [id] => 253661105109288
+                                    [key] => 
+                                    [secret] => 80598d2051ddad82f8bf4de1279ccf5b
+                                )
+
+                            [scope] => email, public_profile, user_friends
+                            [display] => page
+                            [trustForwarded] => 1
+                        )
+
+                    [params] => Array
+                        (
+                            [hauth_return_to] => https://www.freelinguist.com/wp-login.php
+                        )
+
+                    [endpoint] => 
+                    [user] => Hybrid_User Object
+                        (
+                            [providerId] => Facebook
+                            [timestamp] => 1496149326
+                            [profile] => Hybrid_User_Profile Object
+                                (
+                                    [identifier] => 
+                                    [webSiteURL] => 
+                                    [profileURL] => 
+                                    [photoURL] => 
+                                    [displayName] => 
+                                    [description] => 
+                                    [firstName] => 
+                                    [lastName] => 
+                                    [gender] => 
+                                    [language] => 
+                                    [age] => 
+                                    [birthDay] => 
+                                    [birthMonth] => 
+                                    [birthYear] => 
+                                    [email] => 
+                                    [emailVerified] => 
+                                    [phone] => 
+                                    [address] => 
+                                    [country] => 
+                                    [region] => 
+                                    [city] => 
+                                    [zip] => 
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [4] => stdClass Object
+        (
+            [identifier] => 792737610895727
+            [webSiteURL] => 
+            [profileURL] => https://www.facebook.com/app_scoped_user_id/792737610895727/
+            [photoURL] => https://graph.facebook.com/792737610895727/picture?width=150&height=150
+            [displayName] => Vipul Singh
+            [description] => 
+            [firstName] => Vipul
+            [lastName] => Singh
+            [gender] => female
+            [language] => en_US
+            [age] => 
+            [birthDay] => 
+            [birthMonth] => 
+            [birthYear] => 
+            [email] => 
+            [emailVerified] => 
+            [phone] => 
+            [address] => 
+            [country] => 
+            [region] => 
+            [city] => 
+            [zip] => 
+        )
+
+    [5] => Backtrace: 
+	1) /includes/services/wsl.watchdog.php(70): wsl_generate_backtrace()
+	2) /includes/services/wsl.watchdog.php(206): wsl_watchdog_log_action('wsl_process_log...', Array, 545)
+	3) /wp-includes/plugin.php(525): wsl_watchdog_wsl_process_login_update_wsl_user_data_start(true, 545, 'Facebook', Object(Hybrid_Provider_Adapter), Object(stdClass))
+	4) /includes/services/wsl.authentication.php(788): do_action('wsl_process_log...', true, 545, 'Facebook', Object(Hybrid_Provider_Adapter), Object(stdClass), Object(WP_User))
+	5) /includes/services/wsl.authentication.php(359): wsl_process_login_update_wsl_user_data(true, 545, 'Facebook', Object(Hybrid_Provider_Adapter), Object(stdClass), Object(WP_User))
+	6) /includes/services/wsl.authentication.php(136): wsl_process_login_end()
+	7) /wp-includes/plugin.php(525): wsl_process_login('')
+	8) /wp-settings.php(393): do_action('init')
+	9) /wp-config.php(96): require_once('/home/wenren/ww...')
+	10) /wp-load.php(37): require_once('/home/wenren/ww...')
+	11) /wp-login.php(12): require('/home/wenren/ww...')
+    [6] => USER: wenren. PID: 12607. MEM: 6516KB.
+)
+
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:02:07 -- 127.0.0.1 -- Facebook -- 545 -- wsl_process_login_authenticate_wp_user_start -- https://www.freelinguist.com/wp-login.php -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:02:07 -- 127.0.0.1 -- Facebook -- 545 -- wsl_hook_process_login_before_wp_set_auth_cookie -- https://www.freelinguist.com/wp-login.php -- 
+4lua7cd4jbbkj0gbf47kud9uu3 -- 30-05-2017 13:02:07 -- 127.0.0.1 -- Facebook -- 545 -- wsl_hook_process_login_before_wp_safe_redirect -- https://www.freelinguist.com/wp-login.php -- 

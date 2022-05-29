@@ -1,0 +1,95 @@
+/*for setting font sizes as well as colors*/
+
+/*todo add in media queries to change the font sizes based on screen*/
+
+html {
+    font-size: 10px;
+}
+
+body {
+    background: #f0f1f2;
+    font-size: 12px ;
+    font-family: Roboto, sans-serif;
+    line-height: normal;
+}
+
+h1,
+.h1 {
+    font-size: 36px;
+}
+h2,
+.h2 {
+    font-size: 30px;
+}
+h3,
+.h3 {
+    font-size: 24px;
+}
+h4,
+.h4 {
+    font-size: 18px;
+}
+h5,
+.h5 {
+    font-size: 14px;
+}
+
+h6,
+.h6 {
+    font-size: 12px;
+}
+/*from 33px on up*/
+form.giant-text, table.giant-text, div.giant-text,p.giant-text, ul.giant-text, li.giant-text, a.giant-text,td.giant-text,
+th.giant-text, span.giant-text, label.giant-text, i.giant-text, b.giant-text, strong.giant-text, button.giant-text {
+    font-size: 36px; /* same as H1 */
+    line-height: normal;
+}
+
+/*from 27px to 32px*/
+form.huge-text, table.huge-text, div.huge-text,p.huge-text, ul.huge-text, li.huge-text, a.huge-text,td.huge-text,
+th.huge-text, span.huge-text, label.huge-text, i.huge-text, b.huge-text, strong.huge-text, button.huge-text {
+    font-size: 30px; /* same as H2 */
+    line-height: normal;
+}
+
+
+/*from 22px to 26px*/
+form.larger-text, table.larger-text, div.larger-text,p.larger-text, ul.larger-text, li.larger-text, a.larger-text,td.larger-text,
+th.larger-text, span.larger-text, label.larger-text, i.larger-text, b.larger-text, strong.larger-text, button.larger-text, section.larger-text {
+    font-size: 24px; /* same as H3 */
+    line-height: normal;
+}
+
+/*from 16px to 21px*/
+form.large-text, table.large-text, div.large-text,p.large-text, ul.large-text, li.large-text, a.large-text,td.large-text,
+th.large-text, span.large-text, label.large-text, i.large-text, b.large-text, strong.large-text, button.large-text,select.large-text {
+    font-size: 18px; /* same as H4 */
+    line-height: normal;
+}
+
+/*from 14px to 15px*/
+form.enhanced-text, table.enhanced-text, div.enhanced-text,p.enhanced-text, ul.enhanced-text, li.enhanced-text, a.enhanced-text,td.enhanced-text,
+th.enhanced-text, span.enhanced-text, label.enhanced-text,i.enhanced-text, b.enhanced-text, strong.enhanced-text, button.enhanced-text,figcaption.enhanced-text {
+    font-size: 14px; /* same as H5 */
+    line-height: normal;
+}
+
+/*from 12px to 13px*/
+form.regular-text, table.regular-text, div.regular-text,p.regular-text, ul.regular-text, li.regular-text, a.regular-text,td.regular-text,
+th.regular-text, span.regular-text, label.regular-text,i.regular-text, b.regular-text, strong.regular-text,button.regular-text,
+input.regular-text,select.regular-text{
+    font-size: 12px; /* 85% of large*/
+    line-height: normal;
+}
+
+/*up to 11 px*/
+form.small-text, table.small-text, div.small-text,p.small-text, ul.small-text, li.small-text, a.small-text,td.small-text,
+th.small-text, span.small-text, label.small-text,i.small-text, b.small-text, strong.small-text,button.small-text {
+    font-size: 10px;  /* 85% of normal*/
+    line-height: normal;
+}
+
+.no-text {
+    color:transparent;
+    font-size:0;
+}

@@ -1,0 +1,264 @@
+Will write up a detailed summary soon, but  this is my outline
+
+This is written in soft warpping, so it works okay with git commit messages later, which hate some newlines and tabs
+
+Logic
+
+* truncate the wp_display_unit_user_content table
+
+
+* for each user,  reset their score and positioning on the top table. This is done by telling the trigger on each user row to reevaluate that user's potential addition to the wp_display_unit_user_content table
+
+** resetting a user's score is done by updating the test_flag column in the fl_user_data_lookup table. Why ? Because normally the score and top tag position for a user is determined by the login and rankings. We do not want to adjust these for most users
+
+** when a fl_user_data_lookup row is updated, with the new test_flag value the trigger will act to re-evaluate
+
+
+* for each content , update it to reset the score
+
+** content score rankings are always re-evaluated by any change to the table. This is unlike users, where only certain changes matter
+
+** update each updated_at, in the wp_linguist_content table, to the current time and that will reset their position on the wp_display_unit_user_content table with the score being adjusted with the current unix time and their rankings
+
+
+
+Initial testing
+
+* To test this, pick a tag that is not yet in the wp_display_unit_user_content, and find a user and content that have that tag. Then do the above to each. They should both be inserted into the table. If that part works, then the part which sorts the top user works too (when there are too many to add so will kick out the lowest score to make room for a higher score on the tag)
+
+To find an unused tag, there is the SQL which will return the tag count in the top tags table
+
+SELECT itag.tag_name, itag.ID as tag_id,
+IF (unit_summary.da_count,unit_summary.da_count,0) as tag_top_count
+FROM wp_interest_tags itag
+LEFT JOIN (
+    SELECT tag_id, count(*) as da_count FROM wp_display_unit_user_content
+     WHERE 1 GROUP BY tag_id
+          )   unit_summary ON unit_summary.tag_id = itag.ID
+WHERE 1
+ORDER BY tag_top_count desc ;
+
+Testing Content for Recalculating top tag position
+
+Then, here I found that apache tag (id is 35)  is unused, I then found the first content that has this apache tag via
+
+SELECT *
+FROM wp_tags_cache_job jtags
+WHERE tag_id in (35) AND type = 2 limit 1;
+
+I can verify the list of tags this content has by
+
+SELECT job_id,group_concat(tag_name) FROM wp_tags_cache_job jtags INNER JOIN wp_interest_tags itags ON jtags.tag_id = itags.ID
+WHERE job_id = 107 and type = 2;
+
+And then I did the update on the content with the following SQL that will be used in the task to re-evaluate the content's position in the wp_display_unit_user_content
+
+UPDATE wp_linguist_content SET updated_at = NOW() WHERE id = 107;
+
+I reran the sql tag count from above, and there is now a 1 instead of a 0 beside the apache tag, and looking at wp_display_unit_user_content there is a brand new entry for the content
+
+Testing Users for Recalculating top tag position
+
+To test the users, first I select the test users, and pick one. To select all the test users I use this sql
+
+SELECT u.ID as user_id, u.user_login, meta.meta_value as dat_batch from wp_users u
+INNER JOIN wp_usermeta meta ON meta.user_id = u.id AND meta.meta_key = 'create_batch'
+WHERE 1;
+
+Here I pick a random test user, -- user_id 3616 -- , and an unused tag in the display_unit_user_content table -- book writing, tag_id 37 --
+
+Now I update that user's lookup table to reset the score. I adjusted the trigger while doing this testing so I would not have to update the login times. This is important because we are evaluating all users in the system, and some may never have logged in!  Now the score will be re-evaluated in the top tags if I simply change a test_flag
+
+UPDATE wp_fl_user_data_lookup
+SET
+
+  score = 0,
+  test_flag = test_flag + 1
+
+
+WHERE user_id = 3616;
+
+Then, I checked the wp_display_unit_user_content table, with the sql above and a manual inspection, and indeed, the new top user entry was made
+
+
+PRE TASK For test users
+Most Test users do not have their login set in the user lookup table. So have to run this query to set the login times
+It takes a while to run
+
+UPDATE wp_fl_user_data_lookup ud
+INNER JOIN (
+             SELECT
+                look.id          as look_id,
+                look.user_id    as user_id ,
+                meta.meta_value as string_datetime,
+                STR_TO_DATE(meta.meta_value,'%Y-%m-%d %k:%i:%s')
+                                  as dat_datetime
+                  -- data example: 2020-08-23 09:54:18
+                  -- see https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_date-format for formats
+             FROM wp_fl_user_data_lookup look
+               INNER JOIN wp_usermeta meta ON meta.user_id = look.user_id AND meta.meta_key = 'last_login_time' AND meta.meta_value != ''
+             WHERE look.last_login_time IS NULL
+    ) wind ON wind.look_id = ud.id
+SET ud.last_login_time = wind.dat_datetime;
+
+Now that I know how to this,for both the users and the content,  the question is how fast is this ? Because I need to have at most 5 seconds on the sql each job step
+Why five seconds ? It gives a safety margin for when the sql server is running 5 times slower due to windows task scheduling or a heavy load from other sql queries
+
+Running the full sql is the results and conclusions below
+
+-- truncate 100ms
+TRUNCATE wp_display_unit_user_content;
+
+NOTE: to control the number of top per tag we use the WP option of 'freelinguist-limit-top-per-tag' which can be set to any postive number and defaults to 10 if this option is missing
+
+Redoing all the content
+
+-- 152022 rows took 1 minute 55 seconds for both partially filled and truncated table
+-- 152000 divided by 115 seconds ~ 1300 rows a second, we want to limit this to a five second job, so
+-- pagination could should be 1300 * 5 = 6,500 which is about 24 steps
+-- BUT given how variable the speed is, and looking at the wide changes for the users, we will just do 1,000 rows per page
+UPDATE wp_linguist_content cont
+SET cont.updated_at = NOW()
+WHERE 1;
+
+
+Redoing all the users
+-- There is no difference between having two top users per tag, and having ten top users per tag, However, the mysql speed varies on the laptop
+-- Earlier in the tests  , the users were finished at the same time as the content, but later , before and after the changes to the procedures, they were higher
+-- 153007 rows affected in 16m 16s 689ms (2 top users)
+-- 153007 rows affected in 16m 22s 336ms (10 top users)
+-- 153000 divided by 982 seconds = 156 users/second !
+-- assuming this is the slowest the laptop will get with this dataset (it was much faster earlier) we can probably get away with a 6.5 second job for 1000 users then if the mysql speed drops by a factor of 4 php will not go lover 30 seconds
+
+UPDATE wp_fl_user_data_lookup look
+SET
+  look.score = 0,
+  look.test_flag = look.test_flag + 1
+WHERE 1;
+
+
+-- update user top scoring by pagination
+UPDATE wp_fl_user_data_lookup look
+    INNER JOIN (
+    SELECT at_me.id
+    FROM wp_fl_user_data_lookup at_me
+    WHERE 1
+    ORDER BY at_me.id
+    LIMIT 0,1000
+    ) as driver ON driver.id = look.id
+SET
+  look.score = 0,
+  look.test_flag = look.test_flag + 1
+WHERE 1;
+
+
+-- update content via pagination
+
+UPDATE wp_linguist_content cont
+INNER JOIN (
+      SELECT at_me.id
+      FROM wp_linguist_content at_me
+      ORDER BY at_me.id
+      LIMIT 0,1000
+    ) as driver ON driver.id = cont.id
+
+
+SET cont.updated_at = NOW()
+WHERE 1;
+
+
+Changes done to the database:
+
+The last login times for the test users were inserted into the lookup table, so their scores could be calculated
+
+Changes done to the top tag triggers
+the trigger for calling the tag tags for the user now calls if the user lookup test flag is changed, as well as if the user login is changed. This allows for rebuilding the wp_display_unit_user_content without having to change the login times
+
+
+Fixes done to the top tag SQL procedures
+
+There were two bugs in these procedures that were fixed.
+
+The first one was counting the number of times their top tag was already used in the wp_display_unit_user_content (top tag table) . The error was that it was counting tags used by everything, and not just say, the users or content. Since users always have lower scores, this means they were not inserted correctly. Adding a check for the user or content being null for that tag, a small 4 word addition, fixed it
+
+The second error was that a procedure variable was not resetting if there was not a match, if there was no lower score for that tag than the content or user. That meant it was using the last check for the previous tag the user or content had, if the last tag was to be inserted in the list, and then the next tag did not qualify for the list, then it used the score check from the previous tag. Resetting that variable at the top of the loop fixed it
+
+
+Additional Code changes done at the same time
+
+The php code to handle user profile tag changes was not updating the top tag table correctly. I added in an update to add 1 second to the last login as I did not want to adjust the test_flag, and one second should not matter. If adjusting the last login by one second when the user changes their tags does matter, then I can add in a new column to the lookup table for just this use case
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

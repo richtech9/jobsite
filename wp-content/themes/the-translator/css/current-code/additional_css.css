@@ -1,0 +1,895 @@
+
+.pop_box {
+    display: none; /* Hide the DIV */
+    position: fixed;
+    _position: absolute; /* hack for internet explorer 6 */
+    height: 300px;
+    width: 600px;
+    background: #FFFFFF;
+    left: 300px;
+    top: 150px;
+    z-index: 100; /* Layering ( on-top of others), if you have lots of layers: I just maximized, you can change it yourself */
+    margin-left: 15px;
+
+    /* additional features, can be omitted */
+    border: 2px solid #ff0000;
+    padding: 15px;
+    -moz-box-shadow: 0 0 5px #ff0000;
+    -webkit-box-shadow: 0 0 5px #ff0000;
+    box-shadow: 0 0 5px #ff0000;
+
+}
+
+.pagination.disabled a, .pagination.disabled a:hover, .pagination.disabled a:focus, .pagination.disabled span {
+    color: #eee;
+    background: #fff;
+    cursor: default;
+}
+
+.pagination {
+    float: left;
+}
+
+.pagination.disabled li.active a {
+    color: #fff;
+    background: #cccccc;
+    border-color: #cccccc;
+}
+
+.paging-container select {
+    float: left;
+    margin: 20px 0 20px 10px;
+    padding: 9px 3px;
+    border-color: #ddd;
+    border-radius: 4px;
+}
+
+#table_pag {
+    margin-bottom: 0;
+}
+
+.job_dtls .days-left {
+
+}
+
+.job_dtls h2 {
+    font-weight: 600;
+}
+
+.job_dtls .comment-row figure img {
+    border: 2px solid #ccc;
+
+}
+
+.job_dtls .comment-row figure.column {
+    width: auto;
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.job_dtls  span.time-remaining {
+    display: inline-block;
+    margin-top: 1.125em;
+    margin-left: 0.5em;
+}
+
+.job_dtls .row {
+    clear: both;
+}
+
+.job_dtls .top-btns a.hirebttn2 {
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 15px;
+    border: 2px solid #EE2B38;
+    padding: 0.5em 1em;
+    min-width: 10.5em; /* buttons should have min width */
+    text-align: center;
+    font-weight: bold;
+    border-radius: 1em;
+}
+
+.job_dtls .row .hirebttn2 {
+    vertical-align: middle; /* replaced fontsize 12 */
+    padding: 0.5em 1em;
+    min-width: 10.5em; /* buttons should have min width */
+    text-align: center;
+    font-weight: bold;
+    border-radius: 1em;
+}
+
+.job_dtls .linguist-header {
+    padding: 10px 0;
+    clear: both;
+    display: block;
+}
+
+.job_dtls .linguist-header p {
+    padding: 2px 0;
+    margin: 0;
+}
+
+.job_dtls .linguist-header p strong {
+    font-weight: 600
+}
+
+.job_dtls .linguist-header .col-33:last-child {
+    margin-top: 86px;
+}
+
+.submissions_btns {
+    position: relative;
+    padding: 10px 0;
+    clear: both;
+}
+
+.job_dtls textarea#job_instruction_editable {
+    width: 100%;
+    min-height: 20px;
+    padding: 10px;
+}
+
+.job_dtls textarea#job_title_editable {
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+}
+
+.job_dtls textarea#job_description_editable {
+    width: 100%;
+    min-height: 20px;
+    padding: 10px;
+}
+
+.job_dtls .h1-title h1 {
+    margin: 0 auto;
+    padding: 20px 0 10px !important;
+    height: auto;
+    margin-bottom: 25px !important;
+    border-color: #eee
+}
+
+.job_dtls .instruct-file {
+    background: #f4f4f4;
+    border: 2px solid #eaeaea;
+}
+
+.top-btns {
+    position: absolute;
+    top: 10px;
+    text-align: right;
+    right: 0;
+    width: 200px;
+}
+
+.job_dtls .instruct-file ul li {
+    border: none;
+    padding: 5px 0;
+}
+
+.job_dtls .instruct-file ul li a.cross-icon {
+    margin-top: 15px;
+    background-size: 10px;
+    margin-right: 6px;
+}
+
+.job_dtls .attached-doc {
+    margin-bottom: 20px;
+}
+
+.job_dtls .upload-file {
+    background: #EE2B38;
+    color: #fff
+}
+
+.job_dtls .comments_lists {
+    clear: both;
+    display: block;
+    padding: 0.75em 0
+}
+
+.job_dtls .comments_lists .container {
+    width: 100%;
+    max-width: inherit;
+    padding: 0
+}
+
+.job_dtls .comment-row {
+    padding: 0;
+    border: none;
+    margin: 0 auto;
+}
+
+.job_dtls .comments_lists .comment-row {
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid #eee;
+    margin: 0 auto;
+}
+
+.job_dtls .comment-row figure {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.comments_lists .sing-ling.job_dtls .comment-row h4,
+.job_dtls .comment-row h4 {
+    margin: 0;
+    font-weight: 600;
+    color: #7b7b7b;
+}
+
+.comments_lists .sing-ling.job_dtls .comment-row span,
+.job_dtls .comment-row span {
+    margin: 0;
+    color: #7b7b7b;
+}
+
+.job_dtls .comment-row figure .title {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+    width: auto;
+    margin: 0 auto;
+    border: none;
+    padding-left: 20px;
+}
+
+.job_dtls .comments_lists figure img, .job_dtls .profile_users img {
+    border: 2px solid #ccc;
+    float: none;
+    display: inline-block;
+}
+
+.job_dtls .comments_lists .text-box {
+    clear: both;
+    display: block;
+    padding: 20px 0;
+}
+
+.job_dtls .comments_lists .text-box textarea, .sing-ling.job_dtls form#contest_discussion textarea {
+    width: 100%;
+    margin: 0;
+    height: 100px;
+    border: 1px solid #eeeeee;
+    padding: 10px;
+}
+
+.job_dtls .comments_lists .text-box input[type="submit"], .container.upload_file_row .inp-row input[type="submit"] {
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+    color: #fff;
+    text-align: center;
+    background: #EE2B31 url(../../images/post-icon.png) no-repeat 1em center;
+    border: 2px solid #EE2B38;
+    padding: 0.5em 1em;
+    padding-left: 3em;
+
+    min-width: 10.5em; /* buttons should have min width */
+    border-radius: 1em ;
+    font-weight: bold;
+
+}
+
+.job_dtls .submissions_btns .labels {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0;
+    margin: 0;
+    margin-left: 0.5em;
+}
+
+.container.upload_file_row .inp-row input[type="submit"] {
+    background-position: 20px center;
+    text-transform: capitalize;
+
+    border-radius: 1em;
+    padding: 0.5em 1em;
+    min-width: 10.5em; /* buttons should have min width */
+    font-weight: bold;
+    margin-top: 0.25em;
+    margin-left: 2.5em;
+}
+
+.job_dtls .comments_lists figure.col-sm-3.col-xs-12 {
+    padding-left: 0
+}
+
+.job_dtls #table_pag .box {
+    background: #fff;
+    padding: 0;
+    border: 1px solid #eee;
+    margin-left: -5px;
+    margin-right: -5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.job_dtls #table_pag .box .rating-img {
+    padding: 10px;
+}
+
+.job_dtls #table_pag .box .num-row {
+    padding: 10px;
+}
+
+.job_dtls #table_pag .box .fig-img {
+    text-align: center;
+    height: 230px;
+    overflow: hidden;
+}
+
+.job_dtls #table_pag .box .fig-img img {
+    height: 230px;
+    background: #949599;
+    width: auto;
+    max-width: 100%;
+}
+
+.job_dtls #table_pag .box .rating-img a, .job_dtls .slide-content li.columns .rating-img a {
+    float: right;
+    color: #ff3333;
+    font-weight: 600;
+    margin: 0 auto;
+    border-radius: 1em;
+    padding: 0.5em 1em;
+    display: inline-block;
+    /*noinspection CssInvalidFunction*/
+    min-width: calc(min(60%,10.5em));
+    border: 1px solid transparent;
+}
+
+.job_dtls .slide-content li.columns .rating-img .ratings {
+    display: inline-block;
+    vertical-align: middle;
+    height: 20px;
+}
+
+.job_dtls .blk-Btn-nw {
+    background: transparent;
+    border: 2px solid #3d3d3d;
+    padding: 0 30px;
+    color: #3d3d3d ;
+    float: left;
+    border-radius: 50px;
+}
+
+
+.job_dtls #table_pag .box .ratings {
+    height: 20px;
+    width: 96px;
+}
+
+.job_dtls .paging-container {
+    text-align: center;
+    clear: both;
+    display: block;
+}
+
+.job_dtls .pagination {
+    float: none;
+    margin: 0 auto;
+    width: auto;
+    background: none;
+    border-radius: 5px;
+    padding: 0;
+    box-shadow: 0 0 2px #b1b1b1
+}
+
+.job_dtls .pagination li span, .job_dtls .pagination li a {
+    background: transparent;
+    border: none;
+    color: #777;
+    padding: 0 15px;
+    margin: 0;
+    vertical-align: middle;
+    float: none;
+    display: block;
+    height: auto;
+}
+
+.job_dtls .pagination li.active a {
+    background: #fff
+}
+
+.job_dtls .pagination li {
+    float: none;
+    border-right: 1px solid #dfdfdf;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.job_dtls .pagination li:last-child {
+    border: none;
+}
+
+.job_dtls .pagination li:first-child span {
+    border-radius: 5px 0 0 5px;
+}
+
+.job_dtls .pagination li:last-child span {
+    border-radius: 0 5px 5px 0;
+}
+
+.job_dtls .comments_lists .comments_lists_rows {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.job_dtls .comments_lists .comments_lists_rows .comment-row {
+    border-color: #ddd
+}
+
+.job_dtls .comments_lists .comments_lists_rows .text-box textarea {
+    background: transparent;
+    border-color: #ddd
+}
+
+.job_dtls .carousel-inner a {
+    background: none
+}
+
+.job_dtls .carousel-control {
+    background: none;
+    width: 30px;
+}
+
+.job_dtls .carousel-control .flex-nav-next {
+    background: url(images/right-arrow.png) no-repeat;
+    border: none;
+    width: 22px;
+    height: 34px;
+    cursor: pointer;
+    display: block;
+}
+
+.job_dtls .carousel-control .flex-nav-prev {
+    background: url(images/left-arrow.png) no-repeat;
+    border: none;
+    width: 22px;
+    height: 34px;
+    cursor: pointer;
+    display: block;
+}
+
+.job_dtls .carousel-inner .item {
+    height: 500px;
+    background: #f9f9f9
+}
+
+.job_dtls .carousel-inner .item.fl-big-proposal-view {
+    height: auto;
+    min-height: 500px;
+}
+
+.job_dtls .carousel-control {
+    background: none;
+    width: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    position: absolute;
+    bottom: inherit;
+}
+
+.job_dtls .carousel-inner .item embed {
+    width: 100%;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    white-space: normal;
+    /*height: 100%;*/
+}
+
+.job_dtls .middle-content {
+    padding-top: 5px;
+}
+
+.job_dtls .pop_box {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+}
+
+.job_dtls .pop_box .awardpop-box {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 5px;
+}
+
+.job_dtls .pop_box .awardpop-box {
+    max-width: 550px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 5px;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 1px 15px 1px rgba(69, 65, 78, .1);
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+}
+
+.job_dtls .pop_box .awardpop-box .button_cross {
+    color: #fff;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: #ee2b31;
+    width: 40px;
+    height: 40px;
+    display: block;
+    text-align: center;
+    border-radius: 50%;
+    padding: 0;
+    z-index: 999;
+}
+
+.job_dtls .pop_box .awardpop-box h1 {
+    color: #414141;
+    margin: 0 auto;
+    padding: 60px 0 30px;
+}
+
+.job_dtls .pop_box .awardpop-box a.bttns {
+    display: inline-block;
+    margin: 0 auto;
+    background: #ee2b31;
+    color: #fff;
+    padding: 10px 40px;
+    border-radius: 50px;
+    margin-right: 5px;
+    margin-left: 5px;
+    border: 2px solid #ee2b31;
+}
+
+.job_dtls .pop_box .awardpop-box a.bttns:hover {
+    background: transparent;
+    color: #ee2b31
+}
+
+.job_dtls .profile_users {
+    width: auto;
+    clear: both;
+    padding: 10px 0 20px;
+    border-bottom: 2px solid #eee;
+    display: inline-block;
+}
+
+.job_dtls .profile_users a.hirebttn2 {
+    margin-left: 50px;
+}
+
+.job_dtls .days-left.profile-page-days {
+    padding: 20px 0 10px;
+    font-weight: 600
+}
+
+.job_dtls .approve-compl_btn { /*padding-left: 50%*/
+    float: right;
+}
+
+.job_dtls .approve-compl_btn a.hirebttn2 {
+    float: none;
+    margin: 0 auto;
+}
+
+.job_dtls .approve-compl_btn .note-texts {
+    display: inline-block;
+    width: 270px;
+    vertical-align: middle;
+    margin: 0;
+    color: #ee2b31;
+    padding-left: 20px;
+}
+
+.job_dtls .profile_users img {
+
+}
+
+.job_dtls .profile_users .profile_title {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 10px;
+}
+
+.job_dtls .profile_users h3 {
+    margin: 0;
+    color: #ee2b31;
+    font-weight: 500;
+}
+
+.job_dtls .profile_users span {
+    color: #666;
+    padding: 5px 0;
+    display: block;
+}
+
+.job_dtls .prize-lists .comment-row figure {
+    padding: 0;
+    width: 100%;
+}
+
+.job_dtls .prize-lists .comment-row figure img {
+
+
+    border: 1px solid #ccc;
+
+}
+
+.job_dtls .prize-lists .comment-row figure .title h4 {
+    color: #ee2b31
+}
+
+.job_dtls .prize-lists .comment-row figure .title span {
+    color: #ee2b31
+}
+
+.job_dtls .prize-lists .comment-row figure .title {
+    vertical-align: top;
+
+    padding: 0 10px;
+
+}
+
+.job_dtls .prize-lists .comment-row .col-sm-9.col-xs-12 {
+    width: 100%;
+    padding-right: 0
+}
+
+.job_dtls .prize-lists .comment-row .col-sm-9.col-xs-12 p {
+    margin: 0;
+    padding: 0;
+    padding-left: 40px;
+    /*margin-top: -10px;*/
+    line-height: 1.5;
+}
+
+.job_dtls .prize-lists .comment-row {
+    padding: 10px 0;
+    border-bottom: 2px solid #eee
+}
+
+.job_dtls .right-notify .message-sec.text-box textarea {
+    display: block;
+    width: 100%;
+    height: 70px;
+    margin-top: 10px;
+    border: 1px solid #eee;
+
+}
+
+.job_dtls .right-notify .message-sec .red-btn {
+    min-width: auto;
+    padding: 0 20px;
+}
+
+.job_dtls .slide-sec .red-btn {
+    padding: 0.5em 1em;
+    min-width: 10.5em; /* buttons should have min width */
+    border-radius: 1em ;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+}
+
+.job_dtls .slide-content li.columns .fig-img {
+
+    text-align: center;
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+
+}
+
+.job_dtls .slide-content li.columns .fig-img img {
+
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+
+}
+
+.job_dtls .column-sec.slide-content {
+    padding: 0
+}
+
+.job_dtls .slide-content li.columns:hover a {
+    background: transparent;
+}
+
+.container.upload_file_row .inp-row input[type="checkbox"]:focus {
+    outline: none;
+}
+
+.container.upload_file_row .inp-row input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-shadow: 0 0 3px #ccc inset;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.container.upload_file_row .inp-row input[type="checkbox"]:checked {
+    background: url(images/checkbox-after.png) no-repeat center center / 12px;
+    border-color: #EE2B38;
+    box-shadow: 0 0 3px #EE2B38 inset
+}
+
+
+
+.customer-participants.view.job_dtls .participant-sec {
+    border: none;
+    margin: 0 auto
+}
+
+.container.upload_file_row {
+    border-bottom: 1px solid #eee;
+    padding: 10px 70px 20px;
+    margin-bottom: 40px;
+    overflow: hidden;
+}
+
+.column-sec .thumbs_lists .columns {
+    text-align: center;
+}
+
+.column-sec .thumbs_lists .columns img {
+    width: auto;
+    margin: 0 auto;
+}
+
+.view_other_list .list_content {
+    background: #f4f4f4;
+    border: 1px solid #ebebeb;
+    padding: 30px 20px;
+    text-align: center;
+    min-height: 320px;
+}
+
+.view_other_list .list_content .search_icon {
+    border: 3px solid #ee2b31;
+    width: 50px;
+    height: 50px;
+    color: #ee2b31;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+    text-align: center
+}
+
+.view_other_list .list_content .rate {
+    display: block;
+    padding: 20px 0;
+    font-weight: 600;
+}
+
+.view_other_list .list_content .btn.brn_view_o {
+    background: transparent;
+    color: #ee2b31;
+    border: 2px solid #ee2b31;
+    padding: 0 20px;
+    display: block;
+    min-width: 150px;
+    margin: 0 auto;
+    border-radius: 50px;
+    height: 40px;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+    font-weight: 500
+}
+
+.view_other_list .list_content p {
+}
+
+
+
+.job_dtls .upload-file {
+    font-weight: 600;
+    padding: 0.5em 1em;
+    min-width: 10.5em; /* buttons should have min width */
+    border-radius: 1em;
+    text-align: center;
+}
+
+
+
+
+
+@media (max-width: 990px) {
+    .job_dtls .instruct-file ul li a.cross-icon {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+
+    .job_dtls .instruct-file .doc-name {
+        padding-right: 20px;
+        overflow: hidden;
+        margin: 0
+    }
+
+    .dashboard-sec.job_dtls .upload-file {
+        width: auto !important;
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 767px) {
+    .job_dtls .linguist-header .col-33 {
+        width: 48%
+    }
+}
+
+@media (max-width: 479px) {
+    .top-btns {
+        position: static;
+        padding: 20px 0;
+        text-align: left;
+    }
+
+    .job_dtls .linguist-header .col-33:last-child {
+        display: block;
+        width: auto;
+        text-align: left;
+        margin: 0
+    }
+
+    .job_dtls .linguist-header .col-33 {
+        width: 100%
+    }
+
+    .job_dtls .instruct-file .attached-doc ul li {
+        position: relative;
+    }
+
+    .job_dtls .instruct-file .attached-doc ul li .col-md-2.text-right {
+        width: auto;
+        position: absolute;
+        right: 0;
+        top: 10px;
+    }
+
+    .job_dtls .instruct-file ul li a.cross-icon {
+        margin: 0 auto;
+        padding: 0
+    }
+}
+
+/***CUSTOM CSS***/
+.fa-favorite {
+    color: #ee2b31;
+    cursor: pointer;
+}
+
+.highlight {
+    border: 2px solid #ee2b31 !important;
+}
+
+.submit_files_link_href_slider {
+    color: #fff !important;
+    font-weight: 600 !important;
+}
+
+form#filter_project_status table tr td {
+    padding-left: 1em;
+    padding-right: 1em;
+}

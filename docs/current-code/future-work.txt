@@ -1,0 +1,83 @@
+------------------------
+General issues
+
+Fix tooltip placement for editing project tags
+
+Discussion Date Times are not in local time zones
+
+-------------------------
+
+Future Proofing
+
+Foreign keys are not completely done, some tables still have 0 added to show an empty key and this breaks any fk setup, so some code needs to be changed in minor ways
+
+Eventually there will be enough transactions to be too slow on some pages, and some of their meta information needs to be added to the post lookup, and sql statements reworked
+
+The pdf php library of  MPDF57 works fine, but its old and not sure when it will break or be insecure.Same for the FPDF php library which also works with pdf
+
+-------------------------
+
+Users:
+
+Withdraw preference is not used anywhere, and there is no code to find out the settings to the admin or automate the process
+
+There is no way to see the customer profile. It is not tested, or updated, it has a minimum compliance with the new code which is untested
+
+When uploading tax forms, need to add these file to be filtered by the white list
+
+There is no usage of free credits anywhere, when purchasing content, or deducting fees in other places
+
+On the javascript side , there is an email filter which will reject some valid emails, this regex does not cover all the cases
+
+Favorites is not displaying link to download files of purchased content
+
+-------------------------
+
+Content:
+Remove the content physical files first , before deleting content , in the public and admin ajax, and in the in the admin panel
+
+Make sure content flag to hide is implemented in all screens and units and searches
+
+One of the content file uploads is not protected by the white list
+
+Arrow navigation does not work on the other proposals page (when freelancer has paid to see proposals by others)
+
+
+
+-------------------------
+Admin
+
+Cannot delete users from the WP user screen, in the admin area, because foreign keys try to delete file rows, and the files need to be deleted in code first
+
+When deleting a user profile attachment, also  delete the actual file for delete_profile_attachment.php
+
+Admin Evaluations the table that is shown in the bottom of admin evaluation is never filled in as nothing shows the dialog to request evaluation and set  request_evaluating .The dialog is hidden in the translators profile
+
+Improve the tag admin page
+
+In the admin project cases, there is an issue about saving the freeze date, the post meta job_freeze_date is never filled in the code elsewhere
+
+There is a function, that is not used much, but is important if admins having different roles are used again, the code to disable features is out of data
+
+The admin side getReportedUserByUserId function may need a do over. Not sure if it would work in a larger db , needs testing if to be used later
+----------
+
+Help and description pages
+
+17 different Static pages are pulled out, and their html is now in the repo, but these copies are not used and many pages that discuss this website are still pulled from the posts
+
+
+---------
+
+Other tasks
+
+User meta cleanup: there are a lot of user meta used, but there is not a map of which ones are dead meta; or written to but never read, and read from but never written to
+
+Double check insurance for contests and prize sharing, and check they do it accurately
+
+
+
+
+
+
+

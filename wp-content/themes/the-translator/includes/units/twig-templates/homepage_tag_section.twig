@@ -1,0 +1,42 @@
+<div    data-debug_per_id="{{ is_new_style }}"
+        data-debug_is_title_hidden="{{ is_title_hidden }}"
+        class="slide-content tag-section tag-section-{{ tag_id }}"
+        style="background-color: {{ background_color }};">
+
+
+    <div class="container">
+        {% if (not is_title_hidden ) %}
+            <div class="pagetitle lineheight" >
+                <span class="bold-and-blocking large-text">{{ tag_name }} </span>
+            </div>
+        {% endif %}
+
+        {% if (show_add_tag) %}
+            <!-- This is never shown due to the hide class -->
+            <span style="margin-left:20px" class="hide">
+                <a href="#" data-toggle="modal" data-target="#profileTagModel">
+                    Add Tag
+                </a>
+            </span>
+        {% endif %}
+
+        {% if (is_user_pref) %}
+            <a class="pull-right dy-profile-tag-remove" href="#" data-tag_id="{{ tag_id }}">X</a>
+        {% endif %}
+
+        <div class="flexslider toplinguist-grid">
+
+            <input type="hidden" name="tag_id" class="tag_id" value="{{ tag_id }}"
+                    data-page="{{ page_number }}" data-totalPage="{{ page_total }}" >
+
+            <ul class="slides">
+                {# the li elements are put here (these are the unit templates#}
+                {% autoescape %}
+                    {{ li_units|raw }} {# var won't be escaped #}
+                {% endautoescape %}
+            </ul> <!-- ./slides -->
+
+        </div> <!-- ./flexslider.toplinguist-grid -->
+
+    </div> <!-- ./container -->
+</div> <!-- /.tag-section -->

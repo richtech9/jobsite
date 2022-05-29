@@ -1,0 +1,121 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Chat Window refrsh timer:
+// so if there is a new room found in a previous call, reduce the timer, else do a longer timer ?
+//yes, exactly. double the timer if no room is found. 
+// the max is: 5min or maybe 10 min
+//ok!
+// go ahead! let's try this simple thing. 
+// not sure. then, this duration needs to be saved in local session?
+// it cannot be saved in db obviously, because there're many guest users, or other users. 
+// I think in a local js var will work fine. It can be per page?
+// so it will start new for each page.. but if you want it to remember after a page load, then yet it needs to be saved in a session var, and I can load it into the global js var for chat
+
+// no. just a local js var. it's per page. itt's ok that 
+//no need to remember it. it can be started any time. then it'll auto increase or decrease. 
+//
+
+
+duration=10000;
+
+max_duration=320000; //320sec longest
+
+
+if no_new_room
+	duration=min (2*duration, max_duration);
+else
+	duration=10000;
+end
+
+
+
+
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Tags and Homepage Interest Display
+
+Summary: each project/contest/content/freelancer profile have skill tags. They are displayed as relatvent jobs in homepage, pages of content, and pages of freelancer profiles. 
+
+Tables:
+ wp_interest_tags: stores name of all tags. 
+	When user edit skill tags, if it's a new tag, it'll be inserted into table: 	wp_interest_tags. So, in this table, it may have any type of tags! 
+
+ To view/add/detelete them: 
+	Admin panel-> Interest Tag List
+
+wp_project_tags: it stores all tags for each project/contest/content/freelancer. 
+
+
+ wp_tags_cache: 
+	for each tag that is in the cache, sotre all IDs of  project/contest/content/freelancer that has this tag. 
+		(Note: need to check which tag is stored in this table, most likely, the most used tags)
+
+ wp_tags_cache_job  == wp_tags_cache (data spread in multiple rows for easier access): 
+	the same as wp_tags_cache, for each tag in the cache, store each ID of  project/contest/content/freelancer in a single row for easier usage and display. 
+
+
+ wp_homepage_interest: 
+	 This table stores all tags displayed on homepage. For each tag in this table, all related content/profiles in wp_tags_cache_job are displayed in the row of this tag on homepage. 
+	 
+	 Admin can edit the tags displayed on homepage.
+		Admin panel-> Homepage Interest List-> Homepage interest section. 
+
+
+
+ wp_homepage_interest_per_id: 
+	Admin wants to manually enter the content/profiles that are displayed for each tag. 
+	For each tag in Homepage interest section (stored in wp_homepage_interest), the admin user can enter a list of content IDs, or freelancer emails. These will be displayed on homepage instead. 
+
+	
+
+
+Use cases: 
+
+ In homepage: 
+	Admin user enteres a list of homepage interest (tag).  
+	For each tag, get the content/freelancers that has the same tag id in wp_tags_cache_job table. Then display them. 
+
+	A log-in user: 
+		He can edit the list of tags to be displayed on his homepage. 
+			Note: not sure where it's stored yet. most likely in usermeta table. 
+		
+
+ In a content page, display related freelancers and content:
+		This content has multiple tags, for each tag id, get the content/freelancers that has the same tag id in wp_tags_cache_job table. Then display them. 
+
+
+ In a freelancer's profile page, display related freelancers and content:
+		This freelancer has multiple tags, for each tag id, get the content/freelancers that has the same tag id in wp_tags_cache_job table. Then display them. 
+
+
+
+
+/////////////////// meaning of variables in the cron jobs
+$haveTagData is if the tags_cache has that column set, for that tag. In the cron script for content, this means the column is content_ids
+
+$haveTagData2  is if any tags_cache is set for that tag 
+
+skipping when the column in tags_cache does not have the content_id for the tag,  but the row is set for the tag
+
+The solution is to set the id of the tags_cache here, as by then the content id will be added to the column  
+
+debugging home page interest tags
+php tag: found 2
+
+book tag id 24, missing from tags cache table
+
+java tag id of 20: one project id of 29346 in tags cache table  , has entry in the tags-cache-jobs table, type 1 . Not selected because its not type 2 or 4
+
+html tag, id of 31 . Project ids of 29325,29342,29346 and content id of 21. Several rows in the tags-cache-job table, but only one row that is type 2 or 4 (type 2). 
+This html tag is marked at as per id for freelancer profile #3568 
+
+
+
+
+
+
+
+
+  
+  
+  

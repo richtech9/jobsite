@@ -1,0 +1,278 @@
+/*===================
+CSS to be applied to the customer read and PeerOK profile after all the other css is applied
+=====================*/
+a:hover { text-decoration: none; }
+a:focus, input:focus, textarea:focus, button:focus { outline: 0 solid }
+
+
+img {
+    height: auto;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 15px;
+    font-weight: 700;
+}
+body{
+
+}
+.logo {
+    width: 250px;
+    margin-top: 5px;
+}
+
+
+
+
+.header-area {
+    padding: 1em 0;
+    background: #F5F6F5;
+}
+h2 {
+    color: #333333;
+    font-weight: 500;
+}
+
+.left_site_bar img {
+    margin-bottom: 0.5em;
+}
+
+p {
+    color: #333333;
+    text-align: justify;
+	    word-break: break-all;
+}
+.left_img img {
+    width: 280px;
+    height: 240px;
+}
+
+
+.left_site_bar .col-lg-8 {
+    padding-left: 0;
+}
+
+a.box-page {
+    border: 1px solid #DEDEDE;
+    padding: 10px 25px;
+    color: #666666;
+    border-radius: 5px;
+    background: #F7F7F7;
+    display: inline-block;
+}
+.box-number {
+    text-align: right;
+    border: 1px solid #DEDEDE;
+    padding: 10px;
+    background: #F7F7F7;
+    border-radius: 5px;
+}
+.box-number span {margin-right: 25px;color: #666666;}
+.box-number a {
+    border-left: 1px solid #DEDEDE;
+    padding: 13px 17px;
+    color: #666666;
+}
+.site_bar_box_1 {
+    background: #F7F7F7;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+
+.right_site_bar i.fa {
+    color: #9B9B9B;
+}
+.site_bar_box_1 p {
+    color: #EE2B31;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+.right_site_bar span i.fa {
+    color: #EE2B31;
+}
+
+.right_site_bar span:last-child i.fa {
+    margin-right: 15px;
+}
+.prement-box {
+    text-align: center;
+}
+.prement-box h2 {
+    color: #EE2B31;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.box-prement, .box-prement2 {
+    display: inline-block;
+    color: #fff;
+    background: #EE2B31;
+    padding: 0.5em 1em;
+    margin-bottom: 2em;
+    border-radius: 1em ;
+    min-width: 10.5em;
+    font-weight: bold;
+}
+.box-prement {
+    padding: 1em 1.25em;
+}
+.content-box-prement{
+    width: 177px;
+}
+.box-prement i.fa {
+    color: #fff;
+}
+.prement-box i.fa {
+    color: #ffff;
+    margin-right: 7px;
+}
+
+
+
+.owl-carousel .owl-item img {
+    display: block;
+}
+
+
+
+.comment-box i.fa {
+    color: #929DA6;
+    /* background: #E1E6E9; */
+    padding: 2px 10px 0;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.comment-box input {
+    width: 89%;
+    height: 50px;
+    display: inline-block;
+    /*position: absolute;*/
+    position: static;
+    top: 0;
+    left: 93px;
+    border-radius: 5px;
+    border: 1px solid #DBDFE4;
+    padding: 10px;
+	    margin-top: 15px;
+}
+.comment-box {
+    position: relative;
+    padding: 0 30px;
+}
+.log_in_wtth_box {
+    position: relative;
+    margin-top: 0.5em;
+}
+
+
+
+.user_box {
+    /*position: absolute;
+    top: 0;
+    left: 65px;*/
+}
+.user_box i.fa {
+    background: none;
+    padding: 0;
+    margin: 0;
+
+}
+.user_box i.fa.fa-circle {
+    font-size: 5px;/*keep-size*/
+    display: inline-block;
+    margin-top: -5px;
+}
+.user_box h5 span {
+    color: #316396;
+}
+.user_box h5 {
+    color: #836C7A;
+    margin-bottom: 4px;
+}
+.user_box i.fa.fa-angle-up{
+    border-right: 2px solid #DBDFE4;
+    margin-right: 5px;
+    padding-right: 14px;
+    border-radius: 0;
+}
+.user_box strong {
+    color: #656C91;
+}
+.user_box strong i.fa{
+    padding: 3px;
+}
+.user_box p {
+    margin-bottom: 4px;
+}
+.log_in_wtth_box.log_in_wtth_bottom {
+    margin-bottom: 15px;
+}
+
+
+
+
+
+
+
+.single-carousel-item {
+    margin: 0 5px;
+    background: #fff;
+    border: 1px solid #E4E4E4;
+    position: relative;
+    z-index: 1;
+}
+
+
+
+.section-padding {
+    padding-top: 50px;
+    padding-bottom: 70px;
+    background: #F7F7F7;
+}
+
+.single-carousel-item p {
+    color: #666666;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+
+
+
+.single-carousel-item:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: black;
+    opacity: 0;
+    z-index: -1;
+    transition: .2s;
+}
+
+.single-carousel-item:hover:after {
+    opacity: .7;
+}
+.carousel-area .owl-nav div {
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    margin-top: -19px;
+    color: #9E9E9E;
+}
+
+.carousel-area .owl-nav div.owl-next {
+    right: -30px;
+    left: auto;
+}
+
+
+.payment {
+    text-align: right;
+}

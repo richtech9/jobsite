@@ -1,0 +1,213 @@
+if Chat connects to xmpp server well
+	nothing needs done.
+	
+elseif Chat cannot connect to xmpp server
+	if  Create xmpp account   is successful
+		Reset password that is stored in local db and chat server. 
+	else if xmpp account exists on xmpp server
+				Reset password that is stored in local db and chat server. 
+	else
+		XMPP server is down. 
+		Log the error.
+	end
+	
+end
+
+
+this one?
+I was talking about something different
+
+At first I wanted to write a small function that would go through all the users that had different login, and do that in a loop
+
+But, when you said you wanted this done in a login check, I started to talk about a different set of logic here.
+
+The issue, is that if we check each user everytime, it slows down the login. I was thinking to only check if we tell it to. And the best way I was thinking of, which is not the only way, of course, is to erase the login chat data for the users I want to reset, and then login with them to activate the code that will do th
+
+i don't get it. but on which step will you do this? can you write in pseudo code?
+
+yes, I will make sudo code for the regular chat setup in the php, then I will show what I was discussing
+
+Now, for each page load a user is logged in we always do the following
+1) get the user chat password (totally different from the wp login and always stored in plain text)
+2) make credentials to send to the webpage, which uses it
+2a) username is the loginname @ chat.domain   (that is the username)
+2b) password we store in plain text in the meta
+
+
+that is what happens for a regular page load. There is no interaction between the chat server and the php here. It just loads some data into javascript variables, and the chat js library uses it
+
+Now, here is the new thing I was thinking of to make sure all the current users could use the new chatserver
+
+In the login, check to see if there is the chat plaintext password . For all users except brand new ones, that exists. I believe the activation code , when they click that link from the email, is what creates their account. So, any user will have that password set for  the chat normally
+
+if there is the missing password for chat
+a) go ahead and try to create the account, its the fastest way to find out if the user is set. OR we can do an extra call to see if the user exists first, which makes two calls and not one if the user does not exist. Either way, not a big deal doing either one  for speed , etc
+
+b) if the user does not exist, then we make the new account with the new password
+
+c) if the user does exist, by the time this code executes, the php will have no way to get the old password back, so just make a new one that is only used by the chat
+
+so, a b, and c take about as many lines of code as the last two paragraphs. its not hard to do , but maybe not what you want me to do ?
+
+my point is, we need to make it as simple as possible. the chat plaintext password is stored in the user table, right?
+
+usermeta
+
+ok. so, it's always stored there!
+
+and it'll never be missing!!
+
+why do you consider such case here?
+
+you only need to create a new account in XMPP server. that's all. 
+
+Well, I wanted to flag the login, to only do it for users who cannot use the chat. 
+
+this never happens yet! 
+
+why user cannot use chat?
+
+New chat server ?
+
+in this case, the user will have his account created in the new chat server@!!
+then he can chat!
+The code above does this quickly
+
+then just need to create a new xmpp account for a user. that's all. 
+
+after this, he can chat. He can! the code above helps do that, but its not the only way 
+
+i mean, the simplest way. 
+
+we only need to create a new xmpp account if the user finds his xmpp account does not exsit. right?
+
+right
+
+the chat plaintext password will never be changed or missing for any user!!
+it's stored in the db! and it'll never be changed. otherwise, there's no way we can develop anything if we consider the data in db is not reliable. 
+
+
+Okay, I flag the user with a new meta, and use the old password 
+btw, when user logs in, the chat window has to be loaded? no matter on which page the user will be on, right?
+
+yes but I don't remember what it does when the login is bad
+
+it's ok. that's not related. the existing login is working fine. 
+
+when you say "existing login" what do you mean ?
+
+
+i mean, the login into the website. 
+
+Right, that is unrelated to the above sudocode
+
+
+So, what to do now? 
+Currently, when user signs up, his XMPP account will be created. 
+
+Now, when we switch to a new server, his XMPP account is missing. 
+
+So, we only need to detect this event, and create his XMPP account correspondingly. 
+
+I can imagine three ways to detect this event, maybe more but I will list at least three
+a) set an option on the website that makes it check each user as he logs in , and then remembers which ones are already checked, so they are not checked twice. we do your code at the top of the page there
+
+sorry to interrupt. just a sec. 
+here, suppose user fcustomer1 logs in, now, it's a new chat server. why not just create the xmpp account for fcustomer1?
+
+that's all. 
+
+that is basically the code in the middle, but we are telling the system it NEEDS to check, and it will not do it automatically
+
+right. yes, for example, when i open the web and logs in, after log in, it needs to load the chat windows. 
+if it cannot connect to chat server, then check?
+Yes, but that is a different system than login. Here is how I could do that
+1) alter the 
+
+outer js code to listen to a bad login event from the chat library. IF so, run a new ajax to do the above, and return the credentials what work, and the chat will login without refreshing the window or tab. But, I do not know offhand which event that is, and would need to look it up
+
+
+anything easier? Wcn 
+
+for example, at php side? this should always be managed by backend?
+
+for example, when a new user just signs up, his xmpp account is created by backend. 
+
+for the account/creation or reset on the backend, it has to know to try for that user. Else it will always check for everyone and slow all the pages down
+
+
+right!
+So, my first solution, the one I was talking about in the skype, is simply to dump the login credentials to make the php realize... oh wow, need to create or reset.. BUT, you raised a good point. Why reset the password, just use the old one after setting a flag using a seperate meta to tell the php to do that, then after the account it taken care of, it will unflag the user and will never check that user again until , maybe later, another flag is set for it
+
+so you mean, the js for chat will detect failure. if it fails, it'll set the flag to be true?
+
+the php reads this flag and knows it needs to create xmpp account?
+
+Yes, we can do that. but I would prefer to do all of that without reloading the page, to make things cooler. Would require the js to notify the php through ajax call, and wait for new password while the php does just that!
+
+ok. it sounds good. 
+
+but why new password? it should reuse the same passwor, as discussed above?
+
+the php will just need create the xmpp user in this case. 
+
+Okay, sure, I forgot ! yes, that way is better
+
+ok. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+

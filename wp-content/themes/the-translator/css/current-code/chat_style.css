@@ -1,0 +1,761 @@
+:root {
+    --red: #EE2B31;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background: #f0f1f2;
+}
+
+
+
+#chatbox {
+    width: 290px;
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    height: 484px;
+    position: fixed;
+    bottom: 30px;
+    right: 0;
+}
+
+#friendslist {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 320px;
+    height: 260px;
+    overflow: scroll;
+}
+
+
+
+.friend {
+    height: 72px;
+    border-bottom: 1px solid #e7ebee;
+    position: relative;
+}
+
+.friend:hover {
+    background: #f1f4f6;
+    cursor: pointer;
+}
+
+.friend img {
+
+}
+
+.floatingImg {
+    width: 40px;
+    border-radius: 50%;
+    position: absolute;
+    margin-top: 50px;
+    left: 12px;
+    border: 3px solid #fff;
+}
+
+.friend .circle {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+.message .circle {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.message.left .circle {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+}
+
+/* code-notes Changed margin height and width of the chat user icon*/
+.message.right ~ .message .circle {
+    border-radius: 50%;
+    height: 2em;
+    width: 2em;
+    overflow: hidden;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    vertical-align: top;
+    margin-left: 0.25em;
+}
+
+/* code-notes Changed margin height and width of the chat user icon*/
+.message.right .circle {
+    border-radius: 50%;
+    height: 2em;
+    width: 2em;
+    overflow: hidden;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    float: left !important;
+    margin-right: 0.25em;
+    margin-left: 0 !important;
+}
+
+.friend p {
+    padding: 15px 0 0 0;
+    float: left;
+    width: 220px;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+.friend p strong {
+    font-weight: 600;
+    color: #597a96;
+    text-transform: capitalize;
+}
+
+.friend p span {
+    /* replaced fontsize 12 */
+    font-weight: 400;
+    color: #aab8c2;
+}
+
+.friend .status {
+    background: #26c281;
+    border-radius: 50%;
+    width: 9px;
+    height: 9px;
+    position: absolute;
+    top: 31px;
+    right: 17px;
+}
+
+.friend .status.away {
+    background: #ffce54;
+}
+
+.friend .status.inactive {
+    background: #eaeef0;
+}
+
+/*code-notes search commented out but keep classes*/
+#search {
+    background: #e3e9ed url("images/search.png") -11px 0 no-repeat;
+    height: 60px;
+    width: 290px;
+    position: fixed;
+    bottom: 0;
+}
+
+/*code-notes search commented out but keep classes*/
+#searchfield {
+    background: #e3e9ed;
+    margin: 21px 0 0 55px;
+    border: none;
+    padding: 0;
+    font-weight: 400;
+    color: #8198ac;
+}
+
+/*code-notes search commented out but keep classes*/
+#searchfield:focus {
+    outline: 0;
+}
+
+.ejabber_chat {
+    width: 290px;
+    height: 484px;
+    /* position: fixed;
+    bottom: 0;
+    right: 300px; */
+    background: #fff;
+    margin: 0 2px 0 2px;
+}
+
+
+
+.chat-messages {
+    /* opacity: 0; */
+    /* margin-top: 30px; */
+    width: 290px;
+    height: 385px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-right: 20px;
+    -webkit-transition: all 200ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    -moz-transition: all 200ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    -ms-transition: all 200ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    -o-transition: all 200ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    transition: all 200ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+}
+
+.chat-messages.animate {
+    opacity: 1;
+    margin-top: 0;
+}
+
+.chat-messages label {
+    color: #aab8c2;
+    font-weight: 600;
+    /* replaced fontsize 12 */
+    text-align: center;
+    margin: 15px 0;
+    width: 290px;
+    display: block;
+}
+
+.chat-messages div.message {
+    padding: 0 0 30px 58px;
+    clear: both;
+    margin-bottom: 45px;
+}
+
+/* code-notes Changed padding of the individual messages*/
+.chat-messages div.message.right {
+    padding: 0 0.25em 30px 0;
+    margin-right: -19px;
+    margin-left: 19px;
+}
+
+.chat-messages .message img {
+    display: inline-block;
+
+}
+
+
+.chat-messages div.message.right img {
+    float: right;
+    margin-left: 0;
+    margin-right: 0px;
+}
+
+/* code-notes Changed padding and max width of the individual messages*/
+.message .bubble {
+    background: #f0f4f7;
+    /* replaced fontsize 12 */
+    font-weight: normal;
+    font-size: 14px;
+    padding: 1em 1em;
+    border-radius: 25px 0px 25px 25px;
+    color: #8495a3;
+    position: relative;
+    box-shadow: 0px 0px 4px #0005;
+    display: inline-block;
+    min-width: 51px;
+    /*max-width: 200px;*/
+    margin-left: auto;
+    float: right;
+    margin-right: 5px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+
+.chat-messages div.message.right .bubble {
+    float: left !important;
+    border-radius: 0px 25px 25px 25px;
+    margin-left: 6px;
+    background-color: #ee2b31;
+    color: #f2f2f2;
+    min-width: 51px;
+    /*max-width: 200px;*/
+}
+
+.bubble .corner {
+    background: url("images/bubble-corner.png") 0 0 no-repeat;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    left: -5px;
+    bottom: 0;
+}
+
+div.message.right .corner {
+    background: url("images/bubble-cornerR.png") 0 0 no-repeat;
+    left: auto;
+    right: -5px;
+}
+
+
+
+.sendmessage {
+    height: 60px;
+    border-top: 1px solid #e7ebee;
+    /* position: absolute; */
+    bottom: 0;
+    right: 0px;
+    width: 290px;
+    background: #fff;
+    padding-bottom: 50px;
+}
+
+.sendmessage input {
+
+}
+
+.sendmessage input {
+    background: #fff;
+    padding: 16px 54px 0 22px !important;
+    border: none;
+    font-weight: 400;
+    color: #aab8c2;
+}
+
+.sendmessage input:focus {
+    outline: 0;
+}
+
+.sendmessage button {
+    background: #fff url("images/send.png") 0 -40px no-repeat;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    margin: 15px 0;
+    border: none;
+}
+
+.sendmessage button:hover {
+    cursor: pointer;
+    background-position: 0 0;
+}
+
+.sendmessage button:focus {
+    outline: 0;
+}
+
+#close {
+    position: absolute;
+    top: 8px;
+    opacity: 0.8;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+#close:hover {
+    opacity: 1;
+}
+
+.cx,
+.cy {
+    background: #fff;
+    position: absolute;
+    width: 0px;
+    top: 15px;
+    right: 15px;
+    height: 3px;
+    -webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -ms-transition: all 250ms ease-in-out;
+    -o-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+}
+
+.cx.s1,
+.cy.s1 {
+    right: 0;
+    width: 20px;
+    -webkit-transition: all 100ms ease-out;
+    -moz-transition: all 100ms ease-out;
+    -ms-transition: all 100ms ease-out;
+    -o-transition: all 100ms ease-out;
+    transition: all 100ms ease-out;
+}
+
+.cy.s2 {
+    -ms-transform: rotate(50deg);
+    -webkit-transform: rotate(50deg);
+    transform: rotate(50deg);
+    -webkit-transition: all 100ms ease-out;
+    -moz-transition: all 100ms ease-out;
+    -ms-transition: all 100ms ease-out;
+    -o-transition: all 100ms ease-out;
+    transition: all 100ms ease-out;
+}
+
+.cy.s3 {
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transition: all 100ms ease-out;
+    -moz-transition: all 100ms ease-out;
+    -ms-transition: all 100ms ease-out;
+    -o-transition: all 100ms ease-out;
+    transition: all 100ms ease-out;
+}
+
+.cx.s1 {
+    right: 0;
+    width: 20px;
+    -webkit-transition: all 100ms ease-out;
+    -moz-transition: all 100ms ease-out;
+    -ms-transition: all 100ms ease-out;
+    -o-transition: all 100ms ease-out;
+    transition: all 100ms ease-out;
+}
+
+.cx.s2 {
+    -ms-transform: rotate(140deg);
+    -webkit-transform: rotate(140deg);
+    transform: rotate(140deg);
+    -webkit-transition: all 100ms ease-out;
+    -moz-transition: all 100ms ease-out;
+    -ms-transition: all 100 ease-out;
+    -o-transition: all 100ms ease-out;
+    transition: all 100ms ease-out;
+}
+
+.cx.s3 {
+    -ms-transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+    -webkit-transition: all 100ms ease-out;
+    -moz-transition: all 100ms ease-out;
+    -ms-transition: all 100ms ease-out;
+    -o-transition: all 100ms ease-out;
+    transition: all 100ms ease-out;
+}
+
+.ejabber_chat,
+.sendmessage {
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+
+
+.hire {
+    height: 50px;
+    border-bottom: 1px solid aliceblue;
+    margin-top: 30px;
+}
+
+.project_title_btn {
+    float: right;
+    padding: 0px;
+    border-radius: 32px;
+    border: navajowhite;
+    width: 40px;
+    background: var(--red);
+    color: white;
+    /* replaced fontsize 12 */
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.project_title {
+    float: left;
+    margin-left: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.settings img {
+    height: 30px;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.chat_settings_window {
+    margin-top: 35px;
+    border: 1px solid grey;
+    background: #ced4da;
+    padding-bottom: 10px;
+    height: 100%;
+}
+
+.block_info {
+    padding: 15px;
+    background: #e9ecef;
+}
+
+.block_info {
+    padding-bottom: 0px;
+}
+
+
+
+.chat_boxes_area {
+    position: fixed;
+    background: transparent;
+    height: auto;
+    width: 876px;
+    bottom: 0;
+    display: -webkit-box;
+    justify-content: flex-end;
+    right: 300px;
+    overflow: hidden;
+    z-index: 999;
+}
+
+
+
+.bottom_zero {
+    bottom: 0;
+}
+
+/************** chat window *****************/
+#friendslist {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 280px;
+    height: 246px;
+    overflow-y: auto;
+    bottom: 0;
+    display: block;
+}
+
+.friend p {
+    width: 130px;
+    line-height: 1.6;
+    position: absolute;
+    left: 70px;
+}
+
+.friend .status {
+    background: #26c281;
+    border-radius: 50%;
+    width: 9px;
+    height: 9px;
+    position: absolute;
+    top: 31px;
+    right: 35px;
+}
+
+.chat_boxes_area {
+    position: fixed;
+    background: transparent;
+    height: auto;
+    width: 876px;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+    right: 300px;
+    overflow: hidden;
+    z-index: 999;
+}
+
+.chat-messages div.message.right {
+    padding: 20px 0px 34px 0px;
+    margin-right: -19px;
+    margin-left: 19px;
+    margin-top: 30px;
+}
+
+.chat-messages div.message.right .bubble span {
+    left: 0;
+}
+
+.chat-messages div.message.left .bubble span {
+    right: 0;
+}
+
+.bubble span {
+    color: #aab8c2;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: 100%;
+    padding-top: 4px;
+}
+
+/* code-notes changed padding of the message container*/
+.chat-messages div.message {
+    padding: 30px 0 30px 0.25em;
+    clear: both;
+    margin-bottom: 45px;
+}
+
+.chat_boxes_area {
+    position: fixed;
+    background: transparent;
+    height: 484px;
+    width: 876px;
+    bottom: 30px;
+    display: flex;
+    justify-content: flex-end;
+    right: 300px;
+    overflow: hidden;
+    z-index: 999;
+    column-count: 3;
+    flex-wrap: wrap;
+}
+
+.ejabber_chat {
+    width: 30%;
+    height: 484px;
+    background: #fff;
+    margin: 0 12px 0 6px;
+}
+
+.windows-header {
+    background: #EE2B31;
+    padding: 0.25em;
+    padding-left: 0.75em;
+    color: white;
+    position: absolute;
+    width: 264px;
+    z-index: 99;
+    font-weight: bold;
+}
+
+@media (max-width: 991px) {
+    .chat_boxes_area {
+        position: fixed;
+        background: transparent;
+        height: 484px;
+        width: 876px;
+        bottom: 0;
+        display: flex;
+        justify-content: flex-end;
+        right: 300px;
+        overflow: hidden;
+    }
+
+    .friend p {
+        float: none;
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    #chatbox {
+        width: 80%;
+        z-index: 999;
+        column-count: 1;
+        flex-wrap: wrap;
+        background: #fff;
+        border-radius: 6px;
+        overflow: hidden;
+        height: 484px;
+        position: fixed;
+        bottom: 0px;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+    }
+
+    .ejabber_chat {
+        width: 100%;
+    }
+
+    .friend p {
+        float: none;
+        width: 100%;
+    }
+
+    .chat_boxes_area {
+        position: fixed;
+        background: transparent;
+        height: auto;
+        width: 100%;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        right: 0;
+        overflow: hidden;
+        z-index: 999;
+        column-count: 1;
+        flex-wrap: wrap;
+        left: 0;
+    }
+
+    .chat-messages {
+        width: 100%;
+    }
+
+    .windows-header {
+        width: 80%;
+    }
+
+    .ejabber_chat {
+        width: 80%;
+        margin: 0px 10px 0px 10px;
+    }
+
+    div#chatbox .windows-header {
+        width: 100%;
+        padding: 10px 20px;
+    }
+
+    #friendslist {
+        width: 96%;
+    }
+}
+
+@media (max-width: 480px) {
+    div#chatbox .windows-header {
+        width: 100%;
+        padding: 10px 20px;
+    }
+}
+
+
+.chat_boxes_area .chatbox_new.ejabber_chat, .chat_boxes_area.chatbox_new {
+    z-index: 9999 !important;
+}
+
+#chatbox {
+    z-index: 999;
+}
+
+.chat_boxes_area {
+    z-index: -1;
+    position: fixed;
+}
+
+.chat_boxes_area .ejabber_chat {
+    z-index: -1;
+}
+
+form.generateorderform .formcont {
+    z-index: 99;
+}
+
+
+.sendmessage input, .bubble {
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+}
+
+textarea.txtMessage {
+    width: 80%;
+    resize: none;
+    border: none;
+    min-height: 30px;
+    padding: 15px 10px;
+}
+
+.chat-messages {
+    height: 400px;
+    overflow-y: auto;
+    width: auto;
+    margin-top: 20px;
+}
+.settings .block_info {
+    display: none;
+}

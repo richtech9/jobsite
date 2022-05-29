@@ -1,0 +1,8 @@
+wp-includes/general-template.php
+  function get_template_part( $slug, $name = null ) {
+    FreelinguistDebugFramework::note("template part of",[$slug,$name]);
+
+wp-includes/template-loader.php
+  $template = apply_filters( 'template_include', $template );
+  	if ( $template ) {
+          FreelinguistDebugFramework::note('top template',$template)

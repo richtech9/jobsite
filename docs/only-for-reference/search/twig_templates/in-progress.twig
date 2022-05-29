@@ -1,0 +1,544 @@
+<div class="title-sec">
+
+    <div class="container">
+
+        <span class="bold-and-blocking large-text">
+            Search Result for
+            <span class="freelinguist-search-phrase">
+                {{ search_phrase }}
+            </span>
+        </span>
+    </div>
+
+</div>
+
+<div class="project-post-cont search-res">
+
+    <div class="container">
+
+        <div class="search-cont">
+
+            <div class="search-cont-left- col-md-12">
+
+
+                <div class="job-table">
+                   <div class="job-table-head">
+                        <ul>
+                            <li class="delivery-date">Delivery Date</li>
+                            <li class="project">Title</li>
+                            <li class="project" style="width:22%">Description</li>
+                            <li class="project" style="text-align:center;">Budget(Award Assured or Not)</li>
+                            <li class="project" style="text-align:center;">Post Date</li>
+                            <li class="project" style="text-align:center;">Bid/Participate</li>
+                        </ul>
+                    </div>
+
+
+                <div class="search-row job-table-data">
+                    <ul>
+
+                        {#$link for content : Out of order was declard in php ahead of time, also need to add in dynamic content buy button#}
+                        <a data-toggle="modal"
+                           data-target="#globalModal-"
+                           class="hirebttn hireLinguisthome  enhanced-text"
+                           data-id="{{ job_id }}"
+                           data-c_type="{{ job_type }}"
+                           href="javascript:void[0]"
+                        >
+                            <img src="{{ url_mag_png }}">
+                            Buy
+                        </a>
+
+                        {#$link for user : Out of order was declard in php ahead of time#}
+                        <a class="hirebttn hireLinguisthome enhanced-text"
+                           id="{{ job_id }}"
+                           href="javascript:void[0]"
+                           data-toggle="modal"
+                           data-target="#operOrderModal"
+                        >
+                            <img src="{{ url_mag_png }}">
+                            Hire
+                        </a>
+
+
+                        <li class="freelinguist-search-result-item"
+                            data-jid="$jobs['job_id']"
+                            data-recent_ts="$jobs['recent_ts']"
+                            data-job_type="$jobs['job_type']"
+                        >
+                            {#start block of if type is contest or project#}
+
+                             <div class="delivery-date-sta project-sta enhanced-text">
+                                 {{ job_standard_delivery_date }}
+                                 <br>
+                                 <em>{{ type }}</em>
+                             </div>
+
+                             <div class="project-sta enhanced-text">
+                                 <a style="color:black;"
+                                    href="{{ link }}">
+                                     {{ first_three_words_in_title }}
+                                     <br>
+
+                                 </a>
+                             </div>
+
+                            <div class="job-table-detail enhanced-text" style="width:50%">
+                                <a style="color:black;" href="{{link}}">
+
+                                    <div class="job-table-detail-top">
+                                        {{ first_four_words_in_description }}
+                                    </div>
+
+                                    <div class="job-table-detail-col" style="overflow:hidden">
+                                        {{ tags_name_array }}
+                                    </div>
+
+                                    <br>
+
+                                    <div class="job-table-detail-col">
+                                        ${{ estimated_budgets }}
+                                        {{ is_guarented_phrase }}
+                                    </div>
+
+                                    <div class="job-table-detail-col">{{ date_of_post }}</div>
+
+                                </a>
+
+                            </div>
+                            {% if (ptype == 'contest') %}
+                                {% if (!is_logged_in OR is_participating) %}
+                                    <a class="hirebttn2" href="{{ link }}">View</a>
+                                {% else %}
+
+                                    <a  linguid="{{ current_user_id }}"
+                                        contestid="{{ job_id }}"
+                                        lang="{{ lang_code }}"
+                                        class="hirebttn2 prt_accept"
+                                        href="javascript:void(0)">
+                                        PARTICIPATE
+                                    </a>
+
+                                {% endif %}
+                            {% else %}
+                                {% if (!is_logged_in  ) %}
+                                    <a class="hirebttn2" href="{{ link }}">View</a>
+                                {% elseif (bid_exists) %}
+                                    <a class="hirebttn2" href="{{ link }}">Bidded</a>
+                                {% else %}
+                                    <a id="placebidbutton"
+                                       data-target="#placeBidModel_{{ job_id }}"
+                                       data-toggle="modal"
+                                       class="hirebttn2"
+                                       href="javascript:void(0);">
+                                        Bid
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+
+                            <div role="dialog"
+                                 id="placeBidModel_{{ job_id }}"
+                                 class="modal fade"
+                            >
+
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+
+                                            <button data-dismiss="modal" class="close huge-text"
+                                                    type="button">×
+                                            </button>
+
+                                            <h4 class="modal-title">
+                                                {# todo check string#}
+                                                Apply to this job
+                                            </h4>
+                                        </div>
+                                        {#todo stopped here in first take#}
+                                        <div class="modal-body">
+
+                                            <div id="alert_message_model"></div>
+                                            <?php
+                                                            if (isset($current_translater_bid[0]->comment_ID)) {
+                                            $comment_id = $current_translater_bid[0]->comment_ID;
+                                            $key = 'bid_price';
+                                            $bid_price = get_comment_meta($comment_id, $key);
+                                            if ($bid_price[0]) {
+                                            $bid_price = $bid_price[0];
+                                            }
+                                            }
+                                            ?>
+                                            <form class="comment-form" id="commentform"
+                                                  onsubmit="return place_the_bid(this)" method="post"
+                                                  action="<?php echo get_permalink(); ?>"
+                                                  novalidate="novalidate"><p
+                                                        class="comment-form-comment">
+                                                    <label for="bidPrice"><?php get_custom_string('Bid Price'); ?></label>
+
+                                                    <input type="number" class="form-control"
+                                                           name="bidPrice" min="1"
+                                                           title = "Bid Price"
+                                                           value="<?php if (isset($bid_price)) {
+                                                                               echo $bid_price;
+                                                                           } ?>">
+                                                    <input type="hidden"
+                                                           value="<?php if (isset($current_translater_bid[0]->comment_ID)) {
+                                                                               echo $current_translater_bid[0]->comment_ID;
+                                                                           } ?>" name="comment_ID">
+
+                                                </p>
+
+                                                <p class="comment-form-comment">
+
+                                                    <label for="comment"><?php get_custom_string('Notes'); ?></label><br>
+
+                                                    <textarea maxlength="10000" class="form-control"
+                                                              style="height:200px" aria-required="true"
+                                                              name="comment"
+
+                                                              id="comment"><?php echo isset($current_translater_bid[0]->comment_content) ? stripslashes(stringTrim($current_translater_bid[0]->comment_content)) : ''; ?></textarea>
+
+                                                </p>
+
+                                                <p class="form-submit">
+
+                                                    <input type="submit"
+                                                           value="<?php get_custom_string('Apply to this job'); ?>"
+                                                           class="btn blue-btn" id="submit"
+                                                           name="submit">
+
+                                                    <input type="hidden" id="comment_post_ID"
+                                                           value="<?php echo $job_id; ?>"
+                                                           name="comment_post_ID">
+
+                                                    <input type="hidden" id=""
+                                                           value="<?php echo isset($_REQUEST['lang']) ? $_REQUEST['lang'] : ''; ?>"
+                                                           name="lang">
+
+                                                    <input type="hidden" value="0" id="comment_parent"
+                                                           name="comment_parent">
+
+                                                </p>
+
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div> <!-- #placeBidModel_-->
+
+
+                            <?php
+
+                                            /*  $contest_awardedPrizes = get_post_meta($job_id, 'contest_completed', true);
+
+                                             if ($contest_awardedPrizes != 'yes') {
+
+                                                 //echo '<div class="status-sta">Working Job</div>';
+
+                echo '<a class="hirebttn2" href="' . $link . '" style="float:none;">Upload</a>';
+
+                } else {
+
+                //echo '<div class="status-sta">Contest Complete</div>';
+
+                echo '<a class="hirebttn2" href="' . $link . '" style="float:none;">Upload</a>';
+
+                } */
+
+
+                    {#end block#}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                } else if (xt_user_role() != 'translator') {
+                ?>
+                <a href="<?php echo $href; ?>">
+                    <div class="search-row-left">
+                        <img src="<?php echo $image; ?>" alt="">
+                    </div>
+                    <div class="search-row-right">
+                                                <span class="bold-and-blocking large-text"><?php echo $jobs['title']; ?>
+                                                    <br>
+                                                    <label><?php echo $country; ?></label></span>
+                        <div class="ratingsec">
+                            <div class="price"><?php echo $priceValue; ?></div>
+                            <div class="price">
+                                <span class="hide">Not yet rated</span>
+                            </div>
+                            <div class="price"><?php echo $noOfDone; ?></div>
+                        </div>
+                        <p><?php echo substr($jobs['description'], 0, 550); ?></p>
+                        <ul class="option">
+                            <li class="view"><a href="#"><i class="fa fa-eye larger-text"
+                                                            aria-hidden="true"></i></a></li>
+                            <li class="cart active hide"><a href="#"><i
+                                            class="fa fa-cart-arrow-down larger-text"
+                                            aria-hidden="true"></i></a></li>
+                            <li class="heart <?php echo(in_array($jobs['job_id'], explode(',', $favIds)) ? 'active' : ''); ?>">
+                                <a href="#"><i
+                                            class="fa fa-heart<?php echo(!in_array($jobs['job_id'], explode(',', $favIds)) ? '-o' : ''); ?> fa-favorite larger-text"
+                                            data-fav="<?php echo $favIds; ?>"
+                                            data-job_id="<?php echo $jobs['job_id']; ?>"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </a>
+                <?php } ?>
+                </li>
+                <?php } ?>
+                <?php } else { ?>
+                <div class="search-row">
+                    No results found!
+                </div>
+                <?php } ?>
+                </ul>
+
+            </div>
+            <?php if (is_user_logged_in() && xt_user_role() == 'translator') {
+                        echo '</div>';
+            } ?>
+            <!-- code-notes added footer page bar and search stats  -->
+            <?php freelinguist_print_pagination_bar($spage,$pages_total,$url_template,'bottom'); ?>
+
+            <div class="freelinguist-search-meta">
+
+                <?php if ($total_hits > 0 && $pages_total > 1) { ?>
+                <span class="freelinguist-total-search-hits">There are <?= number_format($total_hits) ?> Results for this Search</span>
+                <?php } ?>
+
+                <?php
+                        if ($actual_pages < $pages_total) {
+                            $max_results = number_format($pages_total * FREELINGUIST_SEARCH_PAGE_SIZE);
+                            ?>
+                <br>
+                <span class="freelinguist-total-search-overflow">Only displaying the first <?= $max_results ?> matches</span>
+                <?php } ?>
+
+            </div> <!-- ./freelinguist-search-meta-->
+        </div> <!-- ./search-cont-left -->
+
+
+        <div class="single-right hide"> <!-- code-deprecated hidden and not interacted with but run -->
+            <?php
+                    //code-notes define some variables as empty to un-clutter debug logs
+                    $sideBarWriter = '';
+                    $sideBarTrans = '';
+                    $sideBarEditor = '';
+                    $sideBarGraphic = '';
+                    $sideBarAudio = '';
+                    $sideBarVideo = '';
+                    $sideBarOther = '';
+                    ?>
+            <div class="sidebar-col">
+                <span class="bold-and-blocking large-text">FILTER BY:</span>
+                <div class="sidebar-head enhanced-text">Linguist Type</div>
+
+                <div class="sidebar-col-bttm">
+
+                    <ul>
+
+                        <li>
+
+                            <input title="" class="sideBarClicker"
+                                   urlattr="writer" <?php echo $sideBarWriter; ?>
+                            value="Writing" name="content_type" type="checkbox">
+
+                            <label>Writing</label>
+
+                        </li>
+
+                        <li>
+
+                            <input title="" class="sideBarClicker"
+                                   urlattr="translator" <?php echo $sideBarTrans; ?>
+                            value="Translation" name="content_type" type="checkbox">
+
+                            <label>Translation</label>
+
+                        </li>
+
+                        <li>
+
+                            <input title="" class="sideBarClicker"
+                                   urlattr="editor" <?php echo $sideBarEditor; ?>
+                            value="Editing/Proofreading" name="content_type" type="checkbox">
+
+                            <label>Editing/Proofreading</label>
+
+                        </li>
+
+                        <li>
+
+                            <input title="" class="sideBarClicker"
+                                   urlattr="graphic" <?php echo $sideBarGraphic; ?>
+                            value="Graphic" name="content_type" type="checkbox">
+
+                            <label>Graphic</label>
+
+                        </li>
+
+                        <li>
+
+                            <input title="" class="sideBarClicker" urlattr="audio" <?php echo $sideBarAudio; ?>
+                            value="Audio" name="content_type" type="checkbox">
+
+                            <label>Audio</label>
+
+                        </li>
+
+                        <li>
+
+                            <input title="" class="sideBarClicker" urlattr="video" <?php echo $sideBarVideo; ?>
+                            value="Video" name="content_type" type="checkbox">
+
+                            <label>Video</label>
+
+                        </li>
+
+                        <li>
+
+                            <input title="" class="sideBarClicker" urlattr="other" <?php echo $sideBarOther; ?>
+                            value="Other" name="content_type" type="checkbox">
+
+                            <label>Other</label>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="sidebar-head enhanced-text">Content Type</div>
+
+                <div class="sidebar-col-bttm">
+
+                    <ul>
+
+                        <li>
+
+                            <input title="" value="News Articles" name="content_type" type="checkbox">
+
+                            <label>News Articles</label>
+
+                        </li>
+
+                        <li>
+
+                            <input title="" value="Litreature" name="content_type" type="checkbox">
+
+                            <label>Litreature</label>
+
+                        </li>
+
+                        <li>
+
+                            <input title="" value="Blog Post" name="content_type" type="checkbox">
+
+                            <label>Blog Post</label>
+
+                        </li>
+
+                        <li>
+
+                            <input title="" value="Instructional Material" name="content_type" type="checkbox">
+
+                            <label>Instructional Material</label>
+
+                        </li>
+
+                        <li>
+
+                            <input title="" value="User Guides" name="content_type" type="checkbox">
+
+                            <label>User Guides</label>
+
+                        </li>
+
+                        <li>
+
+                            <input title="" value="Articles" name="content_type" type="checkbox">
+
+                            <label>Articles</label>
+
+                        </li>
+
+                        <li>
+
+                            <input title="" value="Other" name="content_type" type="checkbox">
+
+                            <label>Other</label>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div> <!-- /search-cont -->
+
+</div>
+
+</div>
+
+
+<style>
+
+</style>
+<script type="text/javascript">
+
+    jQuery(document).ready(function () {
+
+        jQuery(document).on('click', '.sideBarClicker', function () {
+
+            var gotoLink = jQuery(this).attr('urlattr');
+
+            window.location.href = "<?php echo get_site_url() . '/searches/?lang=' . $_GET['lang']; ?>" + "&mode=" + gotoLink;
+
+        });
+
+    });
+
+</script>
+
+<?php get_footer('homepagenew');

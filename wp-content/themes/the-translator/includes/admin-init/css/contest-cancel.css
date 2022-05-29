@@ -1,0 +1,76 @@
+/*for admin.php?page=CancelContestRequest_Wp_List_Table*/
+
+div.fl-admin-error {
+    background-color: firebrick;
+    color: yellow;
+    font-weight: bold;
+    padding: 1em;
+    margin-left: 2em;
+    border: #4c0e0e solid 2px;
+    margin-top: 0.25em;
+}
+
+a.fl-contest-id-of-cancel {
+    /*white-space: nowrap;*/
+}
+
+div.fl-undo-cancel-request {
+    text-align: center;
+    cursor: pointer;
+}
+div.fl-undo-cancel-request span {
+    display: block;
+    padding-right: 0.5em;
+}
+
+div.fl-cancel-id-wrapper {
+    text-align: center;
+    cursor: default;
+}
+div.fl-cancel-id-wrapper span {
+    display: block;
+    padding-right: 0.5em;
+}
+
+div.fl-cancel-id-wrapper.fl-cannot-undo-cancel-decision span {
+    color: grey;
+}
+
+
+
+div.fl-undo-cancel-request span.fl-cancel-request-id,span.fl-cancel-request-id {
+    font-weight: bold;
+}
+
+div.fl-undo-cancel-request span.fl-undo-icon {
+    color: darkorange;
+    font-weight: bold;
+}
+
+span.fl-cancel-request-approved {
+    color: green;
+}
+
+
+span.fl-cancel-request-disapproved {
+    color: #ee2b31;
+}
+
+span.fl-cancel-request-partial {
+    color: blue;
+}
+/* code-notes added class to not break text on two lines*/
+span.fl-unbreaking {
+    white-space: nowrap;
+}
+
+table.wp-list-table tr td,
+table.wp-list-table tr th {
+   padding-left: 0.25em;
+    padding-right: 0.25em;
+}
+
+table.wp-list-table tr td.column-cancel_id,
+table.wp-list-table tr th.column-cancel_id {
+    width: 4em;
+}

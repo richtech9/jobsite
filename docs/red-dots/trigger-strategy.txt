@@ -1,0 +1,71 @@
+
+Red Dots
+---------------------------------------------------------------
+# content customer
+Completion is Requested (auto approve completion)
+listen to wp_linguist_content->status === request_completion
+    set future_timestamp using auto_job_approvel_customer_hours option
+
+
+
+# content freelancer
+
+Revision is Requested
+listen to wp_linguist_content->status === request_revision
+
+Rejection is Requested (auto approve rejection)
+listen to wp_linguist_content->status === request_rejection
+    set future_timestamp using auto_job_rejected_for_linguist_hours
+
+
+content was purchased
+    listen to wp_linguist_content->purchased_by going from null to value
+
+
+# project customer
+Completion is Requested (auto approve completion)
+    listen to wp_fl_milestones->status = request_completion
+        set future_timestamp using auto_job_approvel_customer_hours
+
+
+
+Milestone request made by freelancer
+    listen to new wp_fl_milestones with status of requested
+
+
+#project freelancer
+Was Hired by Customer
+    listen to new row in wp_fl_jobs with linguist_id mapping to the event user
+
+
+
+job was rejected by customer (auto approve rejection)
+    listen to wp_fl_milestones->status = reject
+        set future_timestamp using auto_job_rejected_for_linguist_hours
+
+
+
+#contest customer
+
+
+freelancer requested completion (auto approve completion)
+    listen for wp_proposals->status === request_completion
+        set future time using auto_job_approvel_customer_hours
+
+freelancer hired mediator
+    listen for wp_proposals->status === hire_mediator
+
+
+
+#contest freelancer
+
+
+customer rejected proposal (auto approve rejection)
+    listen to wp_proposals->rejection_requested going  to 1 from 0
+        set future_time using auto_job_rejected_for_linguist_hours
+
+
+
+
+customer awarded proposal
+    listen to new row on wp_fl_post_user_lookup where the flag = 8

@@ -1,0 +1,284 @@
+div.the-widget-top div.leadhead-wrapper {
+    margin-top: 1em;
+}
+
+div.the-widget-top div.leadhead-name {
+    text-align: left;
+    font-weight: bold;
+}
+
+div.the-widget-top div.leadhead-contact-dets {}
+div.the-widget-top div.leadhead-contact-dets div.leadhead-contact-details {
+    width: 100%;
+    text-align: left;
+}
+div.the-widget-top div.leadhead-contact-dets div.leadhead-contact-details span.leadhead-contact-data {
+    width: 50%;
+}
+div.the-widget-top div.leadhead-contact-dets div.leadhead-contact-details span.leadhead-fullwidth {
+    width: 100%;
+}
+div.the-widget-top div.leadhead-contact-dets div.leadhead-contact-details span.leadhead-contact-label{
+    width: 50%;
+}
+
+div.the-widget-top div.leadhead-source {
+    text-align: left;
+    margin-top: 2em;
+}
+
+div.the-widget-top div.leadhead-source  div.leadhead-sourceblock {
+    display: inline-block;
+}
+div.the-widget-top div.leadhead-source div.leadhead-sourceblock span.leadhead-source-name {
+    display: block;
+    font-style: italic;
+}
+
+div.the-widget-top div.leadhead-source div.leadhead-sourceblock span.leadhead-source-name.leadhead-missing-source {
+    color: coral;
+}
+
+div.the-widget-top div.leadhead-source  div.leadhead-sourceblock-label {
+    font-weight: bold;
+    display: inline-block;
+}
+
+div.the-widget-top div.leadhead-notes span {
+    font-size: smaller;
+    color: grey;
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+div.the-widget-top div.leadhead-notes textarea {
+    font-size: smaller;
+    color: grey;
+    display: block;
+    width: 100%;
+    height: 30em;
+}
+
+div.the-widget-top div.leadhead-public-notes textarea {
+    background-color: #DBEDD5;
+}
+
+div.the-widget-top div.leadhead-private-notes textarea {
+    background-color: #D7EDFB;
+}
+
+ /*.checkbox-success input[type="checkbox"]:checked + label::before {*/
+ /*   background-color: #5cb85c;*/
+ /*   border-color: #5cb85c; }*/
+ /*.checkbox-success input[type="checkbox"]:checked + label::after {*/
+ /*   color: #fff;}*/
+
+div.the-widget-top div.leadhead-checkbox-inline {
+    display: inline-block;
+    width: 16%;
+    margin-top: 0;
+}
+
+div.the-widget-top div.leadhead-checkbox-inline label {
+    font-weight: bold;
+}
+
+div.the-widget-top div.engaged_quiet {
+    background-color: #145B93;
+    text-align: left;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+
+div.the-widget-top div.engaged_quiet span.leadhead-demo {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: black;
+}
+
+div.the-widget-top div.engaged_quiet span.leadhead-follow {
+    color:black;
+    font-weight: normal;
+}
+
+div.the-widget-top span.circle-member-name {
+    font-size: smaller;
+}
+
+div.the-widget-top div.circle-column {
+    padding: 0.25em;
+}
+
+div.the-widget-top span.mini-label {
+    font-size: 0.5em;
+    text-decoration: underline;
+}
+
+div.the-widget-top span.leadhead-save-error {
+    color: red;
+}
+
+div.the-widget-top  div.leadhead-notes-last-save {
+    text-align: center;
+    font-size: small;
+    cursor: pointer;
+}
+
+div.the-widget-top  div.leadhead-notes-last-save  i.leadhead-save-indicator {
+    color: darkblue;
+}
+
+div.the-widget-top  div.leadhead-notes-last-save.unsaved  i.leadhead-save-indicator {
+    color: firebrick;
+}
+
+div.the-widget-top  div.leadhead-notes-last-save.pending-saved  i.leadhead-save-indicator {
+    color: dimgrey;
+}
+
+
+
+div.the-widget-top  div.leadhead-notes-last-save.pending-saved  span.leadhead-notes-unsaved-words {
+    display: inline-block;
+}
+
+div.the-widget-top  div.leadhead-notes-last-save:not(.pending-saved)  span.leadhead-notes-unsaved-words {
+    display: none;
+}
+
+div.the-widget-top  div.leadhead-notes-last-save.pending-saved  span.leadhead-notes-saved-words {
+    display: none;
+}
+
+div.the-widget-top  div.leadhead-notes-last-save:not(.pending-saved)  span.leadhead-notes-saved-words {
+    display: inline-block;
+}
+
+
+
+div.the-widget-top  div.leadhead-notes-last-save  span.leadhead-last-time-saved {
+    color: black;
+
+}
+
+div.the-widget-top div.leadhead-notes-last-save span.spinner {
+    vertical-align: top;
+    margin-top: .125em;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    background-size: 1em 1em;
+    float:left;
+    width: 1em;
+    height: 1em;
+    font-size: 0.8em;
+    visibility: visible;
+}
+
+div.the-widget-top div.radical-error {
+    background-color: indianred;
+    color: white;
+    font-weight: bold;
+    padding: 1em;
+    text-align: center;
+}
+
+div.the-widget-top span.leadhed-lastcontact-error {
+    color: red;
+    font-weight: bold;
+}
+
+/*new stuff above*/
+div.the-widget-top div.num-column div {
+    padding: 0;
+}
+
+div.the-widget-top div.score-block {
+    text-align: center;
+
+}
+
+div.the-widget-top div.score-block-inner {
+    background-color: yellow;
+    margin: 0.125em;
+    min-height: 4em;
+    font-weight: bold;
+}
+
+div.the-widget-top span.mini-body {
+    display: block;
+}
+
+
+div.the-widget-top div.timeline-block {
+    text-align: center;
+}
+
+div.the-widget-top div.timeline-block-inner {
+    background-color: lightgreen;
+    margin: 0.125em;
+    min-height: 4em;
+    font-weight: bold;
+}
+
+div.the-widget-top div.score-red {
+    background-color: #C52225;
+    color: white;
+}
+
+div.the-widget-top div.score-orange{
+    background-color: orange;
+}
+
+div.the-widget-top div.score-yellow{
+    background-color: yellow;
+    color: black;
+}
+
+div.the-widget-top div.score-green{
+    background-color: green;
+    color: white;
+}
+
+div.the-widget-top div.score-blue{
+    background-color: blue;
+    color: white;
+}
+
+div.the-widget-top div.score-indigo{
+    background-color: indigo;
+    color: white;
+}
+
+div.the-widget-top div.timeline-blue {
+    background-color: blue;
+    color: white;
+}
+
+div.the-widget-top div.timeline-green {
+    background-color: green;
+    color: white;
+}
+
+div.the-widget-top div.timeline-yellow {
+    background-color: yellow;
+    color: black;
+}
+div.the-widget-top div.timeline-red {
+    background-color: red;
+    color: white;
+}
+
+div.the-widget-top div.timeline-indigo {
+    background-color: indigo;
+    color: white;
+}
+
+
+div.the-widget-top div.sceditor-container {
+    width: 100% !important;
+}

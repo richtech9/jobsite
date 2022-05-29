@@ -1,0 +1,28 @@
+SET FOREIGN_KEY_CHECKS = 0;
+truncate table wp_wslwatchdog;
+truncate table wp_wslusersprofiles;
+truncate table wp_wsluserscontacts;
+truncate table wp_tags_cache_job;
+truncate table wp_tags_cache;
+truncate table wp_simple_history_contexts;
+truncate table wp_simple_history;
+truncate table wp_proposals;
+truncate table wp_project_tags;
+truncate table wp_payment_history;
+truncate table wp_payforview_seal;
+truncate table wp_order_price_per_word;
+truncate table wp_message_history;
+truncate table wp_linguist_content_chapter;
+truncate table wp_linguist_content;
+truncate table wp_fl_transaction;
+truncate table wp_fl_post_user_lookup;
+truncate table wp_fl_post_data_lookup;
+truncate table wp_fl_milestones;
+truncate table wp_fl_job;
+truncate table wp_fl_discussion;
+truncate table wp_fl_chat_rooms;
+truncate table wp_files;
+truncate table wp_dispute_cases;
+truncate table wp_content_files;
+
+SET FOREIGN_KEY_CHECKS = 1;

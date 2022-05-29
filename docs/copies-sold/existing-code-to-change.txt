@@ -1,0 +1,6 @@
+Here is my strategy:
+
+ Create a new table called wp_linguist_content_master that has a lot of the fields of wp_linguist_content (except no fields related to the purchase or review)
+ The wp_linguist_content_chapter link to this  wp_linguist_content_master instead of wp_linguist_content
+
+ it has a lot of the same fields as wp_linguist_content . It does not have fields related to the buying of it Then there is one row added to wp_linguist_content when the content is published. If it has only one buyer, then that is the only row added to wp_linguist_content

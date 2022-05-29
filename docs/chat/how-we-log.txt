@@ -1,0 +1,86 @@
+
+new db table of
+wp_fl_chat_logs
+
+create table wp_fl_chat_logs
+(
+	id int auto_increment
+		primary key,
+	ts_sent int null,
+	user_id bigint unsigned not null,
+	is_being_sent_to_page tinyint default '0' not null,
+	page_session_counter int null,
+	page_session varchar(60) null,
+	chat_user_text_id varchar(60) null,
+	chat_room_text_id varchar(60) null,
+	data_source varchar(30) null,
+	data_action varchar(60) null,
+	data_in_json longtext null,
+	created_at timestamp default CURRENT_TIMESTAMP null
+)
+engine=MyISAM
+;
+
+create index wp_fl_chat_logs_chat_user_text_id_index
+	on wp_fl_chat_logs (chat_user_text_id)
+;
+
+create index wp_fl_chat_logs_data_source_data_action_index
+	on wp_fl_chat_logs (data_source, data_action)
+;
+
+create index wp_fl_chat_logs_page_session_index
+	on wp_fl_chat_logs (page_session)
+;
+
+create index wp_fl_chat_logs_ts_sent_index
+	on wp_fl_chat_logs (ts_sent)
+;
+
+
+
+
+Commit: 930f0d88eb26401a0d283db4d78452a83a5b0d61 [930f0d8]
+Parents: ad57350075
+Author: JimmyMiao <coneldllc@outlook.com>
+Date: Monday, December 21, 2020 1:15:06 PM
+Committer: JimmyMiao
+Db chat logging table created, as well as js lib for xml
+
+Need a way to convert the json, and object states, coming from the server chat rooms to be
+in xml so can use one format in the logs
+
+Made table to store logs
+
+Next
+
+  1) need to make ajax, that only is used when we want it to run, to
+     store log content
+
+ 2) make stand along function (away from the chat library) to use this
+    ajax when xml or dom or json or strings are added
+
+ 3) add in passive hoooks that do not change running code to record what
+    is happening, by using the js function created in the last step. A
+    lot of times this logging is already taking place, but is put in the
+    console. I can capture the ajax and bosh coming in and out by
+    modifying the code that exists for the form keys, and in a few
+    places I will add in single line calls to this logging function when
+    things happen in the library
+
+  4) make url, accessable to admin only, that take a user id, or chat user
+    id or chat room id, and returns the xml to show in the page as it was
+    recieved in the logs. This will allow the tracing we need
+
+Commit: ec8a9ffbcb0325ca99bc7210858dd51f2b259852 [ec8a9ff]
+Parents: 9496554686
+Author: JimmyMiao <coneldllc@outlook.com>
+Date: Tuesday, December 22, 2020 1:28:22 PM
+Committer: JimmyMiao
+Added logging to the chat js library/ started url to see them
+
+In the middle of making the url to filter and see data, about halfway
+done with that
+
+Included small js library to make the json easier to read
+

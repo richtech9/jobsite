@@ -1,0 +1,231 @@
+/*the css for the interest per id*/
+
+div.per-id-homepage {
+    display: none;
+}
+
+div.per-id-homepage label {
+    font-weight: normal;
+}
+
+div.per-id-list-holder table tr td,div.per-id-list-holder table tr th{
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+
+input#per-id-check-is,input#interest-check-is-title-hidden,input.freelinguist-fancy-checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 2em;
+    height: 2em;
+    background:white;
+    border-radius:5px;
+    border:2px solid #555;
+    margin-right: 1em;
+
+}
+
+input#per-id-check-is:checked , input.freelinguist-green-checkbox:checked {
+    background: green;
+}
+
+input#interest-check-is-title-hidden:checked, input.freelinguist-orange-checkbox:checked {
+    background: orange;
+}
+
+span.bold {
+    font-weight: bold;
+
+}
+
+span.large-text {
+    font-size: 18px;
+}
+
+div.per-id-input-holder {
+    display: inline-block;
+    float: left;
+
+}
+
+div.per-id-parent-name-holder {
+    display: inline-block;
+    float: left;
+    margin-right: 3em;
+}
+
+span.per-id-parent-name {
+    margin-bottom: 0.5em;
+    display: inline-block;
+}
+
+textarea.per-id-textarea-new {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+tr.highlight-this-row {
+    background-color: lightyellow !important;
+}
+
+div.per-id-list-holder a.delete-me {
+    color: #ee2b31;
+    cursor: pointer;
+}
+
+/*code-notes css for new admin cron stuff*/
+
+span.cron-log-line {
+    display: block;
+    background-color: lightblue;
+    color:black;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-bottom: 0.25em;
+    white-space:pre-line;
+}
+
+span.cron-log-error {
+    display: block;
+    background-color: orange;
+    color:black;
+    font-weight: bold;
+}
+
+/*code-notes styling hiding the logs and having a button to show them in a popup*/
+
+td.freelinguist-log-panel {
+    vertical-align: top;
+}
+
+div.freelinguist-log-panel {
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+}
+
+div.freelinguist-log-control {
+
+}
+
+div.freelinguist-log-outer-container {
+    display: none;
+}
+
+div.freelinguist-log-area {
+
+}
+
+div.freelinguist-log-display-popup div.freelinguist-log-area span.cron-log-line {
+    width: 100%;
+}
+
+i.freelinguist-check-success {
+    color: green;
+    font-weight: bold;
+}
+
+input[type=submit].cron-cancel {
+    background-color: darkred;
+    color: white;
+    border: 1px red solid;
+}
+
+input[type=submit].cron-resume {
+    background-color: darkgreen;
+    color: white;
+    border: 1px green solid;
+}
+
+table.form-table tr.user-rich-editing-wrap- button.freelinguist-show-logs {
+    background-color: #002c00;
+    color: yellow;
+    border: 1px yellowgreen solid;
+}
+
+
+
+
+
+input[type=submit].freelinguist-fix-submit-width {
+    width: inherit;
+}
+
+td.freelinguist-admin-hp-middle-cron-cell {
+    width: 20%;
+    vertical-align: top;
+}
+
+
+span.freelinguist-explain-cron-stop,
+span.freelinguist-explain-cron-resume {
+    font-size: 0.8em;
+    color: grey;
+    display: block;
+    margin-top: 0.5em;
+}
+
+span.freelinguist-explain-cron-stop {
+    margin-bottom: 2em;
+}
+
+td.freelinguist-admin-hp-begining-cron-cell {
+    vertical-align: top;
+    width: 20%;
+}
+
+td.freelinguist-admin-hp-ending-cron-cell {
+    vertical-align: top;
+}
+
+td.fl-cell-30-percent {
+    width: 30%;
+}
+
+span.fl-refresh-chat-email {
+    font-weight: bold;
+    color:darkblue;
+}
+
+span.fl-refresh-chat-id {
+    font-weight: bold;
+    color:blue;
+}
+
+
+span.fl-refresh-chat-status {
+    display: block;
+    width: 100%;
+    padding: 0.25em;
+}
+
+span.fl-refresh-chat-status-ok {
+   background-color: #d6eece;
+}
+
+span.fl-refresh-chat-status-error {
+    background-color: #eed6ce;
+}
+
+span.fl-refresh-chat-status-unknown {
+    background-color: lightgoldenrodyellow;
+}
+
+span.fl-refresh-chat-status-header {
+    padding-top: 0;
+    font-weight: bold;
+}
+
+/*code-notes for the payment webhook section when the hook is not supposed to be on this computer*/
+td.fl-different-server-id {
+    background-color: yellow;
+    color: purple;
+}
+
+td.fl-same-server-id {
+    background-color: lightgreen;
+}
+

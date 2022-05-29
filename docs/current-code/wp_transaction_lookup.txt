@@ -1,0 +1,63 @@
+
+id (pk)
+post_id bigint unsigned
+related_to_post_id bigint unsigned  (_transactionRelatedTo)
+transaction_type tinyint  (_transactionType)  none=0|processing_fee=1|refill=2|refund=3|undo_processing_fee=4|withdraw=5|FREE_credits=6|FREE_credits_refund=7
+payment_type tinyint (_payment_type) none=0|paypal=1|stripe=2
+numeric_modified_id bigint unsigned (numeric_modified_id)
+withdraw_status tinyint (_transactionWithdrawStatus) none=0|pending=1
+request_payment_notify tinyint  (request_payment_notify) none=0|paypal=1|stripe=2|alipay=3
+transaction_amount decimal(10,2) (_transactionAmount)
+txn varchar(30) (_modified_transaction_id)
+related_txn varchar(30)  (_modified_transaction_id of related_to_post_id )
+transaction_reason text (_transactionReason)
+withdrawal_message text (withdrawal_message)
+
+
+create table wp_transaction_lookup
+(
+	id int auto_increment
+		primary key,
+	post_id bigint unsigned not null,
+	related_post_id bigint unsigned null comment 'meta is _transactionRelatedTo',
+	transaction_type tinyint default '0' not null comment '(meta is _transactionType) none=0|processing_fee=1|refill=2|refund=3|undo_processing_fee=4|withdraw=5|FREE_credits=6|FREE_credits_refund=7',
+	payment_type tinyint default '0' not null comment '(meta is _payment_type) none=0|paypal=1|stripe=2',
+	numeric_modified_id bigint unsigned default '0' not null comment 'meta is numeric_modified_id',
+	withdraw_status tinyint default '0' not null comment '(meta is _transactionWithdrawStatus) none=0|pending=1',
+	request_payment_notify tinyint default '0' not null comment '(meta is request_payment_notify) none=0|paypal=1|stripe=2|alipay=3',
+	transaction_amount decimal(10,2) default '0.00' not null comment 'meta is _transactionAmount',
+	modified_at timestamp default CURRENT_TIMESTAMP null,
+	txn varchar(30) null comment 'meta is _modified_transaction_id',
+	related_txn varchar(30) null comment 'meta is _modified_transaction_id of related_post_id',
+	transaction_reason text null comment 'meta is _transactionReason',
+	withdrawal_message text null comment 'meta is withdrawal_message',
+	constraint wp_transaction_lookup_post_id_has_fk
+		foreign key (post_id) references wp_posts (ID)
+			on update cascade on delete cascade,
+	constraint wp_transaction_lookup_related_post_id_has_fk
+		foreign key (related_post_id) references wp_posts (ID)
+			on update cascade on delete cascade
+)
+engine=InnoDB
+;
+
+create table wp_transaction_lookup_errors
+(
+	id int auto_increment
+		primary key,
+	transaction_lookup_id int not null,
+	error_time timestamp default CURRENT_TIMESTAMP not null,
+	severity int default '5' not null,
+	column_of_error varchar(30) not null,
+	error_msg text null,
+	constraint unique_id_pk
+		unique (id),
+	constraint transaction_lookup_errors_has_lookup_fk
+		foreign key (transaction_lookup_id) references wp_transaction_lookup (id)
+			on update cascade on delete cascade
+)
+engine=InnoDB
+;
+
+
+

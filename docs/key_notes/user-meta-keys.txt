@@ -1,0 +1,235 @@
+
+LOOKUP TABLE
+new_jobs_notifications  INT FLAG
+user_image  INT FLAG FOR HAVING AN IMAGE
+user_processing_id INT FLAG
+wp_capabilities TWO FIELDS, FOR TRANSLATOR AND CUSTOMER, INT FLAG TELLS WHAT STATUS EACH IS
+user_residence_country INT FLAG FOR COUNTRY (as its stored this way)
+
+TO BE DEALT WITH LATER (BUT ARE VALID)
+reported_to
+
+NOT USED ANYMORE
+request_evaluating
+last_evaluated_by
+
+user_translater_rating
+user_customer_rating
+customer_success_rate
+translator_success_rate
+
+WATCH LIST, but probably nothing needs to be done for speed
+_description_image
+description
+-----------------
+Obsolete, not longer updated or made
+_description_image
+
+
+user column needs indexing:
+
+display_name
+user_email
+
+
+user data with %like : (incomplete)
+user_email
+display_name
+
+
+columns in other tables which need indexes
+
+
+
+
+wp_comments:
+    comment_parent
+    (comment_type,comment_post_ID,comment_parent)
+    (comment_type,comment_post_ID,user_id)
+    (,comment_post_ID,user_id) ? above also?
+    (user_id,comment_type,comment_approved)
+    user_id
+
+wp_linguist_content:
+    publish_type
+    user_id
+    linguist_content_id
+    (purchased_by,rating_by_freelancer)
+    (user_id,rating_by_customer)
+    purchased_by
+    (user_id,publish_type) ? or covered by user_id
+
+
+wp_linguist_content_chapter:
+    linguist_content_id
+
+wp_coordination
+   user_id
+
+wp_comments
+    (comment_post_ID,comment_type)
+    (comment_type,comment_post_ID)
+    (user_id,comment_type)
+
+wp_coupons:
+    coupon_code
+
+wp_custom_string_translation
+    English cannot be text type, and need index on this
+    type
+
+wp_files:
+    (post_id,status)
+    (user_id,status)
+    (post_id,type)
+    (by_user,status)
+    (by_user,type)
+    (post_id,by_user)
+    post_id
+    job_id
+    file_name
+
+wp_payment_history:
+    (item_id,payment_status) compound! also %like
+    user_id
+    created_time
+
+
+wp_project_tags:
+    needs to not have comma seperated values, because sql is doing like %% on it
+    post_id
+
+wp_fl_chat_rooms
+    employer_id
+    freelancer_id
+
+fl_discussion:
+    (post_id,post_by,post_to)
+    parent_comment
+    (post_id,post_to)
+    (post_id,parent_comment)
+
+fl_transaction:
+ compound key for (user_id,type)
+ user_id
+
+fl_milestones:
+    compound key (project_id,linguist_id)
+
+fl_jobs:
+    bid_id
+    title
+    (project_id,linguist_id)
+    project_id
+    (author,rating_by_freelancer)
+    (linguist_id,rating_by_customer)
+    linguist_id
+    (project_id,job_status)
+
+
+wp_posts:
+    (post_type,post_status)
+    (post_status,post_author,post_type)
+    post_status
+
+wp_order_price_per_word
+    (type,translate_from,translate_to,job_editing_plan)
+
+wp_interest_tags:
+    tag_name
+
+ wp_languages
+    full text index on name or change type
+
+wp_proposals:
+ compound key (post_id,by_user)
+ post_id
+ (customer,rating_by_freelancer)
+ (by_user,rating_by_customer)
+ by_user
+ (post_id,by_user) ?
+
+
+ wp_tags_cache_job:
+   (job_id,tag_id)
+   and unique key (tag_id,job_id,type)
+   job_id
+
+wp_dispute_cases:
+    proposal_id
+    content_id
+    contestId
+    milestone_id
+
+wp_message_history: (none so far)
+
+homepage_interest:
+  priority_number
+
+
+wp_messages
+    (receiver_id,sender_id)
+
+wp_message_email_history
+   (receiver_id,type)
+
+wp_users
+   user_registered
+
+note: wp_broadcast_messages does not exist
+
+
+----------------------------------------
+create table wp_fl_user_data_lookup
+(
+  id int auto_increment primary key,
+  user_id   bigint unsigned not null,
+  rating_as_customer tinyint default 0 not null,
+  rating_as_freelancer tinyint DEFAULT 0 NOT NULL,
+  has_user_image tinyint DEFAULT 0 NOT NULL,
+  wp_capabilities int unsigned DEFAULT 0 NOT NULL,
+  test_flag int DEFAULT 0 NOT NULL,
+  last_login_time timestamp DEFAULT NULL
+  last_update timestamp default now() on update now(),
+
+  constraint unique_id_pk
+  unique (id),
+  constraint udx_post_id
+  unique (user_id),
+  constraint wp_user_data_lookup_has_user_id_fk
+  foreign key (user_id) references wp_users (id)
+    on update cascade on delete cascade
+
+)
+  engine=InnoDB
+;
+ALTER TABLE wp_fl_user_data_lookup ADD last_login_time timestamp DEFAULT NULL;
+CREATE INDEX time_idx ON wp_fl_user_data_lookup (last_update DESC);
+CREATE INDEX tag_and_type_idx ON wp_tags_cache_job (tag_id, type);
+CREATE INDEX tab_job_idx ON wp_tags_cache_job (tag_id, job_id);
+CREATE INDEX tag_job_type_idx ON wp_tags_cache_job (tag_id, job_id, type);
+
+create table wp_fl_user_lookup_errors
+(
+  id int auto_increment
+    primary key,
+  user_lookup_id int NOT NULL,
+  error_time timestamp DEFAULT current_timestamp,
+  severity int default 5 not null,
+  column_of_error varchar(30) NOT NULL,
+  error_msg text,
+  constraint unique_id_pk unique (id),
+  index idx_lookup_column (user_lookup_id,column_of_error),
+  index idx_column (column_of_error),
+  index idx_time (error_time),
+  index idx_column_time (column_of_error,error_time),
+  constraint user_lookup_error_has_data_lookup_id
+  foreign key (user_lookup_id) references wp_fl_user_data_lookup (ID)
+    on update cascade on delete cascade
+)
+  engine=InnoDB
+;
+
+//users have image of userprofile/test-user-image.png
+
+test user user_id = 3606 has image and average_rating_customer_role set

@@ -1,0 +1,217 @@
+/*
+
+Theme Name: Freelinguist
+
+Theme URI: http://www.freelinguist.com/
+
+*/
+
+#freeling-login label.error,
+.shp-btn {
+    padding: 10px;
+}
+
+#linguist-registration label.error {
+    color: #ee2b31;
+    font-weight: normal;
+    margin: 0;
+}
+
+form#customerProfiledetail {
+    margin-top: -25px
+}
+
+.account-form-account .form-control {
+    margin-bottom: 10px;
+}
+
+.modal-body .form-submit .btn {
+    margin-top: 0 !important
+}
+
+form#customerProfiledetail br {
+    display: none !important
+}
+
+#container-body .wallet-wraper h5 {
+    margin-right: 12px;
+}
+
+#language_mod select {
+    border: 1px solid #cccccc !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset !important;
+    padding: 8px !important;
+    width: 100% !important;
+}
+
+
+#languagesModel .modal-content {
+    max-height: 700px !important;
+    overflow-x: scroll;
+}
+
+
+
+
+#lang_sel_click ul ul {
+    height: auto !important;
+    overflow-y: scroll;
+    overflow-x: hidden !important;
+    width: 167px !important
+}
+
+.review-listing {
+    width: 100%;
+}
+
+.review-listing .title {
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid #e2e2e2;
+    padding: 0px 5px;
+    margin-top: 10px;
+}
+
+.review-listing .title h3 {
+    color: #666;
+    font-weight: 600;
+    float: left;
+}
+
+.review-listing .title h3:last-child {
+    float: right;
+}
+
+.review-listing .ratings {
+}
+
+.review-listing .title-bg {
+    width: 100%;
+    float: left;
+    background: #f5f5f5;
+}
+
+.review-listing .title-bg h3 {
+    font-weight: 300;
+    margin: 0px;
+    color: #333;
+}
+
+.bidding-other {
+    float: right;
+    width: 94%;
+}
+
+.bidding-other .hire-linguist-detail {
+    border-top: 0px;
+    margin-top: 0px;
+    width: 100%;
+}
+
+
+
+
+
+.bidding-other .hire-linguist-detail p {
+   margin: 0.5em;
+}
+
+.bidding-other .title-bg {
+    margin-bottom: 0px
+}
+
+.linguist-header {
+    float: left;
+    width: 100%;
+}
+
+div.break-one-line  {
+    height: 1em;
+    display: block;
+    width: 100%;
+}
+
+.linguist-header .col-33 {
+    width: 32%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.linguist-header .col-33:nth-child(2) {
+    vertical-align: bottom;
+    text-align: right;
+}
+
+.linguist-header .col-33:nth-child(3) {
+    vertical-align: top;
+    text-align: right;
+}
+
+
+
+.linguist-header p {
+    color: #666;
+}
+
+.linguist-header p strong {
+    font-weight: 300;
+}
+
+.linguist-header a {
+    border: 1px solid #ee2b32;
+    color: #ee2b32;
+    text-transform: capitalize;
+
+    display: inline-block;
+
+    padding: 0.5em 1em;
+    min-width: 10.5em; /* buttons should have min width */
+    text-align: center;
+    font-weight: bold;
+    border-radius: 1em;
+}
+
+.h1-title {
+    width: 100%;
+    float: left;
+}
+
+
+
+.instruct-file {
+    float: left;
+    padding: 0.5em;
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0.5em 0 0 0;
+}
+
+
+
+.instruct-file ul {
+}
+
+.instruct-file ul li {
+}
+
+.instruct-file ul li i {
+    margin-right: 8px;
+    float: left;
+}
+
+.instruct-file ul li:nth-child(even) {
+    background: #ffffff
+}
+
+.instruct-file ul li:nth-child(even) i {
+    color: #f1565a;
+    margin-right: 8px;
+    float: left;
+}
+
+.instruct-file ul li a {
+    color: #666666;
+}
+

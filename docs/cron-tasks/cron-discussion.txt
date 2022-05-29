@@ -1,0 +1,21 @@
+All the new cron tasks use the action schedular to manage the running of the tasks
+
+There are two types of cron tasks, those that run once, and are done by demand only, by pressing a button.
+And the other type of cron task is when it repeats on a regular schedule until told to stop
+
+ All of the tasks use the same Base Class of FreelinguistCronBase.
+  This class does three things
+   * sets up children of the class to be used by action schedular. To make a new task, make a new derived class and fill in some constants. Then define what you want to do in the main() function. If your task has to be broken up into different parts, because it takes too long, then have the task return from main at a good time, and set the next iteration. See the existing classes for how its done
+   * manages the communication between the commands initiated by button presses on the admin gui and the tasks
+   * stores information needed by both the admin screens and the running tasks. This includes logs that are shared. Logs reset when a task is started again
+
+ The repeating cron jobs use another base class which adds to FreelinguistCronBase
+ FreelinguistCronBaseRepeat will override the start, stop and continue methods so that these call the action schedular to start and stop recurring tasks
+ When the stop or start is pressed, the earlier scheduled action series, if any, is erased from action schedular. This means that the new periodicity will start right away
+
+ Also in this commit
+ The repeating task to launch the Unit generation is created. It makes a new scheduled task for the actual generation, makes a couple of entries in the log to show its active, and exits. So, it only uses the FreelinguistCronBaseRepeat methods and the cron task I made earlier to generate units once.
+
+ The admin screen of Tags and Units also have a new select drop down box to show the controls and logs for the contstantly repeating unit generation, and the default action for new databases is to not run, or be off. When the constant unit generation is running, one can pause it or simply turn it off. To change the time it runs, just select a new time range from the dropdown and press the button "set generation interval"
+
+

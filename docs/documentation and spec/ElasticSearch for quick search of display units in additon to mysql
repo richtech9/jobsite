@@ -1,0 +1,265 @@
+
+
+
+Mysql:
+
+Homepage tags: java, php, book
+
+for each tag, like java,
+	it'll query mysql table, and get the HTML units. 
+	each tag should have top 10 score content/profile. so 20 HTML units at most.  
+	
+this is right?
+Yes
+Each HTML unit is stored as one row in a mysql table? 
+	
+Its stored on the top tag row in the wp_display_units_content_user and they are stored in the 
+per_id table, for when you need units that are not top tag, but are to be displayed for that tag instead
+
+
+So, for each HTML unit, it has a row ID in wp_display_units_content_user?
+If we know the row ID, we know the HTML unit?
+
+We can, but that information is only good until the next refresh
+yes, it may change/updated. my point is, at the time we get the HTML unit, it has to read the row in wp_display_units_content_user, and then get the HTML unit. 
+right?
+
+Yes, and this is done in a single statement, so the php level never sees the id
+
+ok. but we know the logis inside, it should get the ID and then read the HTML unit. 
+
+It gets the tag rows, and then randomly selects some from each tag, does not read the id here
+
+Get tag row from where?
+If want want X random units from php, book, and test.. then it will match up the rows in the wp_display_units_content_user that has each tag needed (php, book, test here), 
+and it selects a random assortment for that, it just matches the tag, not the row id
+ok. the same thing to me. 
+so, you mean, 
+you perform one query that contains the three tags? so, any row that contains, php, book, or test tag?
+
+It is one sql query, and it gets a random selection for each tag asked 
+
+So, you mean, it's one sql query, and inside this sql query, you pass in all the three tags together?
+Yes, I use the tag ids, and generate a new sql statement from the php 
+
+wp_display_units_content_user
+
+So, for homepage, you use only one query to get all the HTML units for all the tags in the homepage?
+
+One query to get the templates yet, but the homepage does dozens of mysql queries for other information
+
+Here, let's just focus on the HTML unit, not other information. 
+Suppose:
+php tag ->  8 HTML units
+book-> 20 HTML units
+test-> 15 HTML units. 
+
+When you perform the query, you pass in php, book, and test into the query. Then the query will return all the units that conaint any of these three tags? 
+
+No, it returns an even number, or less of what I ask. For example, if I want 5 units for each tag. Then it will return 5 hml, 5 php, 5 test, unless there are less than that number in a tag...
+
+ok. but, it's in just one query?
+
+yes. 
+
+ok. so in this one query, you also pass in the # of units you ask for. for exmple, the 5 units?
+yes, the 5 would be a constant number in the sql I made with the php
+ok. this is now clear. 
+
+
+here, some more clarification. you get 5 units for each of the tags. so, it'll return 15 units in total. 
+then, in display, you will divide the 15 units into 3, 5 units for each tag? then display in the three rows?
+Yes, that is the idea, 5 is just example here
+right. 
+
+
+
+
+
+
+
+
+let's see how ElastiSearch can be done now.
+
+1. everything in wp_display_units_content_user needs to be added as  records in index by ElastiSearch (or at least the tag name column, and the HTML code column).
+
+is this right?
+
+Its what I did at first, I put everyting in one new index in ES. I soon realized though, to get all the different records for each tag I wanted, I would either have to ask for all of the records in the index at once, which is a lot of text for the ES to return,it is a few KB . Or somehow use different indexes 
+
+Here, what i'm saying, is: wp_display_units_content_user itself should be a new index!
+inside it, it stores all the records, each record contains the the HTML unit for one project, and its tags. 
+
+"i'm saying, is: wp_display_units_content_user itself should be a new index!" I don't understand yet 
+
+there're four existing indexes, project, content, user, contest. these contains all projects/contents/users/contests on the website. These are for the search in the "Search Bar" on top of the page. 
+
+Now, we're discussing the display units! these are only top score users/contents in the top-count tags!
+
+So, we need to use a new index, that stores these!
+I made a new index like that, just for tags, and I put in all the information , Each unit was a new record. The search results did not work out well
+
+It's very slow?
+No, I could not get all the tags back with just asking for some information. For example If I wanted to just get 5 units (records) of each tag
+
+
+there's no need of such restriction here. 
+the most one is speed. if it's fast, then it's good. 
+
+just a sec. 
+
+Here, in elasticsearch, you want to get 5 units for each of the three tags? 
+But in the one query, it'll return 15 units. 
+And, they way I experimented and tried with ES, I would have to return 60 units to make sure I got five units for each of the three tags. Which is a few KB of text to handle. It will work, but not optimized
+
+Scaling up, If I wanted to show 20 tags, I would have to get ES to return 400 units, so the KiloBytes of text will grow
+
+i see. so, i don't think we need to consider these. 
+it's an "Or" search. for example, when we search "php", 'java', 'book', the three tags for the homepage.
+
+you will tell ES to search for example, the latest
+it'll perform the search one by one, if any record that contains one of these three tags, it'll return that records. 
+
+so, the returnes records will not be evenly distributed. out of the 60 records returned, it may have 40 that has php, 5 that has java, and 50 that has book. 
+
+this is ok. we don't need the same number of records in each tag. just display what's available!
+
+The only reason I wanted to do a more complicated way of indexing, is to have ES do less work per page load. I know that ES if faster than mysql, but in some cases we can be asking the backend service to load in 100kB of text each page view
+
+when we only need 5 kb of text  of units 
+
+If just doing three tags, its okay, 60 results. But, I noticed the homepage can ask for many tags to show, and each tag would be 20 units of templates . If you think that is okay for the ES returning all of that, then we can do the single index
+
+here, "Number of Top Things in Each Tag	", it's already configured!!!
+
+for example, if there're 4 tags that are passed into elasticsearch, we know that each tag will have a max of 20 records!
+
+so, you only need to get a max of 80 records. 
+
+Yes, we can do this fine, it just hurts me to see so much bandwidth not used for much lol
+
+here, in this nex ES index, it has very limited amount of data. 
+
+it should have only:
+number of top tags = 200
+number of top things in each tag= 10. 
+
+Then, it should have only 200* (10+10)= 4000 records!
+
+that's all!
+
+Each record is about 1k of templates
+it's ok. just send them back anyway, because this anyway needs to be delivered to user. 
+
+Okay, just when it gets to production, make sure your ES connection can do several gigs of data per second when you get busy
+
+this is not much at all. 
+
+if we use mysql to obtain these units, the samething needs to be returned to user for display. 
+
+Mysql would return much less data, but be much slower
+
+this is tiny amount of data! no need to consider the performance of this at all. 
+
+any picture will be way more than this amount of data. 
+
+Okay, I will put it one index and ask for the data there. I already have code to add data to the new index, and it can be called when I remake the top tags templates, on that cron job
+
+Then, I just need to make the php code to call es for the units on the home page, and not mysql!
+
+yes. but when ES is not available, call mysql. So, mysql is always a backup in case ES is down. 
+
+Okay, will add that after I do the search pagination for the search page for 
+projects and contests
+
+
+i believe, whenever you update wp_display_units_content_user table, the new index also needs to be updated for the same row. 
+
+the new index has to be in sync with wp_display_units_content_user table. 
+
+Yes , it takes only a couple of seconds to make the new templates, so will redo the ES units index then. And when we rebuild all the top tag table, the templates are not generated until the task to generate new templates is called. So they will be in sync 
+
+ok. the other thing, the search. here, for freelancer role, it'll returen prjects and contest. 
+
+so, need to fix this search page for  customer and freelancer roles separately. 
+
+do customers search projets and contests, 
+and freelancers search the same ?
+
+customer role: search content and freelancers. 
+freelancer role: search projects/contests. 
+
+ok!
+
+now, all is clear. pls continue. Okay yes all is clear now. Will do as we talked about.
+
+ok.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

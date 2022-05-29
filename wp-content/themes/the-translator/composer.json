@@ -1,0 +1,16 @@
+{
+    "require": {
+        "twig/twig": "^3.0",
+        "neitanod/forceutf8": "^2.0",
+        "league/mime-type-detection": "^1.5",
+        "tecnickcom/tcpdf": "6.2.*",
+        "setasign/fpdi": "^2.3",
+        "nesbot/carbon": "^2.41",
+        "stefangabos/zebra_image": "^2.6",
+        "stripe/stripe-php": "^7.69",
+        "ramsey/uuid": "^4.1",
+        "hashids/hashids": "^4.1",
+        "jbbcode/jbbcode": "^1.4",
+        "paquettg/php-html-parser": "^3.1"
+    }
+}

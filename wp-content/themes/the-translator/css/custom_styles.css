@@ -1,0 +1,310 @@
+@charset "utf-8";
+/* CSS Document */
+/*
+Applied to some pages still in the posts:
+task-future-work go through this css after fixing up the pages and making them static assets
+*/
+.pricing_table_cont table th:nth-child(2),
+.pricing_table_cont table td {
+    background: #2a8ac7 !important;
+}
+
+.disp_block {
+    display: block;
+}
+
+.disp_center {
+    margin: 0 auto;
+}
+
+.w_100perc {
+    width: 100%;
+}
+
+.bg_dgray {
+    background: #ccc;
+}
+
+.bg_lgray {
+    background: #efefef;
+}
+
+.bg_blue {
+    background: #2a8ac7;
+}
+
+.bg_dgray *,
+.bg_blue * {
+    color: #fff;
+}
+
+.bg_lgray * {
+    color: #2a8ac7;
+}
+
+.borderBlue {
+    border-style: solid;
+    border-color: #2a8ac7;
+    border-width: 1px 0;
+}
+
+.borderGray {
+    border-style: solid;
+    border-color: #888;
+    border-width: 1px 0;
+}
+
+.textBlue {
+    color: #2a8ac7;
+}
+
+.textWhite {
+    color: #fff;
+}
+
+.textGray {
+    color: #878787;
+}
+
+.textAlgnRight {
+    text-align: right !important;
+}
+
+.textAlgnLeft {
+    text-align: left !important;
+}
+
+.textAlgnCenter {
+    text-align: center !important;
+}
+
+.textUp {
+    text-transform: uppercase;
+}
+
+.text48 {
+    font-size: 48px !important;
+}
+
+.text16 {
+    font-size: 18px !important;
+}
+
+.vertAlgnTop {
+    vertical-align: top;
+}
+
+.vertAlgnBot {
+    vertical-align: bottom;
+}
+
+.line1em {
+    line-height: 1em;
+}
+
+.line2em {
+    line-height: 2em;
+}
+
+.iconMiddle {
+    font-size: 48px !important;
+}
+
+.iconLarge {
+    font-size: 72px !important;
+}
+
+.iconXLarge {
+    font-size: 105px !important;
+}
+
+.iconLargeCircle {
+    border: 4px solid #fff;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    min-height: 165px;
+    min-width: 165px;
+    max-height: 195px;
+    max-width: 195px;
+    padding: 35px;
+}
+
+.iconWhite {
+    border-color: #fff;
+    color: #fff;
+}
+
+.middle-content > .container {
+    width: 100%;
+}
+
+.btn {
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    color: #fff;
+    font-size: 36px;
+    font-weight: normal;
+    text-transform: none;
+    min-height: 64px;
+    position: relative;
+    text-align: left;
+    width: 100%;
+}
+
+.btn:after {
+    content: "\f0a9";
+    display: inline-block;
+    font-family: FontAwesome, serif;
+    position: absolute;
+    right: 20px;
+}
+
+.padd0 {
+    padding: 0 !important;
+}
+
+.margB20 {
+    margin-bottom: 20px !important;
+}
+
+.margT0 {
+    margin-top: 0px !important;
+}
+
+.margT20 {
+    margin-top: 20px !important;
+}
+
+.marg0 {
+    margin: 0 !important;
+}
+
+.marg35 {
+    margin: 35px !important;
+}
+
+.marg30 {
+    margin: 30px;
+}
+
+.margl-30 {
+    margin-left: -30px;
+}
+
+.marTop2em {
+    margin-top: 2em !important;
+}
+
+.marg-50 {
+    margin: -50px;
+}
+
+.w100 {
+    width: 100%;
+}
+
+ul.tabb {
+    display: block;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
+
+ul.tabb li {
+    border-style:  solid;
+    border-color: inherit;
+    border-radius: 5px;
+    border-width: 0 0 5px 0;
+    display: inline-block;
+    margin: 10px;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+/* ............................*/
+body.multilingual-websites,
+body.multilingual-websites p,
+.container.section {
+    padding: 50px 0;
+    width: 100%;
+}
+
+.container h1,
+.container h1 a {
+    color: #2a8ac7;
+    font-family: Roboto, sans-serif;
+    font-size: 48px;
+    font-weight: normal;
+    text-align: center;
+}
+
+/* table ................................*/
+
+.pricing_table_cont table th {
+    text-transform: uppercase;
+}
+
+.pricing_table_cont table th:nth-child(3),
+.pricing_table_cont table td:nth-child(3) {
+    background: rgba(234, 163, 50, 0.8) !important;
+    color: #fff !important;
+}
+
+.pricing_table_cont table td:nth-child(3) {
+    background: #f2f2f3;
+}
+
+.item {
+    color: #2a8ac7;
+    display: inline-block;
+    padding: 0 35px;
+    text-align: center;
+}
+
+.item i {
+    display: block;
+    font-size: 48px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+@media all and (max-width: 992px) {
+}
+
+@media all and (max-width: 768px) {
+    .textAlgnRight {
+        text-align: center !important;
+    }
+
+    .item {
+        display: block;
+    }
+
+    .item {
+        margin-bottom: 30px;
+    }
+
+    .iconLargeCircle {
+        margin: 0 auto;
+        margin-top: 50px;
+    }
+
+    .btn:after {
+        content: " ";
+    }
+
+    .container.section.bg_lgray .textAlgnRight br {
+        display: none;
+    }
+}

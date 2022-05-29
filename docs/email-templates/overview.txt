@@ -1,0 +1,230 @@
+ids to keep: id in      (1,2,,6,11,12,13,14,16,17,21,30,31,32,33,34,35,36,41,42,43,54,55)
+emails to delete: id in (3,4,5,7,8,9,10,15,18,19,20,22,23,24,25,26,27,28,29,37,38,39,40,45,46,47,48,49,50,51,52,53)
+
+Currently Used email templates
+
+ids to keep: id in (1,2,,6,11,12,13,14,16,17,21,30,31,32,33,34,35,36,41,42,43,54,55)
+ACCOUNT_ACTIVATION_TEMPLATE, 1,Account Activation,{{activation_link}},
+used in ajax reg_user (register_trans_user); ajax newUserResendConfirmationEmail,
+updated template
+-------------------------------------------
+FORGOT_PASSWORD_TEMPLATE, 2,Forgot Password,{{password}},
+used in php template forgoet_user,
+updated template
+-------------------------------------------
+HIRE_TRANSLATE_TEMPLATE, 6,Hire Translate,{{job_path}}
+used in ajax hireTranslate (also used in unused code),
+updated template
+-------------------------------------------
+W9FORM_TEMPLATE, 11,W9 Form,
+used in ajax email_the_form
+updated template
+-------------------------------------------
+W8BEN_TEMPLATE. 12,W8BEN Form,
+used in ajax email_the_form,
+updated template
+-------------------------------------------
+TAXFORM_TEMPLATE, 13,Tax Form,
+used in ajax email_the_form,
+updated template
+-------------------------------------------
+BID_STATEMENT_TEMPLATE, 14,Bid Statement," {{job_title}},  {{job_path}}",
+used in ajax place_the_bid,
+updated template
+-------------------------------------------
+ADMIN_RECIEVE_WITHDRAWL_REQUEST_TEMPLATE, 16,Admin receve Withdraw Request,"{{user_email}}, {{withdrawl_amount}}",
+used in ajax requestWithdraw_info,
+needs withdrawal_message added to variables,
+updated template
+-------------------------------------------
+ACTIVATION_LINK_EMAIL_CHANGE_TEMPLATE, 17,Email Change,{{activation_link}},
+used in ajax update_user_email,
+updated template
+-------------------------------------------
+REFILL_ACCOUNT_BY_ADMIN_TEMPLATE, 21,Refill Account by admin,"{{refill_amount}},{refill_message}},{{transaction_id}}",
+used in admin screen theme-settings.php,
+updated template
+-------------------------------------------
+SEND_MESSAGE, 30,Send Message to customer or linguist  by Evaluation Sub admin,{{message}},
+used in php admin-message-table.php (admin screen),
+updated template
+-------------------------------------------
+CLOSE_ACCOUNT_TEMPLATE, 33,Account Close,
+used in ajax delete_my_account,
+updated template
+-------------------------------------------
+ACCOUNT_ACTIVATED_TEMPLATE, 34,Account Activated,
+used in ajax reactive_my_account,
+updated template
+-------------------------------------------
+PLACE_NEW_ORDER,35,PLACE NEW ORDER OR JOB,"{{job_link}},{{order_placed_date}}",
+used in ajax generateOrderByCustomerNew, ajax hirelinguistByCustomer,
+updated template
+-------------------------------------------
+CANCEL_ORDER, 36,CANCEL ORDER OR JOB,{{job_link}},
+used in delete_job ajax (in refundBidAmount_JobCancelByCustomer),
+updated template
+-------------------------------------------
+EMAIL_TO_LINGUIST_WHEN_BID_DEPOSIT_REFUNDED, 41,Email to linguist for bidding deposit is refunded when job cancel,{{job_title}},
+used in delete_job ajax (in refundBidAmount_JobCancelByCustomer),
+updated template
+-------------------------------------------
+EMAIL_TO_USER_WHEN_REFILL_CREDIT, 42,Email to user Refill credit,{{credit}} {{processing_fee}} {{total_amount}},
+assume used, I have not documented payment-functions.php yet,
+updated template
+-------------------------------------------
+EMAIL_TO_LINGUIST_WHEN_PLACE_THE_BID, 43,"Email to linguist when places bid on a job",{{job_title}},
+used in ajax place_the_bid,
+updated template
+-------------------------------------------
+
+
+Not currently in working code, but need to be added back in
+
+AUTOMATIC_JOB_REJECTTION_APPROVE_EMAIL_TO_LINGUIST, 54,AUTOMATIC JOB REJECTTION APPROVE EMAIL TO LINGUIST,{{job_name}},
+not-currently-used-but-should-be  in unused cron,
+updated template
+
+-------------------------------------------
+AUTOMATIC_JOB_REJECTTION_APPROVE_EMAIL_TO_CUSTOMER, 55,AUTOMATIC JOB REJECTTION APPROVE EMAIL TO CUSTOMER,{{job_name}},
+not-currently-used-but-should-be  in unused cron,
+updated template
+
+-------------------------------------------
+HOURLY_NOTIFICATION_OF_NEW_AVAILABLE_JOB, 31,To Receive Notifications Of New Available Jobs(HOURLY),{{new_available_job}},
+not-currently-used-but-should-be  in unused cron,
+updated template
+task-future-work do we make email hourly job notificatons ? Its hidden now
+-------------------------------------------
+DAILY_NOTIFICATION_OF_NEW_AVAILABLE_JOB, 32,To Receive Notifications Of New Available Jobs(DAILY),{{new_available_job}},
+not-currently-used-but-should-be  in unused cron,
+updated template
+task-future-work do we make email daily job notificatons ? Its hidden now
+-------------------------------------------
+
+
+
+emails to delete: id in (3,4,5,7,8,9,10,15,18,19,20,22,23,24,25,26,27,28,29,37,38,39,40,45,46,47,48,49,50,51,52,53)
+
+Emails that are suspected to be obsolete, can be restored from archive if needed
+id in (28,29,22,40)
+
+AUTOMATIC_X_DAY_REMINDER_EMAIL_TEMPLATE, 28,x days reminder email,"{{job_delivery_date}}, {{job_path}}",
+not-used in non-working cron
+-------------------------------------------
+AUTOMATIC_Y_DAY_REMINDER_EMAIL_TEMPLATE, 29,y days reminder email,"{{job_delivery_date}}, {{job_path}}",
+not-used in non-working cron
+-------------------------------------------
+REQUEST_EVALUTION_ACCEPTED_TEMPLATE, 22,Request Evalutaion accepted,
+"{{translation_level}}, {{translation_per_word_earning}}, {{translation_bonus_tip_percentage}},
+{{editing_level}},{{editing_per_word_earning}}, {{editing_bonus_tip_percentage}},{{writing_level}},{{writing_per_word_earning}},
+{{writing_bonus_tip_percentage}}",
+admin screen admin-request-evaluation-table.php
+-------------------------------------------
+REQUEST_CHANGE, 40,Request Change,{{request_change}},
+ admin screen of admin-request-evaluation-table.php
+-------------------------------------------
+
+
+
+
+
+Emails that are not used anymore, still called in code that is never use
+
+id in (3,4,5,7,8,9,10,15,18,19,20,23,24,25,26,27,37,38,39,45,46,47,48,49,50,51,52,53)
+TRANSLATED_DOCUMENT_TEMPLATE, 3,Translated Document,{{job_title}},
+not-used obselete-ajax upload_translated_files; function upload_translated_files1
+-------------------------------------------
+NEW_SERVICE_SUBMITTED_TEMPLATE, 4,A new doc has been submitted and You have  to reply within the time limit,{{job_title}},
+not-used obsolete-ajax submitService
+-------------------------------------------
+NEW_REVISION_REQUEST_SUBMITTED_TEMPLATE,5,New revision request, {{job_title}}
+not-used obsolete-ajax submitRevisionRequest
+-------------------------------------------
+TIPS_BY_CUSTOMER_TEMPLATE, 7,Tips ,{{job_path}}
+not-used obsolete-ajax TipsByCustomer
+-------------------------------------------
+BONUS_BY_CUSTOMER_TEMPLATE, 8,Bonus,{{job_path}}
+not-used obsolete-ajax BonusByCustomer
+-------------------------------------------
+LINGUIST_JOB_COMPLETE_PAYMENT_RECIEVED_TEMPLATE, 9,Linguist Payment Received,{{job_path}}
+not-used obsolete-ajax jobCompleteByCustomer; obsolete-cron
+-------------------------------------------
+REVIEW_FEEDBACK_TEMPLATE, 10,Customer posted review,{{job_path}}
+not-used obsolete-ajax jobCompleteByCustomer
+-------------------------------------------
+NEW_REQUEST_EVALUTION_TEMPLATE, 15,New request Evaluation recieved,{{name}},
+not-used unused-ajax update_RequestEvaluation_info
+-------------------------------------------
+LINGUIST_REJECTED_JOB_TEMPLATE, 18,Linguist Rejected job,"{{cancel_service_note}}, {{job_title}}",
+not-used obsolete-ajax rejectTheServiceByTranslator
+-------------------------------------------
+JOB_ADVANCE_PAYMENT_TO_LINGUIST_TEMPLATE, 19,JOB Advance payment to linguist,{{job_title}},
+not-used obsolete-ajax serviceStartByTranslator
+-------------------------------------------
+LINGUIST_START_WORKING_TEMPLATE, 20,Linguist start working on  job,{{job_title}},
+not-used obsolete-ajax serviceStartByTranslator
+-------------------------------------------
+AUTOMATIC_JOB_CANCELED_NOT_SELECTED_LINGUIST_TEMPLATE, 23,Automatic canceled job : Customer not selected any linguist,"{{days}}, {{job_path}}",
+not-used in obsolete and non-working cron
+-------------------------------------------
+AUTOMATIC_JOB_REJECT_LINGUST_NOT_RESPOND_CUSTOMER_TEMPLATE,24,Customer: Linguist does not respond by selecting either START SERVICE or REJECT SERVICE,
+"{{hours}}, {{job_path}}",
+not-used in obsolete and non-working cron
+-------------------------------------------
+AUTOMATIC_JOB_REJECT_LINGUST_NOT_RESPOND_LINGUIST_TEMPLATE, 25,Lingusit: Linguist does not respond by selecting either START SERVICE or REJECT SERVICE,
+"{{hours}}, {{job_path}}",
+not-used in obsolete and non-working cron
+-------------------------------------------
+AUTOMATIC_JOB_COMPLETED_CUSTOMER_TEMPLATE, 26,The job is automatically approval if customer do not approve completion,"{{hours}}, {{job_path}}",
+not-used in obsolete and non-working cron
+-------------------------------------------
+AUTOMATIC_LOST_BID_DEPOSIT_TEMPLATE, 27,LOST BID DEPOSIT,{{job_path}},
+not-used in obsolete and non-working cron
+-------------------------------------------
+RE_PLACE_ORDER, 37,Re place the order,{{job_link}},
+not-used in obsolete-ajax publishjob
+-------------------------------------------
+MEDITATION_HAS_BEEN_STARTED_CUSTOMER_EMAIL, 38,Mediation has been started,{{job_path}},
+not-used in obsolete-ajax hire_mediator_by_linguist
+-------------------------------------------
+RECEIVE_MESSAGE, 39,Receive Messgae,{{url}},
+no-used obsolete-ajax bidreply
+-------------------------------------------
+EMAIL_TO_CUSTOMER_APPROVE_JOB_REJECTION_BY_LINGUIST, 45,Approve Rejection by linguist,{{job_name}},
+not-used in obsolete-ajax approve_rejection_by_linguist
+-------------------------------------------
+EMAIL_TO_LINGUIST_JOB_REJECTION__REQUEST_BY_CUSTOMER, 46,Job Rejection Request,{{job_name}},
+not-used in obsolete-ajax rejection_request_for_job_by_admin
+-------------------------------------------
+EMAIL_TO_LINGUIST_JOB_REJECTION__REQUEST_BY_ADMIN, 47,Job Rejection Request By Admin,{{job_name}},
+not-used in obsolete-ajax rejection_request_for_job_by_admin
+-------------------------------------------
+EMAIL_TO_CUSTOMER_APPROVE_JOB_REJECTION_BY_ADMIN, 48,Approve Rejection by admin,{{job_name}},
+not-used in obsolete-ajax approve_rejection_by_admin
+-------------------------------------------
+MEDITATION_HAS_BEEN_STARTED_CUSTOMER_EMAIL_BY_ADMIN, 49,Mediation has been started Hire By admin,{{job_path}},
+not-used in obsolete-ajax hire_mediator_by_admin
+-------------------------------------------
+EMAIL_TO_LINGUIST_WHEN_BID_DEPOSIT_REFUNDED_ON_APPROVE_JOB, 50,Email to linguist for bidding deposit is refunded When Approve job,{{job_title}},
+not-used in obsolete-ajax jobCompleteByCustomer
+-------------------------------------------
+EMAIL_TO_LINGUIST_WHEN_BID_DEPOSIT_REFUNDED_CUSTMOR_HIRE_ANOTHER, 51,Email to linguist for bidding deposit is refunded When customer hire another job,
+{{job_title}},
+not-used in obsolete-ajax serviceStartByTranslator
+-------------------------------------------
+EMAIL_TO_CUSTOMER_WHEN_JOB_PARTIALLY_APPROVED, 52,Customer Partially Job has been completed,"{{job_title}}{{partially_percentage}}",
+not-used-anywhere
+-------------------------------------------
+EMAIL_TO_LINGUIST_WHEN_JOB_PARTIALLY_APPROVED, 53,Linguist Partially Job has been completed,"{{job_title}}{partially_percentage}}",
+not-used-anywhere
+-------------------------------------------
+
+
+
+
+missing templates
+REMINDER_EMAIL_TO_ALL_SUBSCRIBER_TO_ACTIVATE_THEIR_ACCOUNT, supposed to be 56, but undefined template used in old cron script
+REVIEW_FEEDBACK_BY_TRANSLATOR_EMAIL_TO_CUSTOMER, supposed to be 57 but undefined template used in obsolete function TranslaterReviewToCustomer
+
+

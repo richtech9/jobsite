@@ -1,0 +1,74 @@
+flinguist1: freelancer role
+
+
+http://test.com/linguist-add-content/?lang=en
+
+Cover Image: allow only picture formats
+* Filtered content images at wp-content/themes/the-translator/includes/global-functions/api/ajax/FreelinguistContentHelper.php
+
+Chapters for content only text, but allow any text type
+* filtered for content chapters at wp-content/themes/the-translator/includes/global-functions/api/ajax/cvf_upload_text_files_content_process.php
+
+
+http://test.com/linguist-add-content/?lang=en&mode=edit&content_id=152260
+http://test.com/job/11327240/?lang=en&job_id=11327240_1
+These two:
+Upload Files: allow any type of file that we support, this is for file delivery
+* Filtered for content at wp-content/themes/the-translator/includes/global-functions/api/ajax/cvf_upload_files_content_process.php
+* Filtered for projects at wp-content/themes/the-translator/includes/global-functions/api/ajax/cvf_upload_files_order_process.php
+
+
+http://test.com/job/22327247/?lang=en&action=new-proposal
+Allow upload a picture or a PDF file
+* Filtered for proposals at wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_contest_new_proposal_data_proc_cb.php
+
+
+http://test.com/job/22327223/?lang=en&action=winner-proposal&proposal_id=152145
+Upload files: allow any type
+* Filtered for winning proposals at wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_contest_update_proposal_data_proc_cb.php
+
+http://test.com/wallet-detail/?lang=en
+tax file uploads: pdf or image
+* filtered at wp-content/themes/the-translator/includes/global-functions/api/ajax/uploadSignedTaxForm.php
+
+
+
+
+fcustomer1: client role
+
+http://test.com/job/11327246/?lang=en
+http://test.com/job/11327240/?lang=en&job_id=11327240_1
+Upload Instruction Files: the safe one, image/txt/pdf
+Personal instructions: safe one only
+PDF, jpeg, and png
+
+* Filtered for contest instructions (first edit screen) at wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_contest_data_proc_cb.php
+* Filtered for contest instructions (second edit screen) at wp-content/themes/the-translator/includes/global-functions/api/ajax/cvf_upload_files_order_process_new.php
+* Filtered for general project instructions at wp-content/themes/the-translator/includes/global-functions/api/ajax/project_job_file_upload.php
+* Filtered for specific project instructions at wp-content/themes/the-translator/includes/global-functions/api/ajax/project_single_job_file_upload.php
+
+For the customer role, it does not need to delvier any file. So, he will only upload instruction files, the safe ones.
+
+
+Both customer and freelancer role:
+User profile images only allow image types
+* filtered at wp-content/themes/the-translator/includes/global-functions/api/ajax/user_image_file.php
+* filtered at wp-content/themes/the-translator/includes/global-functions/api/ajax/user_image_file_reminder.php
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,260 @@
+
+Now, on the left side: send a message while the chat on the right side is closed. 
+In this case, on the right side, it should popup and flash/ring. 
+
+But, it only flashe on the second message after the chat pops up. this is another issue
+
+
+see? on the right side, the individual chat windows is opened. 
+
+got it?
+
+so, the individual chat window should flash on the first message, and not just the second ?
+
+exactly! 
+
+it should flash on any new msg. 
+
+This is one issue. 
+
+
+The issue we have been dealing with is the other one. 
+
+When we send a msg on the left side after a new project is just created, the individual chat on the receiver side does not  pop up at all!
+
+let me show you
+
+now, you see????
+thre's no response at all on the right side when sending the first message for this new room!
+
+I know why now. Its because the php server creates the room, tells the left side that the room exists, and here is the id for it. But, it has not updated the right side with the new room id
+
+just a sec! now, on the right side, the individual chat is not popping up yet! 
+
+however, you can click on the right side, the chat. you will see that this new Rooom/individual chat is already updated accordingly! 
+and if you click that, the msg will be displayed!!
+
+
+cick the one on the right
+
+by this time, the right side knows about the rooom
+
+good! no matter when, as long as the right side knows the room, and as long as it receives a new msg, it should pop up and dislay/ring!
+
+
+but obviusly, it does not!
+
+Its a flaw in the original system, and when we decreased the interval for finding new rooms, sometimes the new room does not propopage to the other windows until quite a few seconds, and until tthen messages in the new room will be ignored by the javascript
+
+
+it's ok that there's delay to update the new room. the key is: when any new msg is detectd, it should just popup the individual chat!
+
+now, it does not
+
+let me show you again. 
+
+this msg does not popup!
+but the room is already existing on the right side
+let me show you
+see the last one?
+
+it was refreshed with the new room after you sent the last message and before you checked
+
+but now, it should popup as it already receives new msg
+
+messages are discarded if the room is not known, on the client js
+nao, on the freelancer js. 
+
+the right side is the freelancer. the left side is the client. 
+
+the message is not discarded!
+
+all messages are sent!
+
+on the left side, you can see that "11111" is sent! only msg that is sent is displayed in this chat window!
+
+
+on the right side, if you click the last row, it'll display the individual chat, it'll have this "111111" msg as well!!
+
+messages are all sent properly. 
+
+the only issue is: the message is not displayed in the chat window that pops up.
+
+you can now click the last row on the right chat 
+
+Yes, okay, I mistyped earlier. I did mean to say the freelancer side.
+The message is discarded at first, but when the new room is seen, it asks the chat server for the message history again, and now has a copy
+
+The fix for this, is to have thie chat javascript call the php server when it finds a room it does not recognize, and then the message will pop up after the php server sends the room info
+
+so: after getting a new room, it should try to get new message in this room. if there's any new msg in this room, it should popup the individual chat/ring. 
+
+
+I can fix this by not throwing out the message when there is an unknown room, and just call the php server, and stick on the old message while the chat js is getting a full history. Otherwise, there might be a gap of a second or two for it to wait
+
+actually, this wait of a few sec does not matter at all. the most important thing is: make sure the new msg will be displayed in the flashing chat window that has popped up. then this will catch the attention of the user. 
+
+it's ok that this is delayed by a few sec. 
+
+okay, then if I just add in a simple hook when it does not find the room on its list of known rooms, I just force a premature refresh of the rooms, and remember to pop up that room and flash when the info comes back
+
+i guess this will most likely solve this issue. but pls try it. 
+
+another way: here, as you can see, the new room at the freelancer is actually refreshed properly. So, whenever there's any new room found, check if there's any new msg, if there's any, then popup and ring!
+
+in this case, you don't need to worry about the unknown msgs. 
+
+i'm not sure how this unknown msg works. but you can check
+so, two possible solution:
+1. unknown msg way: force update of room -> check new msg-> popup/refresh if there any new msg.
+2. after finding any new room: check any new msg-> popup/refersh if there's any new msg.
+
+
+you can check the details. the exact implementation may be different though. but i guess we're on the same page now. 
+
+Yes, I believe i can fix this up 
+
+great! pls try it. 
+
+ 
+
+
+
+
+
+client sends a message to freelancer on a newly create room. 
+
+At the freelancer side:
+	1. It will check server for new chat rooms once in a while. 
+	2. If it finds a new room, it'll display the new room. 
+	3. The new msg is not updated when it finds the new room?
+			Is this the issue here? 
+			Perhaps I can make a flow chart of what is happening, to illustrate
+			
+			that'll be better. pls make it. 
+			
+			okay, I will do it in text below
+			
+			
+			
+			or, using word or paint. your choice. 
+			
+			I will put my thoughts in words first, then I will make diagram with word or paint. Thoughts are below to organize
+			
+1) New room is created on the php side, which makes the new room, and registers the users to be able to join the room. At this point, neither of the js chat clients know about the room or can recieve messages from that room 
+
+2) the customer, who created the room, now gets back the information about the new room. It tells the chat server... here I am , a client, wanting to start participating in this room. Chat server says okay 
+
+3) the customer sends a message at 11:59
+
+4) At 12:00, the freelancer chat js periodically asks the wordpress, what are my rooms ? This happens every few seconds. Once it gets the new room, it tells the chat server that it, a client , wants to start recieving messages from that room 
+
+6) the message from 3 (the customer) is stored on the chat server but not sent to the freelancer js chat client code because nobody told the chat server to do so 
+
+7) as soon as 4 happens, then the freelancer chat js will get messages sent after that. 
+The previous messages, that were not sent to the chat js client for the freelancer, will be sent as "messages history" when the freelancer gets any new messages at all.
+
+	Why? Actually, if you click the individualchat, it'll display the complete chat hitory! The 
+	customer does not need to send any new msg!
+	
+	Thats what puzzled me at first, then I realized the system announcement , which showwed up after that, was providing the history 
+	no. it works even when there's no system announcement. we can try it again now. 
+	I made the logs show up in the console, I think this is accurate, but perhaps not all the chat room messages have the full history, but the system announcements do have the history. 
+	Whien the system announcement shows up after the chat room is created by the php, and before the message is sent, things work. We can turn off the sytem announcents to test that 
+	
+	pls turn off the sys announcement. 
+	
+	ok
+	
+	Did you want me to test, or did you wish to ?
+	
+	let me try it
+	now, the msg is sent. if you click the receiver side, the msg history should be there!
+	
+	see? the message history is there! and it's complete. no loss of any msg
+	
+	so, what we need to do: for any new room found, it should try to get message history! and if there's any message history, itshould display the chat window!
+	Okay, obviosly, I did not understand everthing about this system, let me see what I overloooked, and then will implement that 
+	ok! this should be straightforward now. pls try it. 
+	
+	okay, I just need to find out where its getting the history at, something in there ....ok. 
+	
+	
+	
+	
+8) If there are no new messages, then the freelancer does not get the older , never sent before, messages 
+
+
+The solution
+ If 3 happens before 4, then by the time there is a relaod of the page for the freelancer, everything is caught up, and all message history is put in the correct chat rooms 
+
+But
+  There is currently no code to display any missed messages 
+
+So, to solve this, we do a broad approach, and figure out which messages where went after the beginning of the last page, and then somehow show the user on the new page, the chat rooms where there are messages .
+
+If we simply open and show these rooms, that have messages made since the beginning of the last page load, then no old code needs to be changed
+
+
+Example: freelancer loads at a page at 11:59 am, customer sends a message that is not seen by freelancer chat system at 12:01pm, but when the freelancer goes to a new page at 12:03pm we find all the messages in the history that was sent since 11:59, and for all the chat conversations, show the chat windows
+
+----
+
+okay that is the verbal timeline and flowchart
+
+just a sec.    
+			
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

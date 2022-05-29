@@ -1,0 +1,32 @@
+Documentation for form keys
+
+The form key library does two things:
+    Protects against multiple submissions of ajax and form data at once
+    Protects against cross site exploits of ajax and forms
+
+The code works on both the php and the javascript side.
+
+It is designed to be "Opt In". In other words, forms and ajax will not be affected by this new security layer unless they are deliberately hooked up to it
+While the opt in is great for a transition. The ajax will not really be secure until its not opt in.
+ There is a constant called FREELINGUIST_KILL_NON_COMPLIANT_POSTS_AND_AJAX which toggles between only processing participating forms and ajax,
+  and ruthlessly stamping out anything that is not correct
+
+The reason the opt in is not secure, is that an attacker can simply strip out the form keys when posting ajax through curl statements
+However, when the opt in is used, it still protects against regular users clicking too many times on buttons,
+ and prevents duplicate data from being submitted
+
+The way the php side works is that is looks for form keys that are valid, and if they are not (or missing if in kill mode),
+ then it will simply not allow the php ajax and form handlers to be called
+However, in wordpress, the way to divert php processing of ajax and forms is to simply kill the script.
+ But, if you die when a form is submitted (as opposed to an ajax) then the user will see just a blank page
+
+So, when the form-key library will kill off a page or ajax.
+It will redirect the user to a slightly modified 404 page that has the error message on it.
+ Otherwise, if this is ajax, then some extra json keys are added to the return data which the javascript side of the form keys knows how to process
+
+On the javascript side. There is an overwrite of the XMLHttpRequest class which allows it to easedrop on all inbound and outbound data requests back to the server
+It only acts on data that has form keys in it. But , if there are form keys, then it knows how to do the locks, unlocks and notices
+There is a way to have some things bypassed . You can add to action_ignore_list any actions you do not want to be processed by the XMLHttpRequest overrides
+
+
+

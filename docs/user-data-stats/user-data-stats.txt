@@ -1,0 +1,157 @@
+will be tracking the following new columns in the wp_fl_user_data_lookup table
+
+(wp_fl_user_data_lookup column) | (trigger that updates it)
+----------------------------------------------------------
+jobs_worked_completed (trigger_after_update_on_wp_fl_milestones,trigger_after_insert_on_wp_fl_milestones) :Tested
+jobs_worked (trigger_after_insert_on_wp_fl_job) :Tested
+projects_created (trigger_after_update_post_data_lookup_counter) :Tested
+projects_hiring (trigger_after_insert_on_wp_fl_job) :Tested
+contests_awarding (trigger_after_update_on_wp_proposals) :Tested
+contests_created (trigger_after_update_post_data_lookup_counter) :Tested
+contests_entered (trigger_after_insert_fl_post_user_lookup_counter) :Tested
+contests_won (trigger_after_update_on_wp_proposals) :Tested
+content_purchased (trigger_after_update_linguist_content_counter) :Tested
+content_sold (trigger_after_update_linguist_content_counter) :Tested
+content_created (trigger_after_insert_linguist_content_counter) :Tested
+
+
+----------------------
+
+
+* jobs_worked_completed :
+The count of when freelancer completes at least one milestone released in a job he was hired at
+If a freelancer gets more than one milestone on a project, it does not change the jobs_worked_completed.
+Likewise, if the project goes to mediation, or is reported, it also does not affect the number
+
+Implemented by triggers (create,update) on wp_fl_milestone listening for status === 'completed'
+when it gets here, see if wp_fl_post_user_lookup has a flag for this user and post for completion,
+ if not then increment column count for linguist_id and add the flag for this post and user
+ the value of this flag is also defined at PostLookupDataHelpers::POST_USER_DATA_FLAG_COMPLETE_JOB (value=4)
+see trigger_after_insert_on_wp_fl_milestones, trigger_after_update_on_wp_fl_milestones
+
+
+
+----------------------
+
+* jobs_worked:
+The count of when freelancer gets hired in a project
+
+Implemented by trigger (create) on wp_fl_job , when new row is added increase column for linguist_id
+see trigger_after_insert_on_wp_fl_job
+
+
+
+----------------------
+
+
+* projects_created:
+The count of when customer creates a project
+
+Implemented by trigger (update) on wp_fl_post_data_lookup when a fl_job_type is for a project,
+ then increment column for the author_id.
+ Update has to be used instead of insert because the fl_job_type is not set until later
+see trigger_after_update_post_data_lookup_counter
+
+
+
+
+----------------------
+
+
+* projects_hiring:
+The count of when customer hires a freelancer to his projects
+
+Implemented by trigger (create) on wp_fl_job ,
+when new row is added increase column for author
+see trigger_after_insert_on_wp_fl_job
+
+
+----------------------
+
+* contests_awarding:
+The count of when a customer awards a proposal and completes it.
+Counts for each proposal awarded and completed, not each contest
+
+Implemented by adding a trigger (update) on wp_proposals to see when the status === 'completed',
+and increase column for the author of the post_id
+see trigger_after_update_on_wp_proposals
+
+
+----------------------
+
+
+* contests_created:
+The count of when customer creates a contest
+
+Implemented by trigger (update) on wp_fl_post_data_lookup.
+When a fl_job_type is for a contest, then increment column for the author_id
+Update has to be used instead of insert because the fl_job_type is not set until later
+see trigger_after_update_post_data_lookup_counter
+
+
+----------------------
+
+
+* contests_entered:
+The count of when a freelancer submits a proposal to a contest
+
+Implemented by adding a trigger (create) on wp_fl_post_user_lookup
+listening for the flag of when a contest is particpated in for the user_id
+see trigger_after_insert_fl_post_user_lookup_counter
+
+
+----------------------
+
+
+* contests_won:
+The count of when a freelancer gets an award money (completed proposal) for a contest he participates in.
+Counts for each proposal won, not each contest won
+
+Implemented by adding a trigger (update) on wp_proposals to see when the status === 'completed',
+and increase column for the by_user
+see see trigger_after_update_on_wp_proposals
+
+
+----------------------
+
+
+
+* content_purchased:
+The count of when a customer purchases content
+
+implemented by adding a trigger (update) to the wp_linguist_content listening for
+when status is set to 'completed' from an earlier value that is different, and purchased_by > 0 ,
+then increment the count for the customer_id
+see trigger_after_update_linguist_content_counter
+
+
+----------------------
+
+
+* content_sold:
+The count of when a freelancer sells a content, includes counts of copies sold
+
+implemented by adding a trigger (update) to the wp_linguist_content listening for
+when status is set to 'completed' from an earlier value that is different, and purchased_by > 0 ,
+then increment the count for the user_id (freelancer that created the content)
+see trigger_after_update_linguist_content_counter
+
+----------------------
+
+* content_created:
+The count of when a freelancer creates a content, does not include copies created when sold
+
+
+implemented by adding a trigger (create) to the wp_linguist_content listening for a new row being made where the
+parent_content_id is null, then incrementing the count for the user_id (freelancer that created the content)
+see trigger_after_insert_linguist_content_counter
+
+
+
+
+
+
+
+
+
+

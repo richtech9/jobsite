@@ -1,0 +1,59 @@
+div.fl-payment-summary {
+    color: black;
+    font-weight: normal;
+    padding-right: 2em;
+    margin-right: 2em;
+}
+
+div.fl-payment-summary span.fl-parent-txn {
+    display: block;
+}
+
+div.fl-payment-summary span.fl-processing-txn {
+    display: block;
+}
+
+div.fl-payment-summary span.fl-transaction-txn {
+    display: block;
+    margin-top: 0.5em;
+}
+
+div.fl-payment-summary span.fl-conjunction {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+div.fl-payment-summary div.fl-transaction-step {
+    margin-top: 0.5em;
+}
+
+div.fl-payment-summary div.fl-transaction-steps {
+    margin-top: 0.5em;
+}
+
+div.fl-payment-summary span.fl-transaction-step-status {
+    float: left;
+}
+
+div.fl-payment-summary span.fl-transaction-step-fl-status {
+    float: right;
+}
+
+div.fl-payment-summary  span.fl-transaction-status-failed {
+    font-weight: bold;
+    color: orangered;
+}
+
+div.fl-payment-summary  span.fl-transaction-status-complete {
+    color: green;
+}
+
+div.fl-payment-summary  span.fl-transaction-status-pending {
+    color:grey;
+}
+
+div.fl-payment-summary  span.fl-transaction-unknown {
+    background-color: lightgrey;
+    color: black;
+}

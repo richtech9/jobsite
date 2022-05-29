@@ -1,0 +1,25 @@
+tingle.css
+block-library/style.css
+the-translator/css/reset.css
+the-translator/css/font-awesome-4.7.0/css/font-awesome.min.css
+the-translator/css/lib/datepicker.css
+the-translator/css/lib/bootstrap.css
+the-translator/css/lib/bootstrap-select.css
+the-translator/css/current-code/style.css
+the-translator/css/style-new.css
+the-translator/css/responsive.css
+the-translator/style.css
+the-translator/css/frontend-and-admin.css
+the-translator/css/additional_css.css
+the-translator/css/lib/tagmanager.min.css
+the-translator/css/chat_style.css
+the-translator/css/lib/material-icon.css
+the-translator/css/lib/roboto.css' />
+the-translator/css/standards.css
+the-translator/css/lib/jquery.rateyo.min.css
+the-translator/css/datatables/jquery.dataTables.css
+the-translator/js/slick-1.9.0/slick.css
+
+then if added :
+content-customer-read.css
+content-customer.css

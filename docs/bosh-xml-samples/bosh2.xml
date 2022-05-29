@@ -1,0 +1,13 @@
+<body xmlns='http://jabber.org/protocol/httpbind'>
+    <message to='fcustomer1-1001@peerok.com' from='peerok.com' type='headline' id='9740407884291810988'
+             xmlns='jabber:client'>
+        <archived by='fcustomer1-1001@peerok.com' id='1597842355766220' xmlns='urn:xmpp:mam:tmp'/>
+        <stanza-id by='fcustomer1-1001@peerok.com' id='1597842355766220' xmlns='urn:xmpp:sid:0'/>
+        <store xmlns='urn:xmpp:hints'/>
+        <body>&lt;strong&gt;&lt;u&gt;Test 8:04&lt;/u&gt;&lt;/strong&gt;&lt;br&gt;&lt;br&gt;&lt;em&gt;hello&lt;/em&gt;&lt;p&gt;Budget:
+            $10_50&lt;/p&gt; &lt;p&gt;Skills: php,html&lt;/p&gt; &lt;a class=&quot;pull-right btn-success btn-sm&quot;
+            target=&quot;_blank&quot; href=&quot;https://peerok.com/job/P__18_20683&quot; &gt;View&lt;/a&gt;
+        </body>
+        <subject>Project</subject>
+    </message>
+</body>

@@ -1,0 +1,13 @@
+div.freelinguist-admin-guest-panel table {
+    width: 50%;
+    min-width: 50em;
+}
+
+div.freelinguist-admin-guest-panel span.bold-and-blocking {
+    font-weight: bold;
+    display: block;
+}
+
+div.freelinguist_hide_guest_broadcast_settings, div.freelinguist_hide_guest_broadcast_actions {
+    display: none;
+}

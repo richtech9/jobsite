@@ -1,0 +1,13 @@
+to update or add ssl bundle when getting curl ssl error. If on windows
+go to https://curl.haxx.se/docs/caextract.html and downloadload latest, and store it anywhere, then go to php.ini and add
+
+curl.cainfo="E:\wamp64\cacert.pem"
+openssl.cafile="E:\wamp64\cacert.pem"
+
+-----------------
+for setting up cert for virtual host
+https://zuziko.com/tutorials/how-to-enable-https-ssl-on-wamp-server/
+
+for restoring Query Monitor shortcut link (admin privs)
+mklink D:\Codes\test.com\wp-content\db.php D:\Codes\test.com\wp-content\plugins\query-monitor\wp-content\db.php
+

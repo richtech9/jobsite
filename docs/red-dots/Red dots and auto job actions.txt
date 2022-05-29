@@ -1,0 +1,49 @@
+The following table could be filled by triggers, and used both for the reddots and the cron job for automatic action
+There is a flag  to show that reddot notices were displayed, so don't need to be displayed again
+There is a flag to show that the auto action has been done
+
+The table can be pruned automatically to keep it from growing larger than needed, once the data has been used up
+
+wp_fl_red_dots database table
+----------
+is_red_dot (tiny int)       0 for no, 1 for yes, -1 for read, default 0 , never null
+is_future_action (tiny int)  0 for no, 1 for yes, -1 for done , default 0 , never null
+event_user_id_role (tiny int)  to not cross events when logged in under other role , default 0, 1 for customer, 2 for freelancer
+event_user_id (integer)        this is for whom the event is for, never null, there is always an user id connected to an event
+contest_id (integer)        if about a contest, put it here, else null
+project_id (integer)        if about a project, put it here, else null
+content_id (integer)        if about a content, put it here, else null
+milestone_id (integer)      if about a milestone, put it here, else null
+job_id (integer)            if about a project job , put it here, else null
+proposal_id (integer)       if about a proposal, put it here, else null
+other_user_id (integer)     if another user ,not tracked in the other ids, else null 
+discussion_id (integer)     if about a discussion, put it here, else null
+event_timestamp (timestamp)   when did this event happen ? never null
+future_timestamp (timestamp)  if this is a future job, put the time here, else null
+future_action_done_at (timestamp) If this future action was completed, then this is the time it was completed at, else null
+event_name (short string)     event names should be small, clear and unambiguous
+
+
+CREATE TABLE wp_fl_red_dots
+(
+    id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    is_red_dot tinyint DEFAULT 0 NOT NULL COMMENT '0 for no, 1 for yes, -1 for read, default 0 , never null',
+    is_future_action tinyint DEFAULT 0 NOT NULL COMMENT '0 for no, 1 for yes, -1 for done , default 0 , never null',
+    event_user_id_role tinyint DEFAULT 0 NOT NULL COMMENT 'to not cross events when logged in under other role , default 0, 1 for freelancer, 2 for customer',
+    event_user_id bigint unsigned NOT NULL COMMENT 'this is for whom the event is for, never null',
+    contest_id bigint unsigned DEFAULT NULL COMMENT 'if about a contest, put it here, else null',
+    project_id bigint unsigned DEFAULT NULL COMMENT 'if about a project, put it here, else null',
+    content_id int DEFAULT NULL COMMENT 'if about a content, put it here, else null',
+    milestone_id bigint DEFAULT NULL COMMENT 'if about a milestone, put it here, else null',
+    job_id bigint DEFAULT NULL COMMENT 'if about a project job , put it here, else null',
+    proposal_id int DEFAULT NULL COMMENT 'if about a proposal, put it here, else null',
+    other_user_id bigint unsigned DEFAULT null COMMENT 'if another user ,not tracked in the other ids, else null',
+    discussion_id bigint DEFAULT NULL COMMENT 'if about a discussion, put it here, else null',
+    event_timestamp datetime NOT NULL COMMENT 'when did this event happen ? never null',
+    future_timestamp datetime DEFAULT NULL COMMENT 'if this is a future job, put the time here, else null',
+    future_action_done_at datetime DEFAULT null NULL COMMENT 'If this future action was completed, then this is the time it was completed at',
+    event_name varchar(20) NOT NULL COMMENT 'event names should be small, clear and unambiguous'
+);
+
+
+

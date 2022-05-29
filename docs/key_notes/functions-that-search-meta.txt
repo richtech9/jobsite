@@ -1,0 +1,50 @@
+current search is half way done: WP_Query
+
+Currently Used
+
+
+
+
+refundBidAmount_JobCancelByCustomer() @wp-content/themes/the-translator/includes/global-functions.php
+referenced in ajax delete_job called by delete project or contest buttons in gui
+
+wp-content/themes/the-translator/includes/user/account/account-translator.php
+ referenced in freelancer's my-account page
+
+
+Admin Panel "Closed Cases" @wp-content/themes/the-translator/includes/admin-init/admin-closed-reject-request.php
+
+Admin Panel "User Wallet" @wp-content/themes/the-translator/includes/admin-init/admin-wallet-amount.php
+
+
+NOT USED
+
+refundBidAmount_CustomerApproveCompletionOfJob() @wp-content/themes/the-translator/includes/global-functions.php
+
+refundBidAmount_LinguistStartService() @wp-content/themes/the-translator/includes/global-functions.php
+    referenced by the ajax serviceStartByTranslator()
+        referenced by the "Start Service" in the single job translator
+
+refundBidAmount()  @wp-content/themes/the-translator/includes/global-functions.php
+    referenced by the unused cron and admin cron scripts only
+
+approve_rejection_by_linguist()     @wp-content/themes/the-translator/includes/global-functions.php
+    referenced by the button "Approve Rejection" which calls this indirectly @wp-content/themes/the-translator/includes/user/single-job/ind-translator.php
+
+approve_rejection_by_admin()    @wp-content/themes/the-translator/includes/global-functions.php
+    not called by anything now
+
+
+
+
+
+
+UNKNOWN
+
+updateTranslatorRating() @wp-content/themes/the-translator/includes/templates-function.php
+  referenced by several unused functions, has comment to remove, made two years ago, in other code that is current
+
+
+
+
+

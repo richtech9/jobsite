@@ -1,0 +1,44 @@
+
+------------------------------
+activation_url              7                   templates/acc-active-tpl.php
+my_account_url              371                 templates/account-tpl.php
+user_account                572                 templates/author-user-info.php
+content_detail_url          24776               templates/content-detail-tpl.php
+dashboard_url               13                  templates/dashboard-tpl.php
+forgot_password_url         681                 templates/forgot-password.php
+                            27436               templates/HTMLPAGE-fav-page.php
+how_it_works                24708               templates/HTMLPAGE-how-it-work-tpl.php
+                            24789               templates/HTMLPAGE-search-page.php
+                            3002                templates/home-tpl.php
+job_listing_url             369                 templates/jobs-tpl.php
+linguist_support_page_url   835                 templates/linguist-support-tpl.php
+linguist_add_content_url    24710               templates/linguists-add-content-tpl.php
+linguist_content_url        24712               templates/linguists-content-tpl.php
+login_url :                 9                   templates/login-tpl.php
+                            29110               templates/my-content.php
+                            25319               templates/post-contest-tpl.php
+order_process               22                  templates/order-process-tpl.php
+registration_url            5                   templates/registration-tpl.php
+setting_page_url            828                 templates/setting-tpl.php
+translator_homepage_url     465                 templates/translator-homepage-tpl.php
+wallet_url                  406                 templates/wallet-tpl.php
+-----------------------
+no post id yet:
+
+
+
+
+
+
+
+
+-----------------------
+obsolete
+
+
+single_bid_detail_url 391
+invoice_page 675 points to default template
+terms_conditions_url 431
+customer_support_page_url   864     templates/customer-support-tpl.php
+
+

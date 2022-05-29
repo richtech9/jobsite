@@ -1,0 +1,312 @@
+
+Content:
+
+when wp_linguist_content->status === request_completion     then send email to customer
+EMAIL_TEMPLATE_CONTENT_REQUEST_COMPLETION
+{{job_id}}, {{job_title}}, {{job_status}}
+used in ajax wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_change_status_content.php
+-------------------------------
+when  wp_linguist_content->status === request_revision      then send email to freelancer
+EMAIL_TEMPLATE_CONTENT_REQUEST_REVISION
+{{job_id}}, {{job_title}}, {{job_status}}
+used in ajax wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_change_status_content.php
+-------------------------------
+when wp_linguist_content->status === request_rejection      then send email to freelancer
+EMAIL_TEMPLATE_CONTENT_REQUEST_REJECTION
+{{job_id}}, {{job_title}}, {{job_status}}
+used in ajax wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_change_status_content.php
+-------------------------------
+when wp_linguist_content->purchased_by is set,              then send email to freelancer
+EMAIL_TEMPLATE_CONTENT_PURCHASED
+{{job_id}}, {{job_title}}, {{job_status}}
+used in hz_buy_content_ajxcback at wp-content/themes/the-translator/includes/global-functions/api/ajax/FreelinguistContentHelper.php
+-------------------------------
+
+Contests:
+
+when wp_proposals->status === request_completion            then send email to customer
+EMAIL_TEMPLATE_CONTEST_REQUEST_COMPLETION
+{{job_id}}, {{job_title}}, {{job_status}}
+used in ajax hz_change_status_contest_proposal at wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_change_status_contest_proposal.php
+-------------------------------
+when wp_proposals->status === hire_mediator                 then send email to customer
+EMAIL_TEMPLATE_CONTEST_MEDIATOR_HIRED
+{{job_id}}, {{job_title}}, {{job_status}}
+used in ajax hz_change_status_contest_proposal at wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_change_status_contest_proposal.php
+-------------------------------
+when wp_proposals->rejection_requested                      then send email to freelancer
+EMAIL_TEMPLATE_CONTEST_REQUEST_REJECTION
+{{job_id}}, {{job_title}}, {{job_status}}
+used in ajax hz_change_status_contest_proposal at wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_change_status_contest_proposal.php
+-------------------------------
+when customer awards                                        then send email to freelancer
+EMAIL_TEMPLATE_CONTEST_AWARDED
+{{job_id}}, {{job_title}}, {{job_status}}
+used in ajax hz_awardprize_to_proposal  at wp-content/themes/the-translator/includes/global-functions/api/ajax/hz_awardprize_to_proposal_cb.php
+-------------------------------
+
+
+constants
+56	EMAIL_TEMPLATE_CONTENT_REQUEST_COMPLETION
+57	EMAIL_TEMPLATE_CONTENT_REQUEST_REVISION
+58	EMAIL_TEMPLATE_CONTENT_REQUEST_REJECTION
+59	EMAIL_TEMPLATE_CONTENT_PURCHASED
+60	EMAIL_TEMPLATE_CONTEST_REQUEST_COMPLETION
+61	EMAIL_TEMPLATE_CONTEST_MEDIATOR_HIRED
+62	EMAIL_TEMPLATE_CONTEST_REQUEST_REJECTION
+63	EMAIL_TEMPLATE_CONTEST_AWARDED
+
+
+sql inserts for new proposals are
+
+
+INSERT INTO wp_email_templates (id, title, description, subject, content, modified_date) VALUES (56, 'EMAIL_TEMPLATE_CONTENT_REQUEST_COMPLETION', '{{job_id}}, {{job_title}}, {{job_status}}', 'Completion Requested For Content', '<table>
+    <tbody>
+
+    <tr style=\\"\\">
+        <td style=\\"\\">
+            {{header}}
+        </td>
+    </tr>
+
+    <tr style=\\"height: 57px;\\">
+        <td class=\\"\\" style=\\"padding: 20px; font-size: 38px; color: #333333; font-family: opensansregular,serif; height: 57px;\\">
+            There is a request for completion of the content {{job_id}} {{job_title}}
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <span class=\\"\\">
+                {{job_status}}
+            </span>
+        </td>
+    </tr>
+    
+
+    <tr style=\\"\\">
+        <td class=\\"\\" style=\\"\\">
+           {{footer}}
+        </td>
+    </tr>
+    </tbody>
+</table>', '2020-12-29 09:43:04');
+INSERT INTO wp_email_templates (id, title, description, subject, content, modified_date) VALUES (57, 'EMAIL_TEMPLATE_CONTENT_REQUEST_REVISION', '{{job_id}}, {{job_title}}, {{job_status}}', 'Revision Requested for Content', '<table>
+    <tbody>
+
+    <tr style=\\"\\">
+        <td style=\\"\\">
+            {{header}}
+        </td>
+    </tr>
+
+    <tr style=\\"height: 57px;\\">
+        <td class=\\"\\" style=\\"padding: 20px; font-size: 38px; color: #333333; font-family: opensansregular,serif; height: 57px;\\">
+            The customer has requested revision of the content {{job_id}} {{job_title}}
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <span class=\\"\\">
+                {{job_status}}
+            </span>
+        </td>
+    </tr>
+
+
+    <tr style=\\"\\">
+        <td class=\\"\\" style=\\"\\">
+           {{footer}}
+        </td>
+    </tr>
+    </tbody>
+</table>', '2020-12-29 09:43:04');
+INSERT INTO wp_email_templates (id, title, description, subject, content, modified_date) VALUES (58, 'EMAIL_TEMPLATE_CONTENT_REQUEST_REJECTION', '{{job_id}}, {{job_title}}, {{job_status}}', 'Content is being rejected', '<table>
+    <tbody>
+
+    <tr style=\\"\\">
+        <td style=\\"\\">
+            {{header}}
+        </td>
+    </tr>
+
+    <tr style=\\"height: 57px;\\">
+        <td class=\\"\\" style=\\"padding: 20px; font-size: 38px; color: #333333; font-family: opensansregular,serif; height: 57px;\\">
+            The customer wants to reject the content {{job_id}} {{job_title}}
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <span class=\\"\\">
+                {{job_status}}
+            </span>
+        </td>
+    </tr>
+
+
+    <tr style=\\"\\">
+        <td class=\\"\\" style=\\"\\">
+           {{footer}}
+        </td>
+    </tr>
+    </tbody>
+</table>', '2020-12-29 09:43:04');
+INSERT INTO wp_email_templates (id, title, description, subject, content, modified_date) VALUES (59, 'EMAIL_TEMPLATE_CONTENT_PURCHASED', '{{job_id}}, {{job_title}}, {{job_status}}', 'New Purchase of Content', '<table>
+    <tbody>
+
+    <tr style=\\"\\">
+        <td style=\\"\\">
+            {{header}}
+        </td>
+    </tr>
+
+    <tr style=\\"height: 57px;\\">
+        <td class=\\"\\" style=\\"padding: 20px; font-size: 38px; color: #333333; font-family: opensansregular,serif; height: 57px;\\">
+            A customer has bought the content {{job_id}} {{job_title}}
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <span class=\\"\\">
+                {{job_status}}
+            </span>
+        </td>
+    </tr>
+
+
+    <tr style=\\"\\">
+        <td class=\\"\\" style=\\"\\">
+           {{footer}}
+        </td>
+    </tr>
+    </tbody>
+</table>', '2020-12-29 09:43:04');
+INSERT INTO wp_email_templates (id, title, description, subject, content, modified_date) VALUES (60, 'EMAIL_TEMPLATE_CONTEST_REQUEST_COMPLETION', '{{job_id}}, {{job_title}}, {{job_status}}', 'Request to Complete Proposal in Contest', '<table>
+    <tbody>
+
+    <tr style=\\"\\">
+        <td style=\\"\\">
+            {{header}}
+        </td>
+    </tr>
+
+    <tr style=\\"height: 57px;\\">
+        <td class=\\"\\" style=\\"padding: 20px; font-size: 38px; color: #333333; font-family: opensansregular,serif; height: 57px;\\">
+            Freelancer has requested the proposal {{job_id}} be completed in the contest {{job_title}}
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <span class=\\"\\">
+                {{job_status}}
+            </span>
+        </td>
+    </tr>
+
+
+    <tr style=\\"\\">
+        <td class=\\"\\" style=\\"\\">
+           {{footer}}
+        </td>
+    </tr>
+    </tbody>
+</table>', '2020-12-29 09:43:04');
+INSERT INTO wp_email_templates (id, title, description, subject, content, modified_date) VALUES (61, 'EMAIL_TEMPLATE_CONTEST_MEDIATOR_HIRED', '{{job_id}}, {{job_title}}, {{job_status}}', 'Proposal now has a mediator', '<table>
+    <tbody>
+
+    <tr style=\\"\\">
+        <td style=\\"\\">
+            {{header}}
+        </td>
+    </tr>
+
+    <tr style=\\"height: 57px;\\">
+        <td class=\\"\\" style=\\"padding: 20px; font-size: 38px; color: #333333; font-family: opensansregular,serif; height: 57px;\\">
+            Freelancer has hired a mediator about the proposal {{job_id}} in the contest {{job_title}}
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <span class=\\"\\">
+                {{job_status}}
+            </span>
+        </td>
+    </tr>
+
+
+    <tr style=\\"\\">
+        <td class=\\"\\" style=\\"\\">
+           {{footer}}
+        </td>
+    </tr>
+    </tbody>
+</table>', '2020-12-29 09:43:04');
+INSERT INTO wp_email_templates (id, title, description, subject, content, modified_date) VALUES (62, 'EMAIL_TEMPLATE_CONTEST_REQUEST_REJECTION', '{{job_id}}, {{job_title}}, {{job_status}}', 'There is a request to reject the proposal', '<table>
+    <tbody>
+
+    <tr style=\\"\\">
+        <td style=\\"\\">
+            {{header}}
+        </td>
+    </tr>
+
+    <tr style=\\"height: 57px;\\">
+        <td class=\\"\\" style=\\"padding: 20px; font-size: 38px; color: #333333; font-family: opensansregular,serif; height: 57px;\\">
+            The customer want to reject the proposal {{job_id}} in the contest {{job_title}}
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <span class=\\"\\">
+                {{job_status}}
+            </span>
+        </td>
+    </tr>
+
+
+    <tr style=\\"\\">
+        <td class=\\"\\" style=\\"\\">
+           {{footer}}
+        </td>
+    </tr>
+    </tbody>
+</table>', '2020-12-29 09:43:04');
+INSERT INTO wp_email_templates (id, title, description, subject, content, modified_date) VALUES (63, 'EMAIL_TEMPLATE_CONTEST_AWARDED', '{{job_id}}, {{job_title}}, {{job_status}}', 'Proposal Was Awarded', '<table>
+    <tbody>
+
+    <tr style=\\"\\">
+        <td style=\\"\\">
+            {{header}}
+        </td>
+    </tr>
+
+    <tr style=\\"height: 57px;\\">
+        <td class=\\"\\" style=\\"padding: 20px; font-size: 38px; color: #333333; font-family: opensansregular,serif; height: 57px;\\">
+            Customer awarded your proposal {{job_id}} in the contest {{job_title}}
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <span class=\\"\\">
+                {{job_status}}
+            </span>
+        </td>
+    </tr>
+
+
+    <tr style=\\"\\">
+        <td class=\\"\\" style=\\"\\">
+           {{footer}}
+        </td>
+    </tr>
+    </tbody>
+</table>', '2020-12-29 09:43:04');
+
+

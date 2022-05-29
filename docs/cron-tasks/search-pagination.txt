@@ -1,0 +1,35 @@
+Search is now paginated
+
+Added a form element in the search to control page numbers. It will show up in the url, as the search is a get and not a post, along with the search text and the language
+
+The wp-content/themes/the-translator/templates/HTMLPAGE-search-page.php now uses this page number (and if its missing will set it to 1) to calculate the page to get from the elastic search, the page size is controlled by a new constant called FREELINGUIST_SEARCH_PAGE_SIZE, which is currently set to 20
+
+There is a maximum of data we can get from a paginated search in Elastic Cache without starting to use their search cursors , which is not meant for fast response searching. This limit the the sum of the page number + page size, and must be less than 10,000 so any results greater than that will be truncated
+
+Added a page bar at the bottom
+
+Search ordering
+
+ the results will be sorted how recently they were last changed, however that cannot occur until we reindex the elastic indexes. As its using a new subkey for the data (recent_ts), and that does not exist until the re-indexing. Until then, I have commented out that sorting, and the results are temporarily being sorted by the default ES sort order
+
+
+ Changes to the Elastic Indexing cron jobs
+
+ All four cron jobs (for users,content, contest, project) now add the recent_ts (unix timestamp) which is the updated_at , unless that is missing, then will have the created_at
+
+ Also, after looking at the index structure with curl command
+
+ curl -XGET 127.0.0.1:9200/contest/_mapping
+
+ I realized that ES was making integer columns for the data which was integer, and strings for everything else. Some data, like the primary keys that we use for the job_id in all the records, was returned from the wordpress db class as a string, so those indexes are strings and cannot be sorted as numbers.
+
+ The four cron jobs now cast the numbers to integers and ES should add them as long ints now, for sorting purposes
+
+
+ Sorting for the search results can be on any index and have sorting on multiple indexes with ascending and descending choices. Much like SQL. ES will not cast number like strings to numbers, so , as I mentioned above, if the column is not an int, it will not be sorted correctly
+
+ Other changes in this commit is a small change in the javascript which processes the search form, to pass the search key, at wp-content/themes/the-translator/js/custom.js
+
+ There is also a hidden meta section , at the bottom of the page, which shows total search results, and indicates if the search did not return all the matches
+
+

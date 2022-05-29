@@ -1,0 +1,9 @@
+div.freelinguist-admin-patrol-flight {
+    margin-top: 3em;
+}
+
+
+div.freelinguist-admin-patrol-flight span.bold-and-blocking {
+    font-weight: bold;
+    display: block;
+}

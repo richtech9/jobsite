@@ -1,0 +1,28 @@
+wp_interest_tags has a new column  'usage_count'
+ this tracks the number of times it is used in the  wp_tags_cache_job table
+
+The wp_tags_cache_job table can get very large, and it takes a long time to count the number of times a tag is used
+The top tags needs to know which tags are in the top N usages, and this column makes it a fast lookup
+
+During the column setup , the script  refresh-update-count.sql was run and initially populated the column count
+
+There are three triggers which  maintain the count of the column 'usage_count', to keep it current at all times
+
+trigger_after_delete_wp_tags_cache_job_for_interest
+    Reduces the count by one, for the tag's usage_count,  when a wp_tags_cache_job row is deleted
+        The amount in usage_count is not allowed to go past zero, in case there is a syncronization or logic error later
+
+trigger_after_insert_wp_tags_cache_job_for_interest
+    Increases the count by one, for the tag's usage_count, when a wp_tags_cache_job row is inserted
+        There are no checks , it just adds 1
+
+trigger_after_update_wp_tags_cache_job_for_interest
+    Reduces the count by one, for the tag's usage_count,  when a wp_tags_cache_job row stops using that tag
+        The amount in usage_count is not allowed to go past zero, in case there is a syncronization or logic error later
+     Increases the count by one, for the tag's usage_count, when a wp_tags_cache_job row starts using the other tag
+        There are no checks , it just adds 1
+
+
+IF for any reason, there is a mismatch (someone did an update statement wrong, db corruption, etc)
+    then the refresh-update-count.sql can be safely run at any point to bring the numbers back in syncronization
+

@@ -1,0 +1,65 @@
+/* code-notes styling the download button*/
+
+div.freelinguist-download-line {
+    display: inline-block;
+    clear: both;
+    width: 100%;
+    padding: 0.25em;
+}
+
+div.freelinguist-download-line  span.freelinguist-download-name {
+    display: inline-block;
+    float: left;
+}
+
+div.freelinguist-download-line  span.freelinguist-download-name span.freelinguist-download-name-itself {
+    color: #333;
+    text-transform: initial;
+    font-weight: normal;
+}
+
+a.freelinguist-download-button {
+    display: inline-block;
+    margin-right: 0.5em;
+    color: #666666;
+    text-align: center;
+    float: right;
+    border: 1px solid #666666;
+}
+
+/*code-notes for the red dots*/
+
+div.fl-red-dot-holder {
+    display: inline-block;
+    width: 1em;
+    height: 0.5em;
+    position: relative;
+    /*background-color: lime;*/
+}
+
+
+div.fl-red-dot-holder span.fl-red-dot {
+    border-radius: 50%;
+    background-color: #ee2b31;
+    /*width: 0.5em;*/
+    /*height: 0.5em;*/
+    position: absolute ;
+    left: 0;
+    top: -1.0em;
+
+
+    display: inline-block;
+    padding: 0.125em 0.25em;
+    padding-right: 0.30em;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: center;
+
+}
+
+
+
+

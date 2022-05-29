@@ -1,0 +1,35 @@
+<body xmlns='http://jabber.org/protocol/httpbind'>
+    <presence xml:lang='en' to='fcustomer1-1001@peerok.com/143273843485020819814562'
+              from='fcustomer1-1001@peerok.com/1621782374932217352814466' xmlns='jabber:client'>
+        <x xmlns='vcard-temp:x:update'/>
+        <delay from='fcustomer1-1001@peerok.com/1621782374932217352814466' stamp='2020-08-19T13:05:19.410987Z'
+               xmlns='urn:xmpp:delay'/>
+    </presence>
+    <presence xml:lang='en' to='fcustomer1-1001@peerok.com/143273843485020819814562'
+              from='fcustomer1-1001@peerok.com/152542361552953132621667' xmlns='jabber:client'>
+        <x xmlns='vcard-temp:x:update'/>
+        <delay from='fcustomer1-1001@peerok.com/152542361552953132621667' stamp='2020-08-19T13:04:42.501099Z'
+               xmlns='urn:xmpp:delay'/>
+    </presence>
+    <presence xml:lang='en' to='fcustomer1-1001@peerok.com/143273843485020819814562'
+              from='fcustomer1-1001@peerok.com/10869140489178328911699' xmlns='jabber:client'>
+        <x xmlns='vcard-temp:x:update'/>
+        <delay from='fcustomer1-1001@peerok.com/10869140489178328911699' stamp='2020-08-19T13:04:57.341847Z'
+               xmlns='urn:xmpp:delay'/>
+    </presence>
+    <iq xml:lang='en' to='fcustomer1-1001@peerok.com/143273843485020819814562' from='pubsub.peerok.com' type='result'
+        id='9435:sendIQ' xmlns='jabber:client'>
+        <query xmlns='http://jabber.org/protocol/disco#items'/>
+    </iq>
+    <iq xml:lang='en' to='fcustomer1-1001@peerok.com/143273843485020819814562' from='pubsub.peerok.com' type='result'
+        id='9436:pubsubsubscriptions' xmlns='jabber:client'>
+        <pubsub xmlns='http://jabber.org/protocol/pubsub'>
+            <subscriptions/>
+        </pubsub>
+    </iq>
+</body>
+
+<body xmlns='http://jabber.org/protocol/httpbind'>
+    <presence xml:lang='en' to='fcustomer1-1001@peerok.com/253287902764771024419490'
+              from='fcustomer1-1001@peerok.com/365377385679818256419874' xmlns='jabber:client'>
+        <x xmlns='vcard-temp:x:update'/></presence></body>

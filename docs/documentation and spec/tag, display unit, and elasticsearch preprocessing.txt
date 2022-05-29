@@ -1,0 +1,119 @@
+To speed up the display of units on homepage, relevant sections on content/freelancer profiles.
+
+wp_display_unit_user_content:
+For each tag, top 10 score users/contents are stored in wp_display_unit_user_content table. 
+
+Based on this table, the HTML code of the top 200 display units are stored in ElasticSearch. 
+
+In ElasticSearch, it stores top 200 tags and their top 10 users and contenst. Besides, if admin adds some tags in admin panel for the homepage interest, they will also be stored in ElasticSearch.
+
+For each tag, it records users and contents with the highest scores. 
+
+	The score is determined based on users's rating, last activity time, etc. Detailed formula can be found below.  For example: 
+
+User score: 	Score =  (Average rating+1) * last login timestamp; 
+Content score:  Score =  (Average rating+1) * creation/update timestamp;
+An example:
+5* 1598477510
+
+Potential extenion in the future:
+User bids higher and is displayed with higher priority:
+User score: 	Score =  (Average rating+1) * (last login timestamp + bid price * day); 
+Content score:  Score =  (Average rating+1) * (creation/update timestamp +bid price * day);
+Or: user pays which is equivalent to increasing its rating level. 
+User score: 	Score =  (Average rating+bid level) * (last login timestamp ); 
+Content score:  Score =  (Average rating+bid level) * (creation/update timestamp );
+
+The score calculations are in: ****.php/sql file. (please add here when it's done) 
+
+
+#Step One: Cron Job.  executed once in an hour using action-scheduler/cron job. 
+It'll get all top 200 tags based on their usages. Then for each tag, it'll get top 10 users and content based on their scores in wp_display_unit_user_content table. 
+????????
+Improvement needed: 
+Refresh cache button:
+allow the admin the click a button to manually execute the job! (Refresh cache button).
+
+Clear Cache button:
+It should clean the existing 200 tags and their HTML data. 
+
+Cron job interval: Refresh Cache Time:
+Allow the admin to configure the cache refresh time in admin panel!
+???????????
+
+	A. Get top 200 tags based on Usage count in wp_interest_tags. 
+		In wp_interest_tags table, add a new column: usage_count. 
+		It'll increate/decrease when there's a new usage in an update of a project/profile/...
+		Then get top 200 tags based on this. 
+		See Addendum #Z1 for a description on how that works
+
+TBD: I can add in three new triggers for the wp_tags_cache_job (insert, update, delete) and they will maintain that new column 
+
+	B. 	For all the 200 tags, will generate 200* (10+10)=4000 HTML units at once, which will take a few sec. 
+		B.1: For each tag, it'll read from wp_display_unit_user_content the users or content (it stores only  the top 10 score list). 
+			
+		B.2: Clear the old HTML units for the old ten users. For each of the new ten users, it'll generate the HTML unit. 
+
+
+	C. HTML code update:	This will generate HTML display unit for users/contents stored in wp_display_unit_user_content table. The HTML code is stored in ElasticSearch. 
+
+					A. generate HTML display unit for each of the 10 relavent content and 10 freelancers.
+					B. use elasticsearch to store the tag and this HTML display units.  
+
+
+#Step 2: Maintenance of wp_display_unit_user_content table. The table is updated when there's a change in the top score, via the triggers for each user and each content.
+
+	
+In wp_display_unit_user_content, for each tag of all the tags, it stores only 10 users and 10 contenst with the highest scores. It may be a huge table (assuming million of rows)!
+
+	A. When user logs in, it's login update of mysql dB will trigger mysql function to update the score in the lookup table. When a content is updated, it'll do the same. 
+
+	B. While the score in the lookup table is udpated, it'll trigger the MySQL trigger function to update the wp_display_unit_user_content table based on the new score. 
+	
+	Algorithm: 	
+	For each of the 6 tags of the user/content:
+		1. Insert this user;
+		2. If number of users for this tag >10
+						remove the user with the lowest score. 
+
+	 after determine top user/content for a tag, set in wp_display_unit_user_content 	is_top_tag=1 for this user/content for this tag. 
+
+
+
+#Step 3: Display Unit: display the HTML units in usage by user
+	For each tag, use elasticsearch to find the related  HTML display units. It'll return a maximum of 20 units. 
+		Display the 20 units in random order. 
+
+	
+----------------------------------------------------
+Addendum #Z1	
+Change in how the top tags are computed. The code in Step #1, Section 'A' now uses wp_interest_tags#usage_count 	
+	
+wp_interest_tags has a new column  'usage_count'
+ this tracks the number of times it is used in the  wp_tags_cache_job table
+
+The wp_tags_cache_job table can get very large, and it takes a long time to count the number of times a tag is used
+The top tags needs to know which tags are in the top N usages, and this column makes it a fast lookup
+
+During the column setup , the script  refresh-update-count.sql was run and initially populated the column count
+
+There are three triggeers which  maintain the count of the column 'usage_count', to keep it current at all times
+
+trigger_after_delete_wp_tags_cache_job_for_interest
+    Reduces the count by one, for the tag's usage_count,  when a wp_tags_cache_job row is deleted
+        The amount in usage_count is not allowed to go past zero, in case there is a syncronization or logic error later
+
+trigger_after_insert_wp_tags_cache_job_for_interest
+    Increases the count by one, for the tag's usage_count, when a wp_tags_cache_job row is inserted
+        There are no checks , it just adds 1
+
+trigger_after_update_wp_tags_cache_job_for_interest
+    Reduces the count by one, for the tag's usage_count,  when a wp_tags_cache_job row stops using that tag
+        The amount in usage_count is not allowed to go past zero, in case there is a syncronization or logic error later
+     Increases the count by one, for the tag's usage_count, when a wp_tags_cache_job row starts using the other tag
+        There are no checks , it just adds 1
+
+
+IF for any reason, there is a mismatch (someone did an update statement wrong, db corruption, etc)
+    then the refresh-update-count.sql can be safely run at any point to bring the numbers back in syncronization
+
